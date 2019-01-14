@@ -14,7 +14,7 @@
 <body>
 <div id="container">
     <section>
-       <img class="LoginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
+       <img class="loginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
         <form action="loginValidate.php" method="post" >
             <fieldset>
                 <p>
