@@ -1,3 +1,17 @@
+body {
+    margin: 0;
+    background-color: grey;
+}
+.container
+{
+    width: 100%;
+    background: #005375;
+    color:ghostwhite;
+    font-family: 'Lato', sans-serif;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+}
 .buttonGo
 {
     background-color: #4CAF50;
@@ -11,4 +25,9 @@
     display: inline-block;
     font-size: 16px;
     -webkit-appearance: none;
+
+}
+.container > h1 {
+    margin: 0;
+    line-height: 50px;
 }
