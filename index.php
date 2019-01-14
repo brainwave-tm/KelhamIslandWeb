@@ -18,6 +18,6 @@ include("includes/functions.inc.php");
     <title>Kelham Island Web</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <img src="content/images/logo.png" alt="Kelham Island Logo">
 </body>
 </html>
