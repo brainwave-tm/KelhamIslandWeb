@@ -19,12 +19,12 @@
 </head>
 <body>
     <header>
-        <a href="index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
         <h1>Add an Object</h1>
-        <h2><a href='../index.php' class="backLink"><i class="fas fa-home"></i></a></h2>
+        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
     <div class="addObjectForm">
-        <form id="addObjectForm" method="POST" autocomplete="off" action="">
+        <form id="addObjectForm" method="POST" autocomplete="off" action="upload.php" enctype="multipart/form-data">
             <strong>Object Name: (max 25 letters)</strong><input maxlength="25" type="text" name="objectName"></input>
             <br>
             <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
@@ -32,6 +32,7 @@
             <strong>Object Main Image</strong><input type="file" id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
             <img id="eventImagePrev" style="width: 200px;" src="" alt="" />
+            <input type="button" value="Submit" class="buttonGo">
         </form>
     </div>
 </body>
