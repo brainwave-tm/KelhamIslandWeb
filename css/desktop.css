@@ -227,3 +227,23 @@ header i
     font-size: 8rem;
     }
 }
+::-webkit-scrollbar{
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+  box-shadow: inset 5px 0 0 grey; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track:hover {
+  background: ghostwhite;
+}
+::-webkit-scrollbar-thumb{
+  background: #005375;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background: #006486;
+    border-radius: 10px;
+}
