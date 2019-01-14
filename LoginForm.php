@@ -10,7 +10,7 @@
 <div id="container">
     <section>
        <img class="LoginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
-        <form method="post" action="">
+        <form action="loginValidate.php" method="post" >
             <fieldset>
                 <p>
                     <label for="username">Username</label>
