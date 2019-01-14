@@ -87,6 +87,9 @@ header > h1 {
     padding-bottom: 100px;
     width: 25%; 
 }
+.invalidInput{
+    color: #FF0000;
+    visibility: hidden;
 
 .backLink
 {

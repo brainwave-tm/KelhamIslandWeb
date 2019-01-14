@@ -15,7 +15,7 @@
 <div id="container">
     <section>
        <img class="loginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
-        <form action="loginValidate.php" method="post" >
+        <form action="process/loginValidate.php" method="post" >
             <fieldset>
                 <p>
                     <label for="username">Username</label>
@@ -28,6 +28,9 @@
                 <p class="right">
                     <input type="submit" value="Send" class="sendButton" />
                 </p>
+                <div class="invalidInput">
+                <p>INVALID USERNAME OR PASSWORD</p>
+                </div>
             </fieldset>
         </form>
     </section>
