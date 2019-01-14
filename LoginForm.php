@@ -28,6 +28,9 @@
                 <p class="right">
                     <input type="submit" value="Send" class="sendButton" />
                 </p>
+                <div class="invalidInput">
+                <p>INVALID USERNAME OR PASSWORD</p>
+                </div>
             </fieldset>
         </form>
     </section>

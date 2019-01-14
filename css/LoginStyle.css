@@ -2,3 +2,7 @@
 body{
     background-image: url("../content/images/background.png");
 }
+.invalidInput > p{
+    color: #FF0000;
+    visibility: hidden;
+}
