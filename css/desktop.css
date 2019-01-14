@@ -155,3 +155,28 @@ header i
     letter-spacing: 0.5px;
     transition: letter-spacing 0.1s;
 }
+.shelf {
+    display: flex;
+}
+.shelfItem {
+    width: 25%;  
+    border-left: 5px solid black; 
+    border-right: 5px solid black; 
+    border-top: 5px solid orange; 
+    border-bottom: 5px solid orange;
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 20px;
+}
+.shelfItem > strong > p > a{
+    text-decoration: none;
+    color: black;
+}
+.shelfItem > strong > p {
+    margin-bottom: 0;
+    background-color: orange;
+}
+#objectName a {
+    text-decoration: none;
+    color: black;
+}
