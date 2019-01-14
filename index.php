@@ -23,7 +23,6 @@ include("includes/functions.inc.php");
 
     <div class="indexContainer">
         <h1><a href="objectSelect.php">Click to Begin</a></h1>
-
     </div>
 </body>
 </html>
