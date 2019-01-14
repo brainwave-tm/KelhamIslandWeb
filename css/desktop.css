@@ -228,10 +228,12 @@ header i
     color: black;
 }
 .addObjectForm {
+    background: whitesmoke;
     font-size: 2rem;
-    padding-left: 20%;
-    padding-right: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-top: 30px;
+    padding: 10px;
 }
 #addObjectForm > input {
     font-size: 2rem;
@@ -286,4 +288,9 @@ table, th, td
 ::-webkit-scrollbar-thumb:hover{
   background: #006486;
     border-radius: 10px;
+}
+.loginToIndex{
+    float: right;
+    margin-right: 300px;
+    margin-top: 50px;
 }
