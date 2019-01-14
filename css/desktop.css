@@ -2,7 +2,7 @@
 
 body 
 {
-
+    overflow-x: hidden;
     margin: 0;
     background-image: url("../content/images/background.png");
     font-family: 'Lato', sans-serif;
@@ -110,13 +110,48 @@ header i
     margin-bottom: 20px;
     background-color: whitesmoke;
     font-family: 'Lato', sans-serif;
-    font-size: 18px;
+    font-size: 26px;
     padding-left: 30px;
 }
 
+.longDescription
+{
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: whitesmoke;
+    font-family: 'Lato', sans-serif;
+    font-size: 26px;
+    padding-left: 30px;
+}
+
+.pageContent .objectImages
+{
+    text-align: center;
+    background-color: whitesmoke;
+    width: 100%;
+}
 .pageContent img
 {
+    padding: 10px;
+    margin: auto;
     width: 25%;
+}
+#previewImg
+{
+    width: 50%;
+}
+.pageContent h2
+{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 0px;
+    text-align: center;
+    padding: 5px;
+    background-color: whitesmoke;
+    font-family: 'Lato', sans-serif;
+    color: #005375;
+    font-size: 35px;
 }
 
 .pagesMenu
