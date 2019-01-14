@@ -16,6 +16,7 @@ include("includes/functions.inc.php");
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="content/images/favicon.png">
+    <img src="content/images/logo.png" alt="Kelham Island Logo">
     <title>Kelham Island Web</title>
 </head>
 <body>
