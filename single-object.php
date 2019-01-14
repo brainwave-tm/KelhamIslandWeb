@@ -28,7 +28,8 @@ $objectData = $pdo->query("SELECT * FROM objects
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
         <h1><?php
         echo $objectData->objectName;
-        ?></h1> 
+        ?></h1>
+        <h2><a href='objectSelect.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
 
     <div class="pagesMenu">
@@ -37,7 +38,7 @@ $objectData = $pdo->query("SELECT * FROM objects
             $objectPages = $pdo->query("SELECT pageId, pageTitle FROM pages WHERE objectID = $objectID")->fetchAll();
             if(isset($_GET['pageID']))
             {
-                echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
+                echo "<li><a href='single-object.php?objectID=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
             }
             ?>
             
@@ -50,36 +51,23 @@ $objectData = $pdo->query("SELECT * FROM objects
                 echo "<li>|</li>";
             }
             ?>
-
-
-
-
-
-
-
-
-            <!-- <h2><a href='single-object.php?objectID=<?php echo $objectID; ?>' class="backLink"><i class="fas fa-hand-point-left"></i></a></h2>
-            <?php
-            // if(isset($_GET['pageID']))
-            // {
-            //     echo "<h2><a href='objectSelect.php' class=\"backLink\"><i class=\"fas fa-home\"></i></a></h2>";
-            // }
-            ?> -->
         </ol>
     </div>
 
-    <div>
+    <div class="pageContent">
         <?php
         if(!isset($_GET['pageID']))
         {
+            echo "<div class='shortDescription'>";
             echo "<p>$objectData->objectShortDescription</p>";
+            echo "</div>";
+            
             $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectData->objectPreviewImage")->fetchObject();
             echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
             
         } else
         {
             // Display a single page //
-            // echo "<h3><a href='single-object.php?objectID=$objectID'>Back To Main Menu</a></h3>";
             $pageID = safeInt($_GET['pageID']);
 
             $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
