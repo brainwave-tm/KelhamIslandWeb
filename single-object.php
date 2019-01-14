@@ -36,7 +36,7 @@ $objectData = $pdo->query("SELECT * FROM objects
     <div class="pagesMenu">
         <ol type="1">
             <?php
-            $objectPages = $pdo->query("SELECT pageId, pageTitle FROM pages WHERE objectID = $objectID")->fetchAll();
+            $objectPages = $pdo->query("SELECT pageId, pageTitle, pageImage FROM pages WHERE objectID = $objectID")->fetchAll();
             if(isset($_GET['pageID']))
             {
                 echo "<li><a href='single-object.php?objectID=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
@@ -51,7 +51,9 @@ $objectData = $pdo->query("SELECT * FROM objects
                 echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
                 echo "<li>|</li>";
             }
+            
             echo "<li><a href='#images'>Images</a></li>";
+            
             ?>
         </ol>
     </div>
