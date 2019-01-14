@@ -30,7 +30,7 @@ $objectData = $pdo->query("SELECT * FROM objects
         <h1><?php
         echo $objectData->objectName;
         ?></h1>
-        <h2><a href='objectSelect.php' class="backLink"><i class="fas fa-home"></i></a></h2>
+        <h2><a href='objectSelect.php' class="backLink"><i class="fas fa-home">Back</i></a></h2>
     </header>
 
     <div class="pagesMenu">
