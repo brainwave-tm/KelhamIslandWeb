@@ -7,31 +7,26 @@
 </head>
 <body>
 <div id="container">
-<header>
-  <h1></h1>
-</header>
-<section>
-<form method="post" action="">
- <fieldset>
-        <legend></legend>
-            <p>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" />   
-            </p>
-            <p>
-                <label for="pass">Password:</label>
-                <input type="password" id="pass" name="password" required>
-            </p>  
-            <p class="right">
-    	        <input type="submit" value="Send" class="sendButton" />
-            </p>
-</fieldset>
+    <section>
+        <form method="post" action="">
+            <fieldset>
+                <p>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" />   
+                </p>
+                <p>
+                    <label for="pass">Password:</label>
+                    <input type="password" id="pass" name="password" required>
+                </p>  
+                <p class="right">
+                    <input type="submit" value="Send" class="sendButton" />
+                </p>
+            </fieldset>
+        </form>
+    </section>
 
-
-</form>
-</section>
-<footer>
-</footer>
+    <footer>
+    </footer>
 </div>
 </body>
 </html>
