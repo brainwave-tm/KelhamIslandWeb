@@ -227,3 +227,22 @@ header i
     font-size: 8rem;
     }
 }
+
+.objectSelect
+{
+    background-color: whitesmoke;
+    margin: 20px;
+    padding: 5px;
+}
+
+table
+{
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+table, th, td
+{
+    padding: 5px;
+    border: 1px solid black;
+}
