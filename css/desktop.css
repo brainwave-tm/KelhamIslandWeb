@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 body 
 {
 
@@ -87,6 +89,75 @@ header > h1 {
 .invalidInput{
     color: #FF0000;
     visibility: hidden;
+
+.backLink
+{
+    margin-left: 50px;
+    text-decoration: none;
+    color: #005375;
+}
+
+header i
+{
+    font-size: 60px;
+}
+
+.shortDescription
+{
+    border-top: 3px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: whitesmoke;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    padding-left: 30px;
+}
+
+.pageContent img
+{
+    width: 25%;
+}
+
+.pagesMenu
+{
+    background-color: whitesmoke;
+    margin-top: 10px;
+    padding: 5px;
+}
+.pagesMenu li
+{
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+.pagesMenu ol
+{
+    display: flex;
+    width: 100%;
+}
+.pagesMenu ol li
+{
+    display: inline-flex;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.pagesMenu ol li a
+{
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    color: #005375;
+    font-size: 20px;
+
+    letter-spacing: 0px;
+    transition: letter-spacing 0.1s;
+}
+.pagesMenu ol li a:hover
+{
+    letter-spacing: 0.5px;
+    transition: letter-spacing 0.1s;
+}
 .shelf {
     display: flex;
 }

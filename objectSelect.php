@@ -31,7 +31,7 @@ include("includes/functions.inc.php");
                 echo "<div class='shelfItem' style=''>";
                 echo "<a href='single-object?objectID=".$o['objectId']."'><img src='content/images/" . $o['objectId'] . "/" . $o['objectId'] . "' style='width: 80%'/></a>";
                 echo "<div style='height: 150px; width: 100%'>";
-                echo "<p id='objectName'><a href='single-object?objectID=".$o['objectId']."'>" . $o['objectName'] . "</a></p>";
+                echo "<p id='objectName'><a href='single-object?objectID=".$o['objectId']."'><strong>" . $o['objectName'] . "</strong></a></p>";
                 echo "</div>";
                 echo "<strong><p><a style='float: bottom'href='single-object.php?objectID=" . $o['objectId'] . "'>" . $o['objectShelfPosition'] . "</a></p></strong>";
                 echo "</div>";
