@@ -21,5 +21,17 @@ include("includes/functions.inc.php");
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
         <h1>Select an Object</h1>
     </header>
+
+    <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>
+    <?php
+        $objects = $pdo->query("SELECT * FROM objects")->fetchAll();
+        echo "<ol type='1'>";
+            foreach($objects as $o)
+            {
+                echo "<li><a href='single-object.php?objectID=" . $o['objectId'] . "'>" . $o['objectName'] . "</a></li>";
+            }
+        echo "</ol>";
+    ?>
+    </div>
 </body>
 </html>
