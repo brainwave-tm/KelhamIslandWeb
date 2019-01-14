@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -11,9 +12,9 @@
   <h1></h1>
 </header>
 <section>
-<form method="post" action="">
+<img class="indexLogo" src="content/images/logo.png" alt="Kelham Island Logo">
+<form action = "loginValidate.php" method = "post">
  <fieldset>
-        <legend></legend>
             <p>
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" />   
@@ -25,7 +26,7 @@
             <p class="right">
     	        <input type="submit" value="Send" class="sendButton" />
             </p>
-    </fieldset>
+</fieldset>
 
 
 </form>
