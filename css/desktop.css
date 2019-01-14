@@ -36,6 +36,7 @@ body
     margin: 0;
     line-height: 150px;
     font-size: 8rem;  
+    animation: textgrowth 1s infinite alternate;
 }
 h1 a{
     text-decoration: none;
@@ -179,4 +180,12 @@ header i
 #objectName a {
     text-decoration: none;
     color: black;
+}
+@keyframes textgrowth {
+    0% {
+    font-size: 7rem;
+    }
+    100% {
+    font-size: 8rem;
+    }
 }
