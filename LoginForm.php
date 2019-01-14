@@ -26,7 +26,7 @@
                     <input type="password" id="pass" name="password" required>
                 </p>  
                 <p class="right">
-                    <input type="submit" value="Send" class="sendButton" />
+                    <input type="submit" name="login" value="Login" class="sendButton" />
                 </p>
                 <div class="invalidInput">
                 <p>INVALID USERNAME OR PASSWORD</p>
