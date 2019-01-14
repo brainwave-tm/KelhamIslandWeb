@@ -13,7 +13,7 @@ if(is_null($valusername)){
 else{
     if($valusername->userPassword === $password_s)
     {
-        header("Location:../youwin.php");
+        header("Location: https://www.shitpostbot.com/resize/250/250?img=%2Fimg%2Fsourceimages%2Fmy-meat-5afc1499b4234.png");
     }
     else {
         header("Location:../index.php");        
