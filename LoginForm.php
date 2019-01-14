@@ -33,6 +33,11 @@
                 </div>
             </fieldset>
         </form>
+        <div class = "loginToIndex">
+        <h1>
+        <a href="index.php"> To index </a>
+        </h1>
+        </div>
     </section>
 
     <footer>
