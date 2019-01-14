@@ -227,3 +227,31 @@ header i
     font-size: 8rem;
     }
 }
+
+.username_box
+{
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;  
+    background-color: whitesmoke;
+    font-size: 18px;
+    height: 187px;    
+    width: 40%
+}
+
+.password_box
+{
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: whitesmoke;
+    font-size: 18px;
+    height: 190px;
+    width: 40%
+}
+
+.changeButton
+{    
+    font-size: 20px;
+}
+
