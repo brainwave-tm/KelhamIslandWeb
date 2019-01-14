@@ -18,7 +18,7 @@ include("includes/functions.inc.php");
 </head>
 <body>
     <header>
-        <img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo">
+        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
         <h1>Select an Object</h1>
     </header>
 </body>

@@ -58,7 +58,7 @@ fieldset
 }
 header {
     height: 100px;
-    background-color: greenyellow;
+    background-color: ghostwhite;
     display: flex;
     text-align: center;
 }
@@ -67,6 +67,7 @@ header > h1 {
     margin: 0;
     line-height: 100px;
     width: 75%;
+    font-size: 4rem;
 }
 .headerLogo
 {
