@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Kelham island - Login</title>
-<link rel="stylesheet" href="css/LoginStyle.css">
+<link rel="stylesheet" href="css/desktop.css">
 </head>
 <body>
 <div id="container">
@@ -25,7 +25,7 @@
             <p class="right">
     	        <input type="submit" value="Send" class="sendButton" />
             </p>
-    </fieldset>
+</fieldset>
 
 
 </form>

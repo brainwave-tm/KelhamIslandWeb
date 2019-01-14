@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
 body {
     margin: 0;
     background-image: url("../content/images/background.png");
@@ -43,4 +44,12 @@ h1 a{
     padding-top: 100px;
     padding-bottom: 100px;
     height: 60%;
+}
+fieldset
+{
+   background-color: #FFFFFF;
+   width: 25%;
+   margin: 300px auto;
+   text-align: center;
+   font-family: 'Lato', sans-serif;
 }
