@@ -7,15 +7,15 @@
     <title>Document</title>
 </head>
 <body>
+
+    <img id="pic" src="../content/images/3/3.JPG" style="display: none; width: 25%">
+
     <canvas id="myCanvas" width="1340" height="800" style="border:1px solid #000000;">
     </canvas>
 
     <script type="text/javascript">
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(c.width / 2, c.height / 2, 110, 0, 2 * Math.PI);
-    ctx.stroke();
 
     // Create gradient
     var grd = ctx.createLinearGradient(0, 0, c.width, c.height);
@@ -26,8 +26,22 @@
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, c.width, c.height);
 
-    ctx.font = "110px Arial";
-    ctx.strokeText("Kelham Matchup", 250, c.height / 2);
+    ctx.font = "30px Arial";
+    var offset = 0;
+    for(var i = 0; i < 4; i++)
+    {
+        ctx.fillStyle = "white";
+        var rectangle = {x : (offset + 250), y : 20, width: 250, height : 400};
+        offset = rectangle.x + 25;
+        rectangle.x -= 225;
+        ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+
+        ctx.fillStyle = "black";
+        ctx.fillText("Bramah Press", rectangle.x + 25, 65);
+
+        var img = document.getElementById("pic");
+        ctx.drawImage(img, rectangle.x + 25, 130, 200, 200);
+    }
     </script>
 </body>
 </html>
