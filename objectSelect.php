@@ -24,13 +24,19 @@ include("includes/functions.inc.php");
 
     <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>
     <?php
-        $objects = $pdo->query("SELECT * FROM objects")->fetchAll();
-        echo "<ol type='1'>";
+        $objects = $pdo->query("SELECT * FROM objects WHERE objectShelfPosition IS NOT NULL")->fetchAll();
+            echo "<div class='shelf'>";
             foreach($objects as $o)
             {
-                echo "<li><a href='single-object.php?objectID=" . $o['objectId'] . "'>" . $o['objectName'] . "</a></li>";
+                echo "<div class='shelfItem' style=''>";
+                echo "<a href='single-object?objectID=".$o['objectId']."'><img src='content/images/" . $o['objectId'] . "/" . $o['objectId'] . "' style='width: 80%'/></a>";
+                echo "<div style='height: 150px; width: 100%'>";
+                echo "<p id='objectName'><a href='single-object?objectID=".$o['objectId']."'>" . $o['objectName'] . "</a></p>";
+                echo "</div>";
+                echo "<strong><p><a style='float: bottom'href='single-object.php?objectID=" . $o['objectId'] . "'>" . $o['objectShelfPosition'] . "</a></p></strong>";
+                echo "</div>";
             }
-        echo "</ol>";
+            echo "</div>";
     ?>
     </div>
 </body>
