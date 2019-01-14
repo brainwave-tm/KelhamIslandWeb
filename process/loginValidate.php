@@ -14,7 +14,7 @@ else{
     $dbPasswordHash = $valusername->userPassword;
     if(password_verify($_POST['password'], $dbPasswordHash))
     {
-        header("Location:../youwin.php");
+        header("Location: https://www.shitpostbot.com/resize/250/250?img=%2Fimg%2Fsourceimages%2Fmy-meat-5afc1499b4234.png");
     }
     else {
         header("Location:../LoginForm.php");        
