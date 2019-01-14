@@ -1,10 +1,7 @@
-fieldset
-{
-   background-color: #FFFFFF;
-   width: 25%;
-   margin: 300px auto;
-   text-align: center;
-}
+
 body{
     background-image: url("../content/images/background.png");
+}
+.LoginLogo{
+    margin:auto;
 }
