@@ -22,7 +22,7 @@ include("includes/functions.inc.php");
 
     </div>
     <div class="container">
-        <h1>Hello World</h1>
+        <h1>Welcome To Kelham Island / <?php echo date("d/m/Y"); ?></h1>
         <a href="objectSelect.php" class="buttonGo">Start</a>
     </div>
 </body>
