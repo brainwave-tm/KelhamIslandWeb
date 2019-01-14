@@ -36,22 +36,27 @@ if(!isset($_GET['pageID']))
     }
     
 }
-
-
-// $pageID = safeInt($_GET['pageID']);
-
-// $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();
-// $objectArray = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchAll();
-
-
-// if(sizeof($objectArray) == 0)
-// {
-//     echo "<h1>No pages found for this object</h1>";
-// } else
-// {
-//      foreach($objectArray as $a)
-//      {
-//          echo $a['pageText'];
-//      }
-// }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Stylesheet for Desktop -->
+    <link rel="stylesheet" media="only screen and (min-width: 901px)" href="css/desktop.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="content/images/favicon.png">
+    <title>Kelham Island Web</title>
+</head>
+<body>
+    <header>
+        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
+        <h1><?php
+        echo $objectData->objectName;
+        ?></h1>
+    </header>
+</body>
+</html>
