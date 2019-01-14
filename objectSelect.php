@@ -9,21 +9,30 @@ include("includes/functions.inc.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Stylesheet for Mobile -->
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
     <!-- Stylesheet for Desktop -->
-    <link rel="stylesheet" href="css/desktop.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" media="only screen and (min-width: 901px)" href="css/desktop.css">
     <!-- Favicon -->
     <link rel="icon" href="content/images/favicon.png">
     <title>Kelham Island Web</title>
 </head>
 <body>
-    <div style="height: 600px; width: 100%">
-    <img class="indexLogo" src="content/images/logo.png" alt="Kelham Island Logo">
-
-    </div>
     <div class="container">
-        <h1>Hello World</h1>
-        <a href="objectSelect.php" class="buttonGo">Start</a>
+        <h1>Select an Object</h1>
+        <div class="shelf">
+            <div class="object">
+            </div>
+            <div class="object">
+
+            </div>
+            <div class="object">
+
+            </div>
+            <div class="object">
+
+            </div>
+        </div>
     </div>
 </body>
 </html>
