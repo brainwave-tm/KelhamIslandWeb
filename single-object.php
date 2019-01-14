@@ -21,6 +21,7 @@ $objectData = $pdo->query("SELECT * FROM objects
     <link rel="icon" href="content/images/favicon.png">
     <!-- For Back icons etc. -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>Kelham Island Web</title>
 </head>
 <body>
@@ -50,6 +51,7 @@ $objectData = $pdo->query("SELECT * FROM objects
                 echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
                 echo "<li>|</li>";
             }
+            echo "<li><a href='#images'>Images</a></li>";
             ?>
         </ol>
     </div>
@@ -63,25 +65,35 @@ $objectData = $pdo->query("SELECT * FROM objects
             echo "</div>";
             
             $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectData->objectPreviewImage")->fetchObject();
-            echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
-            
+            echo "<div class='objectImages'>";
+                echo "<img id='previewImg' src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
+            echo "</div>";
         } else
         {
             // Display a single page //
             $pageID = safeInt($_GET['pageID']);
 
             $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
+            
             echo "<h2>$objectPage->pageTitle</h2>";
-            echo "<p>$objectPage->pageText</p>";
 
+            echo "<div class='longDescription'>";
+            echo "<p>$objectPage->pageText</p>";
+            echo "</div>";
+         
             if(!is_null($objectPage->pageImage))
             {
-                $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
-                echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
-            }
-            
+                echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                echo "<div class='objectImages'>";
+                    $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
+                    echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                echo "</div>";
+            }         
         }
         ?>
     </div>
+
+    <script type="text/javascript">
+    </script>
 </body>
 </html>
