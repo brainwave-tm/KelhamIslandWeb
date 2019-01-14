@@ -1,4 +1,5 @@
 <?php
+    // require("../logic/auth.php");
     include("../includes/conn.inc.php");
     include("../includes/functions.inc.php");
 ?>
@@ -32,7 +33,7 @@
             <strong>Object Main Image</strong><input type="file" id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
             <img id="eventImagePrev" style="width: 200px;" src="" alt="" />
-            <input type="button" value="Submit" class="buttonGo">
+            <input type="submit" value="Submit" class="buttonGo">
         </form>
     </div>
 </body>
