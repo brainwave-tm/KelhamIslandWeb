@@ -25,5 +25,8 @@ include("includes/functions.inc.php");
     <div class="indexContainer">
         <h1><a href="objectSelect.php">Click to Begin</a></h1>
     </div>
+    <div class = "loginLink">
+        <a href="LoginForm.php"> Admin login</a>
+    </div>
 </body>
 </html>

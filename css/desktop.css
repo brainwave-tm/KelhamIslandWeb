@@ -294,3 +294,12 @@ table, th, td
     margin-right: 300px;
     margin-top: 50px;
 }
+.loginLink{
+    position: fixed;
+    margin-top: 100px;
+    bottom: 10px;
+}
+.loginLink a{
+
+color:black;
+}
