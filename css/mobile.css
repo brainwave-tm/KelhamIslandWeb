@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: grey;
+    background-image: url("content/images/bg.png");
 }
 .container
 {
