@@ -4,10 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Kelham island - Login</title>
 <link rel="stylesheet" href="css/desktop.css">
+<link rel="stylesheet" href="css/LoginStyle.css">
 </head>
 <body>
 <div id="container">
     <section>
+       <img class="LoginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
         <form method="post" action="">
             <fieldset>
                 <p>
