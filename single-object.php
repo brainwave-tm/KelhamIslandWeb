@@ -32,67 +32,66 @@ $objectData = $pdo->query("SELECT * FROM objects
         ?></h1>
         <h2><a href='objectSelect.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
-
-    <div class="pagesMenu">
-        <ol type="1">
+    <div class="page">
+        <div class="sideBar">
+            <ol type="1">
+                <?php
+                $objectPages = $pdo->query("SELECT pageId, pageTitle, pageImage FROM pages WHERE objectID = $objectID")->fetchAll();
+                if(isset($_GET['pageID']))
+                {
+                    echo "<li><a href='single-object.php?objectID=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
+                }
+                ?>
+                
+                <li>PAGES</li>
+                <?php
+                for($i = 0; $i < sizeof($objectPages); $i++)
+                {
+                    echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                    
+                }
+                
+                echo "<li><a href='#images'>Images</a></li>";
+                
+                ?>
+            </ol>
+        </div>
+        <div class="pageContent">
             <?php
-            $objectPages = $pdo->query("SELECT pageId, pageTitle, pageImage FROM pages WHERE objectID = $objectID")->fetchAll();
-            if(isset($_GET['pageID']))
+            if(!isset($_GET['pageID']))
             {
-                echo "<li><a href='single-object.php?objectID=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
-            }
-            ?>
-            
-            <li>PAGES</li>
-            <li>||</li>
-            <?php
-            for($i = 0; $i < sizeof($objectPages); $i++)
-            {
-                echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
-                echo "<li>|</li>";
-            }
-            
-            echo "<li><a href='#images'>Images</a></li>";
-            
-            ?>
-        </ol>
-    </div>
-
-    <div class="pageContent">
-        <?php
-        if(!isset($_GET['pageID']))
-        {
-            echo "<div class='shortDescription'>";
-            echo "<p>$objectData->objectShortDescription</p>";
-            echo "</div>";
-            
-            $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectData->objectPreviewImage")->fetchObject();
-            echo "<div class='objectImages'>";
-                echo "<img id='previewImg' src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
-            echo "</div>";
-        } else
-        {
-            // Display a single page //
-            $pageID = safeInt($_GET['pageID']);
-
-            $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
-            
-            echo "<h2>$objectPage->pageTitle</h2>";
-
-            echo "<div class='longDescription'>";
-            echo "<p>$objectPage->pageText</p>";
-            echo "</div>";
-         
-            if(!is_null($objectPage->pageImage))
-            {
-                echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
-                echo "<div class='objectImages'>";
-                    $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
-                    echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                echo "<div class='shortDescription'>";
+                echo "<p>$objectData->objectShortDescription</p>";
                 echo "</div>";
-            }         
-        }
-        ?>
+                
+                $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectData->objectPreviewImage")->fetchObject();
+                echo "<div class='objectImages'>";
+                    echo "<img id='previewImg' src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
+                echo "</div>";
+            } else
+            {
+                // Display a single page //
+                $pageID = safeInt($_GET['pageID']);
+
+                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
+                
+                echo "<h2>$objectPage->pageTitle</h2>";
+
+                echo "<div class='longDescription'>";
+                echo "<p>$objectPage->pageText</p>";
+                echo "</div>";
+            
+                if(!is_null($objectPage->pageImage))
+                {
+                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    echo "<div class='objectImages'>";
+                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
+                        echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                    echo "</div>";
+                }         
+            }
+            ?>
+        </div>
     </div>
 
     <script type="text/javascript">
