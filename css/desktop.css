@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    background-image: url("../content/images/background.png");
+}
+.container
+{
+    width: 100%;
+    background: #005375;
+    color:ghostwhite;
+    font-family: 'Lato', sans-serif;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+}
+.buttonGo
+{
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 3px 10px;
+    margin: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-appearance: none;
+
+}
+.container > h1 {
+    margin: 0;
+    line-height: 50px;
+}
+.indexLogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    height: 60%;
+}
