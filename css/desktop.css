@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 body 
 {
 
@@ -84,28 +86,72 @@ header > h1 {
     padding-bottom: 100px;
     width: 25%; 
 }
-.shelf {
+
+.backLink
+{
+    margin-left: 50px;
+    text-decoration: none;
+    color: #005375;
+}
+
+header i
+{
+    font-size: 60px;
+}
+
+.shortDescription
+{
+    border-top: 3px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: whitesmoke;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    padding-left: 30px;
+}
+
+.pageContent img
+{
+    width: 25%;
+}
+
+.pagesMenu
+{
+    background-color: whitesmoke;
+    margin-top: 10px;
+    padding: 5px;
+}
+.pagesMenu li
+{
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+.pagesMenu ol
+{
     display: flex;
+    width: 100%;
 }
-.shelfItem {
-    width: 25%;  
-    border-left: 5px solid black; 
-    border-right: 5px solid black; 
-    border-top: 5px solid orange; 
-    border-bottom: 5px solid orange;
-    text-align: center;
-    font-size: 2rem;
-    padding-top: 20px;
+.pagesMenu ol li
+{
+    display: inline-flex;
+    padding-left: 10px;
+    padding-right: 10px;
 }
-.shelfItem > strong > p > a{
+.pagesMenu ol li a
+{
     text-decoration: none;
-    color: black;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    color: #005375;
+    font-size: 20px;
+
+    letter-spacing: 0px;
+    transition: letter-spacing 0.1s;
 }
-.shelfItem > strong > p {
-    margin-bottom: 0;
-    background-color: orange;
-}
-#objectName a {
-    text-decoration: none;
-    color: black;
+.pagesMenu ol li a:hover
+{
+    letter-spacing: 0.5px;
+    transition: letter-spacing 0.1s;
 }
