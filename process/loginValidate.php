@@ -11,12 +11,13 @@ if(is_null($valusername)){
     header("Location:../LoginPage.php");
 }
 else{
-    if($valusername->userPassword === $password_s)
+    $dbPasswordHash = $valusername->userPassword;
+    if(password_verify($_POST['password'], $dbPasswordHash))
     {
         header("Location:../youwin.php");
     }
     else {
-        header("Location:../index.php");        
+        header("Location:../LoginForm.php");        
     }
     
 }
