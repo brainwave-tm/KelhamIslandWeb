@@ -21,9 +21,8 @@ include("includes/functions.inc.php");
     <img class="indexLogo" src="content/images/logo.png" alt="Kelham Island Logo">
 
     </div>
-    <div class="container">
-        <h1>Hello World</h1>
-        <a href="objectSelect.php" class="buttonGo">Start</a>
+    <div class="indexContainer">
+        <h1><a href="objectSelect.php">Click to Begin</a></h1>
     </div>
 </body>
 </html>

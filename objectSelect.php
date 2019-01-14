@@ -18,8 +18,8 @@ include("includes/functions.inc.php");
     <title>Kelham Island Web</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Select an Object</h1>
+    <div class="indexContainer">
+        <h2>Select an Object</h2>
         <div class="shelf">
             <div class="object">
             </div>

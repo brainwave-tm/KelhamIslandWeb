@@ -2,13 +2,13 @@ body {
     margin: 0;
     background-image: url("../content/images/background.png");
 }
-.container
+.indexContainer
 {
     width: 100%;
     background: #005375;
     color:ghostwhite;
     font-family: 'Lato', sans-serif;
-    height: 50px;
+    height: 150px;
     padding: 5px;
     text-align: center;
 }
@@ -27,9 +27,14 @@ body {
     -webkit-appearance: none;
 
 }
-.container > h1 {
+.indexContainer > h1 {
     margin: 0;
-    line-height: 50px;
+    line-height: 150px;
+    font-size: 8rem;  
+}
+h1 a{
+    text-decoration: none;
+    color: ghostWhite;    
 }
 .indexLogo{
     display: block;
