@@ -2,10 +2,11 @@
 include("includes/conn.inc.php");
 include("includes/functions.inc.php");
 
-$objectID = safeInt($_GET['objectID']);
+$objectID = safeString($_GET['objectID']);
 
-// We are on the 'main page' //
-$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();
+$objectData = $pdo->query("SELECT * FROM objects 
+                           INNER JOIN images ON objects.objectId = images.imageId
+                           WHERE objectID = $objectID")->fetchObject();
 echo "<h1>$objectData->objectName</h1>";
 $objectPages = $pdo->query("SELECT pageId, pageTitle FROM pages WHERE objectID = $objectID")->fetchAll();
 for($i = 0; $i < sizeof($objectPages); $i++)

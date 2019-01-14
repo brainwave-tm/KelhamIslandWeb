@@ -52,7 +52,7 @@ fieldset
 {
    background-color: #FFFFFF;
    width: 25%;
-   margin: 300px auto;
+   margin: 10px auto;
    text-align: center;
    font-family: 'Lato', sans-serif;
 }
@@ -74,4 +74,13 @@ header > h1 {
     height: 80px;
     padding-left: 25px;
     margin: 9px;
+}
+.loginLogo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    width: 25%; 
 }
