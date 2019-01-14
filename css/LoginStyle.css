@@ -1,12 +1,4 @@
-section
-{
-   width: 25%;
-   margin: 200px auto;
-   text-align: center;
-}
-fieldset{
-   background-color: #FFFFFF;
-}
+
 body{
     background-image: url("../content/images/background.png");
 }

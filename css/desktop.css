@@ -1,13 +1,15 @@
-body {
+body 
+{
+
     margin: 0;
     background-image: url("../content/images/background.png");
+    font-family: 'Lato', sans-serif;
 }
 .indexContainer
 {
     width: 100%;
     background: #005375;
     color:ghostwhite;
-    font-family: 'Lato', sans-serif;
     height: 150px;
     padding: 5px;
     text-align: center;
@@ -27,7 +29,8 @@ body {
     -webkit-appearance: none;
 
 }
-.indexContainer > h1 {
+.indexContainer > h1 
+{
     margin: 0;
     line-height: 150px;
     font-size: 8rem;  
@@ -36,11 +39,38 @@ h1 a{
     text-decoration: none;
     color: ghostWhite;    
 }
-.indexLogo{
+.indexLogo
+{
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding-top: 100px;
     padding-bottom: 100px;
     height: 60%;
+}
+fieldset
+{
+   background-color: #FFFFFF;
+   width: 25%;
+   margin: 300px auto;
+   text-align: center;
+   font-family: 'Lato', sans-serif;
+}
+header {
+    height: 100px;
+    background-color: greenyellow;
+    display: flex;
+    text-align: center;
+}
+header > h1 {
+    color: black;
+    margin: 0;
+    line-height: 100px;
+    width: 75%;
+}
+.headerLogo
+{
+    height: 80px;
+    padding-left: 25px;
+    margin: 9px;
 }

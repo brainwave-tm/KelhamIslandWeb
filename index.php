@@ -11,7 +11,6 @@ include("includes/functions.inc.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Stylesheet for Desktop -->
     <link rel="stylesheet" href="css/desktop.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="content/images/favicon.png">
     <title>Kelham Island Web</title>
