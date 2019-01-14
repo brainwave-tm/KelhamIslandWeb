@@ -219,6 +219,18 @@ header i
     text-decoration: none;
     color: black;
 }
+.addObjectForm {
+    font-size: 2rem;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-top: 30px;
+}
+#addObjectForm > input {
+    font-size: 2rem;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 @keyframes textgrowth {
     0% {
     font-size: 7rem;
