@@ -4,9 +4,8 @@ include("includes/functions.inc.php");
 
 $objectID = safeString($_GET['objectID']);
 
-$objectData = $pdo->query("SELECT * FROM objects 
-                           INNER JOIN images ON objects.objectId = images.imageId
-                           WHERE objectID = $objectID")->fetchObject();
+$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();
+                           
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +63,8 @@ $objectData = $pdo->query("SELECT * FROM objects
                 echo "<p>$objectData->objectShortDescription</p>";
                 echo "</div>";
                 
-                $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectData->objectPreviewImage")->fetchObject();
                 echo "<div class='objectImages'>";
-                    echo "<img id='previewImg' src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
+                echo "<img id='previewImg' src='content/images/$objectData->objectId/" . $objectData->objectPreviewImage . "'>";
                 echo "</div>";
             } else
             {

@@ -11,8 +11,7 @@ echo $objectId;
 
 $currentDir = getcwd();
 $uploadDirectory = "../CONTENT/IMAGES/";
+print_r($objectId);
 mkdir($uploadDirectory . "memez");
-
-
 
 ?>

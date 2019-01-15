@@ -2,6 +2,24 @@
     // require("../logic/auth.php");
     include("../includes/conn.inc.php");
     include("../includes/functions.inc.php");
+
+    if(isset($_POST['submit']))
+    {
+        if ($_POST['objectID'] == 0)
+        {
+            $objectName = safeString($_POST['objectName']);
+            $objectShortDescription = safeString($_POST['objectShortDescription']);
+            $imagePath = uploadFile();
+            print_r($imagePath);
+            $objectShelfPosition = safeString($_POST['objectShelfPosition']);
+            
+
+            $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectPreviewImage, objectShelfPosition) VALUES (?,?,?,?)";
+            $stmt2= $pdo->prepare($sql2);
+            $stmt2->execute([$objectName, $objectShortDescription, $imagePath, $objectShelfPosition]);
+            header("cms.php");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,15 +43,18 @@
         <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
     <div class="addObjectForm">
-        <form id="addObjectForm" method="POST" autocomplete="off" action="upload.php" enctype="multipart/form-data">
+        <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">
+            <input type="hidden" name="objectID" value="0"/>
             <strong>Object Name: (max 25 letters)</strong><input maxlength="25" type="text" name="objectName"></input>
             <br>
             <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>
+            <strong>Shelf Position: </strong><input type="text" name="objectShelfPosition"/>
+            <br>
             <strong>Object Main Image</strong><input type="file" id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
             <img id="eventImagePrev" style="width: 200px;" src="" alt="" />
-            <input type="submit" value="Submit" class="buttonGo">
+            <input type="submit" name="submit" value="Submit" class="buttonGo">
         </form>
     </div>
 </body>
