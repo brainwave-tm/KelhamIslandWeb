@@ -2,6 +2,7 @@
 include("../includes/conn.inc.php");
 include("../includes/sessions.inc.php");
 include("../includes/functions.inc.php");
+require("../logic/auth.php");
 
 $objectId = safeString($_POST['objectId']);
 $objectName = safeString($_POST['objectName']);
