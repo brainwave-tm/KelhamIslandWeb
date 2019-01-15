@@ -2,14 +2,12 @@
 include("../includes/sessions.inc.php");
 require('../includes/conn.inc.php');
 require('../includes/functions.inc.php');
-// check login logic here
+
 $username_s = safeString($_POST['username']);
 $password_s = safeString($_POST['password']);
-echo $username_s;
-echo $password_s;
 $valusername = $pdo ->query("SELECT * FROM users WHERE userName = '" . $username_s . "'")->fetchObject();
 if(is_null($valusername)){
-    header("Location:../LoginPage.php");
+    header("Location:../LoginPage.php?errorMessage=INVALID USERNAME OR PASSWORD");
 }
 else{
     $dbPasswordHash = $valusername->userPassword;
@@ -21,8 +19,7 @@ else{
         header("Location: ../cms/cms.php");
     }
     else {
-        header("Location:../LoginForm.php");        
+        header("Location:../LoginForm.php?errorMessage=INVALID USERNAME OR PASSWORD");       
     }
-    
 }
 ?>

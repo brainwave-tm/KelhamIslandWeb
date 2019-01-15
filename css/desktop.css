@@ -72,6 +72,13 @@ header > h1 {
     width: 75%;
     font-size: 4rem;
 }
+header > h2 {
+    color: black;
+    margin: 0;
+    line-height: 100px;
+    width: 75%;
+    font-size: 3rem;
+}
 .headerLogo
 {
     height: 80px;
@@ -89,7 +96,7 @@ header > h1 {
 }
 .invalidInput{
     color: #FF0000;
-    visibility: hidden;
+    display: block;
 }
 .backLink
 {
