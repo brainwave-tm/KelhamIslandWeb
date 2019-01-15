@@ -232,6 +232,7 @@ header i
     text-align: center;
     font-size: 2rem;
     padding-top: 20px;
+    margin-bottom: 15px;
 }
 .shelfItem > strong > p > a{
     text-decoration: none;
