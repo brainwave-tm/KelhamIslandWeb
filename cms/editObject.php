@@ -33,7 +33,7 @@ WHERE objectId = $objectID")->fetchObject();
     <div class="pageContent">
     <fieldset>
         <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
-            <input type="text" name="objectId" style="display: none;" value="<?php echo $object->objectId; ?>">
+            <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">
 
             <label for="objectName">Object Name: </label>
             <input type="text" value="<?php echo $object->objectName ?>" name="objectName">
