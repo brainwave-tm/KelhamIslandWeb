@@ -46,6 +46,7 @@ return $sql->newImageId;
 
 function replaceFile($objectId)
 {
+	include("../includes/conn.inc.php");
 	//Make Directory
 	$currentDir = getcwd();
 	$uploadDirectory = "../content/images/";
@@ -61,6 +62,27 @@ function replaceFile($objectId)
 	$fileExtension = end($temp);
 	$uploadPath = $uploadDirectory . basename($fileName);
 	$didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-	return $fileName;
+	
+	$sql = "INSERT INTO images (imageUrl) VALUES (?)";
+	$stmt2= $pdo->prepare($sql);
+	$stmt2->execute([$fileName]);
+
+	$sql = $pdo->query("SELECT MAX(imageId) as newImageId FROM images")->fetchObject();
+
+
+	return $sql->newImageId;
+}
+
+function removeExistingImage($objectId, $imageUrl)
+{
+	$filePath = "../content/images/" . $objectId . "/" . $imageUrl;
+	if (!unlink($filePath))
+	{
+		echo ("Error deleting $imageUrl");
+	}
+	else
+	{
+		echo ("Deleted $imageUrl");
+	}
 }
 ?>

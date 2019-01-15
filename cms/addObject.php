@@ -2,6 +2,7 @@
     // require("../logic/auth.php");
     include("../includes/conn.inc.php");
     include("../includes/functions.inc.php");
+    require("../logic/auth.php");
 
     if(isset($_POST['submit']))
     {
@@ -44,7 +45,7 @@
     <div class="addObjectForm">
         <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">
             <input type="hidden" name="objectID" value="0"/>
-            <strong>Object Name: (max 25 characters)</strong><input maxlength="25" type="text" id="objectName" name="objectName"></input>
+            <strong>Object Name: (max 50 characters)</strong><input maxlength="50" type="text" id="objectName" name="objectName"></input>
             <br>
             <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>

@@ -2,6 +2,7 @@
 include("../includes/conn.inc.php");
 include("../includes/functions.inc.php");
 include("../process/ChangePassword.php");
+require("../logic/auth.php");
 
 if(isset($_POST['username']))
 {
