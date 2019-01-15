@@ -66,17 +66,20 @@ if (isset($_POST['password']))
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="../content/images/favicon.png">
-    <meta http-equiv="refresh" content="240;url='index.php'" />
-    <title>Kelham Island - User Control</title>
+    <!-- For Back icons etc. -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <title>Kelham Island Web - User Control</title>    
 </head>
 <body>
     <header>
-        <a href="index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
         <h1>Edit your account</h1>
+        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
 <form action="cms_user.php" method="post" >
     <div class="username_box">
-        <h1>Change UserName</h1>        
+    <h1>Change UserName</h1>        
         <?php
             if(isset($errorUsername))
             { ?>
@@ -98,8 +101,7 @@ if (isset($_POST['password']))
 </form>
 <form action="cms_user.php" method="post" >
     <div class="password_box">
-    <h1>Change Password</h1>   
-        
+    <h1>Change Password</h1>           
         <?php if(isset($errorPassword)) { ?>
             <small style="color:#aa0000;"><?php echo $errorPassword; ?></small>
             <br />
