@@ -210,9 +210,10 @@ header i
 
 .shelf {
     display: flex;
+    flex-wrap: wrap;
 }
 .shelfItem {
-    width: 25%;  
+    width: 24.2%;  
     border-left: 5px solid black; 
     border-right: 5px solid black; 
     border-top: 5px solid orange; 
@@ -228,6 +229,9 @@ header i
 .shelfItem > strong > p {
     margin-bottom: 0;
     background-color: orange;
+}
+.shelfImage {
+    height: 200px;
 }
 #objectName a {
     text-decoration: none;
