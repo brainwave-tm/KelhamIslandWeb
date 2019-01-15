@@ -1,6 +1,7 @@
 <?php
 include("../includes/conn.inc.php");
 include("../includes/functions.inc.php");
+include("../process/ChangePassword.php");
 
 if(isset($_POST['username']))
 {
@@ -9,8 +10,13 @@ if(isset($_POST['username']))
     {
         $errorUsername = 'Usernamer field is empty.';
     }
-    
+    else{
+        $query = $pdo->prepare("UPDATE users SET userName = '" . safeString($username) . "' WHERE userId = 1");
+        $query->execute();
+        header('Location: cms_user.php');
+    }
 }
+
 if (isset($_POST['repassword']))
 {
     $repassword = $_POST['repassword'];
@@ -19,6 +25,7 @@ if (isset($_POST['repassword']))
         $errorRePassword = 'Password confirmation field is empty.';
     }
 }
+
 if (isset($_POST['password']))
 {    
     $password = $_POST['password'];
@@ -26,8 +33,26 @@ if (isset($_POST['password']))
     {
         $errorPassword = 'Password field is empty.';
     }
+    else if(isset($_POST['repassword']))
+    {
+        $repassword = $_POST['repassword'];
+        if (empty($repassword))
+        {
+            $errorRePassword = 'Password confirmation field is empty.';
+        }
+        else if ($password == $repassword)
+        {
+            $newpassword = changePassword($password);
+            $query = $pdo->prepare("UPDATE users SET userPassword = '". safeString($newpassword) . "' WHERE userId = 1");
+            $query->execute();
+            header('Location: cms_user.php');
+        }
+        else
+        {
+            $errorPassword= 'Password doesnt match with confirmation password.';
+        }
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -51,20 +76,17 @@ if (isset($_POST['password']))
     </header>
 <form action="cms_user.php" method="post" >
     <div class="username_box">
-        <h1>Change UserName</h1>
-        
+        <h1>Change UserName</h1>        
         <?php
             if(isset($errorUsername))
             { ?>
             <small style="color:#aa0000;"><?php echo $errorUsername; ?></small>
                 <br /><br />
         <?php } ?>
-
         <?php
             $getUserName = $pdo->query("SELECT userName FROM users")->fetchObject();            
             echo "Current UserName : " . $getUserName->userName;            
         ?>
-
         <p>                  
             <label for="username">Enter your new Username:</label>
             <input type="text" name="username" placeholder="Username" /> 
