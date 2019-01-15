@@ -6,11 +6,21 @@ include("../process/ChangePassword.php");
 if(isset($_POST['username']))
 {
     $username = $_POST['username'];
+    $getUserName = $pdo->query("SELECT userName FROM users")->fetchObject();
     if (empty($username))
     {
         $errorUsername = 'Usernamer field is empty.';
     }
-    else{
+    else if($username == $getUserName->userName)
+    {
+        $errorUsername = 'Use different username than the current one.';
+    }   
+    else if(strlen($username) > 25)
+    {
+        $errorUsername = 'Too large!Only up to 25 characters.';
+    }
+    else
+    {
         $query = $pdo->prepare("UPDATE users SET userName = '" . safeString($username) . "' WHERE userId = 1");
         $query->execute();
         header('Location: cms_user.php');
@@ -39,6 +49,10 @@ if (isset($_POST['password']))
         if (empty($repassword))
         {
             $errorRePassword = 'Password confirmation field is empty.';
+        }
+        else if(strlen($password) > 100)
+        {
+            $errorPassword = 'Password too big!Use a new one less than 100 characters.';
         }
         else if ($password == $repassword)
         {

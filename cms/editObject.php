@@ -13,6 +13,7 @@ WHERE objectId = $objectID")->fetchObject();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="only screen and (min-width: 901px)" href="../css/desktop.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Stylesheet for Desktop -->
     <link rel="stylesheet" media="only screen and (min-width: 901px)" href="../css/desktop.css">
@@ -24,16 +25,21 @@ WHERE objectId = $objectID")->fetchObject();
     <title>Kelham Island Web</title>
 </head>
 <body>
-    <h1>Editing: <?php echo $object->objectName; ?></h1>
-    <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
-        <input type="text" name="objectId" style="display: none;" value="<?php echo $object->objectId; ?>">
+    <header>
+        <a href="index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <h2>Editing: <?php echo $object->objectName; ?></h2>
+    </header>
+    <div class="pageContent">
+    <fieldset>
+        <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
+            <input type="text" name="objectId" style="display: none;" value="<?php echo $object->objectId; ?>">
 
-        <label for="objectName">Object Name: </label>
-        <input type="text" value="<?php echo $object->objectName ?>" name="objectName">
+            <label for="objectName">Object Name: </label>
+            <input type="text" value="<?php echo $object->objectName ?>" name="objectName">
 
-        <br>
-        <label for="objectShortDescription">Object <strong>Short</strong> Description: </label>
-        <input type="text" value="<?php echo $object->objectShortDescription ?>" name="objectShortDescription">
+            <br>
+            <label for="objectShortDescription">Object <strong>Short</strong> Description: </label>
+            <input type="text" value="<?php echo $object->objectShortDescription ?>" name="objectShortDescription">
 
         <br>
         <label for="objectShelfPosition">Object Shelf Position</label>
