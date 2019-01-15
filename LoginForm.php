@@ -15,7 +15,7 @@
 <div id="container">
     <section>
        <img class="loginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
-        <form action="process/loginValidate.php" method="post" >
+        <form action="process/loginValidate.php" method="post">
             <fieldset>
                 <p>
                     <label for="username">Username</label>
@@ -28,9 +28,14 @@
                 <p class="right">
                     <input type="submit" name="login" value="Login" class="sendButton" />
                 </p>
-                <div class="invalidInput">
-                <p>INVALID USERNAME OR PASSWORD</p>
-                </div>
+                <?php
+                    if (isset($_GET['errorMessage']))
+                    {
+                        echo "<div class=\"invalidInput\">";
+                        echo "<p>" . $_GET['errorMessage'] . "</p>";
+                        echo "</div>";
+                    }
+                    ?>
             </fieldset>
         </form>
         <div class = "loginToIndex">
