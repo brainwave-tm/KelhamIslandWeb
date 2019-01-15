@@ -58,21 +58,8 @@ $objectData = $pdo->query("SELECT * FROM objects
         </div>
         <div class="pageContent">
             <?php
-            if(!isset($_GET['pageID']))
-            {
-                echo "<div class='shortDescription'>";
-                echo "<p>$objectData->objectShortDescription</p>";
-                echo "</div>";
-                
-                $objectImage = $pdo->query("SELECT imageUrl FROM images WHERE imageId = $objectData->objectPreviewImage")->fetchObject();
-                echo "<div class='objectImages'>";
-                    echo "<img id='previewImg' src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "'>";
-                echo "</div>";
-            } else
-            {
-                // Display a single page //
-                $pageID = safeInt($_GET['pageID']);
-
+                // Sets the default pagenumber to be 1 if no value is set \\
+                if (isset($_GET['pageID'])) {$pageID = safeInt($_GET['pageID']);}else{ $pageID = 1;}
                 $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
                 
                 echo "<h2>$objectPage->pageTitle</h2>";
@@ -89,7 +76,6 @@ $objectData = $pdo->query("SELECT * FROM objects
                         echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
                     echo "</div>";
                 }         
-            }
             ?>
         </div>
     </div>
