@@ -13,7 +13,6 @@ include("includes/functions.inc.php");
     <link rel="stylesheet" href="css/desktop.css">
     <!-- Favicon -->
     <link rel="icon" href="content/images/favicon.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <title>Kelham Island Web</title>
 </head>
 <body>
