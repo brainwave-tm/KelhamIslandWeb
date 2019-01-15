@@ -19,11 +19,11 @@
             <fieldset>
                 <p>
                     <label for="username">Username</label>
-                    <input type="text" name="new_username" id="username" />   
+                    <input type="text" name="username" id="username" />   
                 </p>
                 <p>
                     <label for="pass">Password:</label>
-                    <input type="password" name="new_password" id="pass" required>
+                    <input type="password" name="password" id="pass" required>
                 </p>  
                 <p class="right">
                     <input type="submit" name="login" value="Login" class="sendButton" />
