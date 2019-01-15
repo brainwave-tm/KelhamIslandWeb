@@ -38,7 +38,7 @@ include("../includes/functions.inc.php");
         <div class='objectSelect'>
         <table style="width:100%">
             <tr>
-                <th><i class="fas fa-check-square"></i></th>
+                <th>Edit</th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
@@ -47,16 +47,28 @@ include("../includes/functions.inc.php");
             </tr>
             <?php
             $objects = $pdo->query("SELECT * FROM objects INNER JOIN images ON objects.objectPreviewImage = images.imageId ORDER BY objects.objectShelfPosition ASC")->fetchAll();
+            for($i = 0; $i < sizeof($objects); $i++)
+            {
+                $index = 0;
+                echo "<tr id='" . $objects[$i]['objectId'] . "-$index'" . $objects[$i]['objectId'] ."'>";
+                    echo "<td id='" . $objects[$i]['objectId'] . "-$index'><a class='editBtn' href='#'><i class='fas fa-pen'></i></a></td>";
+                    $index++;
+                    echo "<td id='" . $objects[$i]['objectId'] . "-$index'>" . $objects[$i]['objectId'] . "</td>";
+                    $index++;
+                    echo "<td id='" . $objects[$i]['objectId'] . "-$index'>" . $objects[$i]['objectName'] . "</td>";
+                    $index++;
+                    echo "<td id='" . $objects[$i]['objectId'] . "-$index'>" . $objects[$i]['objectShortDescription'] ."</td>";
+                    $index++;
+                    echo "<td id='" . $objects[$i]['objectId'] . "-$index'><a href='../content/images/" . $objects[$i]['objectId'] . "/" . $objects[$i]['imageUrl'] . "'>" . $objects[$i]['imageDescription'] ."</a></td>";
+                    $index++;
+                    echo "<td id='" . $objects[$i]['objectId'] . "-$index'>" . $objects[$i]['objectShelfPosition']. "</td>";
+                echo "</tr>";
+                $index = 0;
+            }
+
             foreach($objects as $o)
             {
-                echo "<tr>";
-                    echo "<td><input class='radioButton' id=" . $o['objectId'] . " type='radio' value='" . $o['objectId'] . "' name='objects'></td>";
-                    echo "<td>" . $o['objectId'] . "</td>";
-                    echo "<td>" . $o['objectName'] . "</td>";
-                    echo "<td>" . $o['objectShortDescription'] ."</td>";
-                    echo "<td><a href='../content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "'>" . $o['imageDescription'] ."</a></td>";
-                    echo "<td>" . $o['objectShelfPosition']. "</td>";
-                echo "</tr>";
+                
             }
             ?>
         </table>
@@ -66,11 +78,29 @@ include("../includes/functions.inc.php");
 
     <script>
     $( document ).ready(function() {
-        $(".radioButton").change(function() {
-            var clickedRadioButton = $('.radioButton:radio:checked')[0]; // Returns all checked checkboxes with the class 'checkbox' //
-            $( ".sideBarMenu" ).append( "<li class='editObjectLink'><i class='fas fa-pen'></i> <a href='editObject.php?objectID=" + clickedRadioButton["id"] + "'>Edit Object</a></li> " );
+        $(".editBtn").click(function() {
+            var tableRows = $(this).parent().parent().children();
+            tableRows[0]['innerHTML'] = "<a class='submitBtn' href='#' onclick='submit();'><i class='fas fa-check'></i></a>";
+            tableRows = tableRows.slice(2, tableRows.length); // Remove the edit button from the array //
+            tableRows.each(function( index ) {
+                var row = $(this)[0];
+                row['innerHTML'] = "<textarea>" + row["innerHTML"] + "</textarea>";
+            });
+        });
+
+        $('textarea').change(function(){
+            alert("The text has been changed.");
         });
     });
+
+    function submit() {
+        var tableRows = $(".submitBtn").parent().parent().children();
+        tableRows = tableRows.slice(1, tableRows.length);
+        tableRows.each(function( index ) {
+            var id = $(this)[0]["id"];
+            console.dir(id);
+        });
+    }
     </script>
 </body>
 </html>
