@@ -24,16 +24,23 @@ $uploadDirectory = "../content/images/";
 mkdir($uploadDirectory . $objectId);
 $uploadDirectory = $uploadDirectory . $objectId . "/";
 //Move file to created directory
-// $fileName = $_FILES['fileToUpload']['name'];
-$fileName = $objectId;
+$fileName = $_FILES['fileToUpload']['name'];
+// $fileName = $objectId;
 $fileSize = $_FILES['fileToUpload']['size'];
 $fileTmpName  = $_FILES['fileToUpload']['tmp_name'];
 $fileType = $_FILES['fileToUpload']['type'];
 $temp = explode('.',$fileName);
 $fileExtension = end($temp);
-$uploadPath = $uploadDirectory . basename($fileName) . ".JPG";
-print_r($uploadPath);
+$uploadPath = $uploadDirectory . basename($fileName);
 $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-return $fileName;
+
+$sql = "INSERT INTO images (imageUrl) VALUES (?)";
+$stmt2= $pdo->prepare($sql);
+$stmt2->execute([$fileName]);
+
+$sql = $pdo->query("SELECT MAX(imageId) as newImageId FROM images")->fetchObject();
+
+
+return $sql->newImageId;
 }
 ?>

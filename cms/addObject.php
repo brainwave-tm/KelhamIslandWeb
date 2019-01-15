@@ -17,7 +17,7 @@
             $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectPreviewImage, objectShelfPosition) VALUES (?,?,?,?)";
             $stmt2= $pdo->prepare($sql2);
             $stmt2->execute([$objectName, $objectShortDescription, $imagePath, $objectShelfPosition]);
-            header("cms.php");
+            header("Location: cms.php");
         }
     }
 ?>
@@ -45,7 +45,7 @@
     <div class="addObjectForm">
         <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">
             <input type="hidden" name="objectID" value="0"/>
-            <strong>Object Name: (max 25 letters)</strong><input maxlength="25" type="text" name="objectName"></input>
+            <strong>Object Name: (max 25 characters)</strong><input maxlength="25" type="text" id="objectName" name="objectName"></input>
             <br>
             <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>
@@ -67,9 +67,15 @@
             }            
             reader.readAsDataURL(input.files[0]);
     }
-    }
+    };
     $("#newImageUpload").change(function(){
         readURL(this);
-    })
+    });
+    $('#addObjectForm').on('submit', function(e) {
+        // var objectName = $("#objectName").value;
+        // console.log($("#objectName").value);
+        // if (objectName == null || objectName == '') { alert("please enter a name"); }
+        // e.preventDefault();
+    });
 </script>
 </html>
