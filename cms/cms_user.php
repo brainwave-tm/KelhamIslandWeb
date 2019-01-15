@@ -26,7 +26,6 @@ if(isset($_POST['username']))
         header('Location: cms_user.php');
     }
 }
-
 if (isset($_POST['repassword']))
 {
     $repassword = $_POST['repassword'];
@@ -35,7 +34,6 @@ if (isset($_POST['repassword']))
         $errorRePassword = 'Password confirmation field is empty.';
     }
 }
-
 if (isset($_POST['password']))
 {    
     $password = $_POST['password'];
@@ -139,6 +137,5 @@ if (isset($_POST['password']))
         </p>
     </div>
 </form>
-
 </body>
 </html>
