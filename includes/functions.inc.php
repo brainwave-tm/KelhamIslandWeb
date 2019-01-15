@@ -46,28 +46,20 @@ return $sql->newImageId;
 
 function replaceFile($objectId)
 {
-	include("../includes/conn.inc.php");
-
-	$sql = "SELECT MAX(objectId) AS Max FROM objects";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$row = $stmt->fetchObject();
-
 	//Make Directory
 	$currentDir = getcwd();
 	$uploadDirectory = "../content/images/";
-	$uploadDirectory = $uploadDirectory . $objectId . "/";
+	$uploadDirectory .= $objectId . "/";
 
 	//Move file to created directory
-	// $fileName = $_FILES['fileToUpload']['name'];
-	$fileName = $objectId;
+	$fileName = $_FILES['fileToUpload']['name'];
+	//$fileName = $objectId;
 	$fileSize = $_FILES['fileToUpload']['size'];
-	$fileTmpName  = $_FILES['fileToUpload']['tmp_name'];
+	$fileTmpName = $_FILES['fileToUpload']['tmp_name'];
 	$fileType = $_FILES['fileToUpload']['type'];
 	$temp = explode('.',$fileName);
 	$fileExtension = end($temp);
-	$uploadPath = $uploadDirectory . basename($fileName) . ".JPG";
-	print_r($uploadPath);
+	$uploadPath = $uploadDirectory . basename($fileName);
 	$didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 	return $fileName;
 }
