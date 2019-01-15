@@ -69,7 +69,9 @@ include("../includes/functions.inc.php");
         $(".radioButton").change(function() {
             var clickedRadioButton = $('.radioButton:radio:checked')[0]; // Returns all checked checkboxes with the class 'checkbox' //
             $(".editObjectLink").remove();
+            $(".deleteObjectLink").remove();
             $( ".sideBarMenu" ).append( "<li class='editObjectLink'><i class='fas fa-pen'></i> <a href='editObject.php?objectID=" + clickedRadioButton["id"] + "'>Edit Object</a></li> " );
+            $( ".sideBarMenu" ).append( "<li class='deleteObjectLink'><i class='fas fa-trash-alt'></i></i> <a href='deleteObject.php?objectId=" + clickedRadioButton["id"] + "'>Delete Object</a></li> " );       
         });
     });
     </script>
