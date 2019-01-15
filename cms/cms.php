@@ -68,6 +68,7 @@ include("../includes/functions.inc.php");
     $( document ).ready(function() {
         $(".radioButton").change(function() {
             var clickedRadioButton = $('.radioButton:radio:checked')[0]; // Returns all checked checkboxes with the class 'checkbox' //
+            $(".editObjectLink").remove();
             $( ".sideBarMenu" ).append( "<li class='editObjectLink'><i class='fas fa-pen'></i> <a href='editObject.php?objectID=" + clickedRadioButton["id"] + "'>Edit Object</a></li> " );
         });
     });
