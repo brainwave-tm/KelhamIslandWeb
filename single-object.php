@@ -36,21 +36,31 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             <ol type="1">
                 <?php
                 $objectPages = $pdo->query("SELECT pageId, pageTitle, pageImage FROM pages WHERE objectID = $objectID")->fetchAll();
+                $pageID = 0;
                 if(isset($_GET['pageID']))
                 {
+                    $pageID = $_GET['pageID'];
                     echo "<li><a href='single-object.php?objectID=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
                 }
                 ?>
                 
-                <li>PAGES</li>
+                <li><u>PAGES</u></li>
+                <br>
                 <?php
                 for($i = 0; $i < sizeof($objectPages); $i++)
                 {
-                    echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
-                    
+                    if ($objectPages[$i]['pageId'] == $pageID)
+                    {
+                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                        
+                    }
+                    else{
+                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                        
+                    }
                 }
-                
-                echo "<li><a href='#images'>Images</a></li>";
+                echo "<br>";
+                echo "<li><u><a href='#images'>Images</a></u></li>";
                 
                 ?>
             </ol>
