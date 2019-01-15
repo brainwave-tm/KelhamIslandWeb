@@ -17,6 +17,7 @@
        <img class="loginLogo" src="content/images/logo.png" alt="Kelham Island Logo">
         <form action="process/loginValidate.php" method="post">
             <fieldset>
+            <p>Note: Please ensure you are on a https connection.</p>
                 <p>
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" />   
