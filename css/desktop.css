@@ -210,9 +210,10 @@ header i
 
 .shelf {
     display: flex;
+    flex-wrap: wrap;
 }
 .shelfItem {
-    width: 25%;  
+    width: 24.2%;  
     border-left: 5px solid black; 
     border-right: 5px solid black; 
     border-top: 5px solid orange; 
@@ -228,6 +229,9 @@ header i
 .shelfItem > strong > p {
     margin-bottom: 0;
     background-color: orange;
+}
+.shelfImage {
+    height: 200px;
 }
 #objectName a {
     text-decoration: none;
@@ -328,7 +332,6 @@ table, th, td
     margin-top: 50px;
 }
 .loginLink{
-    padding-left: 1750px;
     position: fixed;
     margin-top: 100px;
     bottom: 10px;
@@ -360,4 +363,37 @@ color:black;
 {
     margin-top: 20px;
     display: flex;
+}
+
+.pagePreviewPanel input[name="pageTitle"]
+{
+    border: 1px solid black;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+    height: 60px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.pagePreviewPanel textarea[name="pageText"]
+{
+    border: 1px solid black;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    padding: 10px;
+    width: 95%;
+    height: 450px;
+    margin: auto;
+    font-size: 20px;
+}
+.pagePreviewPanel input[type="submit"]
+{
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid black;
+    font-family: 'Lato', sans-serif;
+    padding: 10px;
+    width: 95%;
 }
