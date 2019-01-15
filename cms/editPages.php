@@ -1,6 +1,7 @@
 <?php
 include("../includes/conn.inc.php");
 include("../includes/functions.inc.php");
+require("../logic/auth.php");
 
 $objectID = safeString($_GET['objectId']);
 $page = $pdo->query("SELECT * FROM pages

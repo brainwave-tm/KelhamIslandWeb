@@ -2,6 +2,7 @@
 include("../includes/conn.inc.php");
 include("../includes/sessions.inc.php");
 include("../includes/functions.inc.php");
+require("../logic/auth.php");
 
 $pageText = safeString($_POST['pageText']);
 $pageTitle = safeString($_POST['pageTitle']);
