@@ -11,11 +11,11 @@
     {
         $pageName = safeString($_POST['newPageTitle']);
         $pageText = safeString($_POST['pageText']);
-        $imagePath = replaceFile($objectID);
+        $imageId = replaceFile($objectID);
 
         $sql2 = "INSERT INTO pages (objectId, pageText, pageTitle, pageImage) VALUES (?,?,?,?)";
         $stmt2= $pdo->prepare($sql2);
-        $stmt2->execute([$objectID, $pageText, $pageName, $imagePath]);
+        $stmt2->execute([$objectID, $pageText, $pageName, $imageId]);
     }
 ?>
 <!DOCTYPE html>
@@ -42,9 +42,9 @@
     <div class="addPagesForm">
         <h1>Adding a page to object: <?php echo $objectName; ?></h1>
         <h1>A page allows you to enter more information about an object for the users to browse through on the front end. Use pages to break up information.</h1>
-        <form id="addNewPageForm" class="" name="addNewPage" method="POST" action="" enctype="multipart/form-data">
-            <strong>Page Title*</strong>
-            <input type="text" maxlength="25" name="newPageTitle"/>
+        <form id="addNewPageForm" autocomplete="off" class="" name="addNewPage" method="POST" action="" enctype="multipart/form-data">
+            <strong>Page Title* (25 characters max)</strong>
+            <input type="text" maxlength="25" name="newPageTitle" id="pageTitle"/>
             <strong>Page Text</strong>
             <textarea name="pageText" name="pageText"></textarea>
             <strong>Page Image</strong>
@@ -68,5 +68,16 @@
     $("#newImageUpload").change(function(){
         readURL(this);
     });
+    $("#addNewPageForm").on('submit', function(e){
+        if ($("#pageTitle").val() == "")
+        {
+            $(".invalidInput").hide();
+            $("#pageTitle").after("<p class='invalidInput' style='color: red'>PLEASE ENTER A NAME</p>");
+            e.preventDefault();
+        }
+    });
+    $("#pageTitle").focus(function(){
+        $(".invalidInput").hide("slow");
+    })
 </script>
 </html>
