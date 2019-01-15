@@ -69,13 +69,17 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
         </div>
         <div class="pagePreviewPanel">
             <?php
+            $objectId = safeString($_GET['objectId']);
             if (isset($_GET['pageId'])) 
             {
                 $pageId = safeInt($_GET['pageId']);
                 $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchObject();
 
-                echo "<h2>$objectPage->pageTitle</h2>";
-                echo "<p>$objectPage->pageText</p>";
+                echo "<form action='updateDatabase.php' method='post'>";
+                echo "<input type='text' name='pageId' value='$pageId' style='display: none;'>";
+                
+                echo "<input type='text' name='pageTitle' value='$objectPage->pageTitle'><br><br>";
+                echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
         
                 if(!is_null($objectPage->pageImage))
                 {
@@ -84,16 +88,22 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
                         echo "<img src='../content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription'>";
                     echo "</div>";
-                }                        
+                }
+
+                echo "<input type='submit' value='Update'>";
+                echo "</form>";
             } else
             {
-                $objectId = safeString($_GET['objectId']);
                 $pages = $pdo->query("SELECT * FROM pages
                 INNER JOIN images ON pages.pageImage = images.imageId
                 WHERE pages.objectId = $objectId")->fetchAll();
-
-                echo "<h2>" . $pages[0]["pageTitle"] . "</h2>";
-                echo "<p>". $pages[0]["pageText"] ."</p>";
+                $pageId = $pages[0]["pageId"];
+                
+                echo "<form action='updateDatabase.php' method='post'>";
+                echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'>";
+                
+                echo "<input type='text' name='pageTitle' value='" . $pages[0]["pageTitle"] . "'><br><br>";
+                echo "<textarea name='pageText'>" . $pages[0]["pageText"] . "</textarea>";
 
                 if(!is_null($pages[0]["pageImage"]))
                 {
@@ -103,6 +113,9 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                         echo "<img src='../content/images/" . $pages[0]['objectId'] . "/" . $objectImage[0]["imageUrl"] . "' title='" . $objectImage[0]["imageDescription"] . "'>";
                     echo "</div>";
                 }
+
+                echo "<input type='submit' value='Update'>";
+                echo "</form>";
             }
             ?>
         </div>

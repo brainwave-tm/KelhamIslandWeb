@@ -65,7 +65,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
-                    echo "<p>$objectPage->pageText</p>";
+                    echo "<p>" . nl2br($objectPage->pageText). "</p>";
                     echo "</div>";
             
                     if(!is_null($objectPage->pageImage))
@@ -75,7 +75,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
                         echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
                         echo "</div>";
-                    }                        
+                    }
                 }
                 else
                 { 

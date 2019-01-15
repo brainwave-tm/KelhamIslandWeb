@@ -360,3 +360,36 @@ color:black;
     margin-top: 20px;
     display: flex;
 }
+
+.pagePreviewPanel input[name="pageTitle"]
+{
+    border: 1px solid black;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+    height: 60px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.pagePreviewPanel textarea[name="pageText"]
+{
+    border: 1px solid black;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    padding: 10px;
+    width: 95%;
+    height: 450px;
+    margin: auto;
+    font-size: 20px;
+}
+.pagePreviewPanel input[type="submit"]
+{
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid black;
+    font-family: 'Lato', sans-serif;
+    padding: 10px;
+    width: 95%;
+}
