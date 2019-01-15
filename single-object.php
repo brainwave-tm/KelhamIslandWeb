@@ -58,23 +58,41 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
         <div class="pagePreviewPanel">
             <?php
                 // Sets the default pagenumber to be 1 if no value is set \\
-                if (isset($_GET['pageID'])) {$pageID = safeInt($_GET['pageID']);}else{ $pageID = 1;}
-                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
-                
-                echo "<h2>$objectPage->pageTitle</h2>";
-
-                echo "<div class='longDescription'>";
-                echo "<p>$objectPage->pageText</p>";
-                echo "</div>";
-            
-                if(!is_null($objectPage->pageImage))
+                if (isset($_GET['pageID'])) 
                 {
-                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
-                    echo "<div class='objectImages'>";
+                    $pageID = safeInt($_GET['pageID']);
+                    $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
+                    echo "<h2>$objectPage->pageTitle</h2>";
+
+                    echo "<div class='longDescription'>";
+                    echo "<p>$objectPage->pageText</p>";
+                    echo "</div>";
+            
+                    if(!is_null($objectPage->pageImage))
+                    {
+                        echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                        echo "<div class='objectImages'>";
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
                         echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                        echo "</div>";
+                    }                        
+                }
+                else
+                { 
+                    $objectPage = $pdo->query("SELECT * FROM objects WHERE objectId = ". $objectID)->fetchObject();
+                    echo "<h2>$objectPage->objectName</h2>";
+
+                    echo "<div class='longDescription'>";
+                    echo "<p>$objectPage->objectShortDescription</p>";
                     echo "</div>";
-                }         
+                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    echo "<div class='objectImages'>";
+                    $objectImage = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = $objectPage->objectPreviewImage")->fetchObject();
+                    echo "<img src='content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' id='$objectImage->imageId'>";
+                    echo "</div>";
+                }
+                
+                
             ?>
         </div>
     </div>
