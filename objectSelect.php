@@ -26,7 +26,7 @@ include("includes/functions.inc.php");
     <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>
     <?php
         $objects = $pdo->query("SELECT * FROM objects
-        INNER JOIN images ON objects.objectPreviewImage = images.imageId
+        LEFT JOIN images ON objects.objectPreviewImage = images.imageId
         WHERE objectShelfPosition IS NOT NULL
         ORDER BY objectShelfPosition ASC")->fetchAll();
             echo "<div class='shelf'>";
