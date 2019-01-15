@@ -70,7 +70,7 @@ header > h1 {
     margin: 0;
     line-height: 100px;
     width: 75%;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 header > h2 {
     color: black;
@@ -78,6 +78,10 @@ header > h2 {
     line-height: 100px;
     width: 75%;
     font-size: 3rem;
+}
+header a i{
+    margin-top: 15px;
+    margin-right: 5px;
 }
 .headerLogo
 {
@@ -132,6 +136,10 @@ header i
 }
 .pageContent{
     flex-basis: 80%;
+    background-color: whitesmoke;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
 }
 .pageContent .objectImages
 {
@@ -149,7 +157,7 @@ header i
 {
     width: 50%;
 }
-.pageContent h2
+.pageContent .title
 {
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -161,10 +169,13 @@ header i
     font-family: 'Lato', sans-serif;
     color: #005375;
     font-size: 35px;
+    border-bottom: 1px solid black;
+    margin: auto;
 }
 .page
 {
     display: flex;
+    margin-top: 10px;
 }
 .sideBar
 {
@@ -395,5 +406,26 @@ color:black;
     border: 2px solid black;
     font-family: 'Lato', sans-serif;
     padding: 10px;
-    width: 95%;
+    width: 80%;
+}
+.objectForm
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+.objectForm input[type="file"]
+{
+    width: auto;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+    border: 1px dashed black;
+}
+.objectForm input
+{
+    width: 50%;
+    margin: 10px;
 }
