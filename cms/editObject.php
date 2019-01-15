@@ -30,10 +30,10 @@ WHERE objectId = $objectID")->fetchObject();
     <header>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
         <h2>Editing: <?php echo $object->objectName; ?></h2>        
-        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
+        <a href='cms.php' class="backLink"><i class="fas fa-home"></i></a>
     </header>
+    <fieldset class="objectForm">
     <div class="pageContent">
-    <fieldset>
         <h3><a href="cms.php">BACK</a></h3><br>
         <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
             <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">
@@ -45,26 +45,31 @@ WHERE objectId = $objectID")->fetchObject();
             <label for="objectShortDescription">Object <strong>Short</strong> Description: </label>
             <input type="text" value="<?php echo $object->objectShortDescription ?>" name="objectShortDescription">
 
-        <br>
-        <label for="objectShelfPosition">Object Shelf Position</label>
-        <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition">
+            <br>
+            <label for="objectShelfPosition">Object Shelf Position</label>
+            <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition">
 
-        <br>
-        <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
-        <br>
-        <p>Choose New Image: </p>
-        <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-        <strong>Image Preview</strong><br>
-        <img id="eventImagePrev" style="width: 200px;" src="<?php echo "../content/images/" . $object->objectId . "/" . $object->imageUrl; ?>" alt="" />
-        
-        <br>
-        <input type="submit" value="Update">
-    </form>
+            <br>
+            <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
+            <br>
+            <p>Choose New Image: </p>
+            <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+            <strong>Image Preview</strong><br>
+            <img id="eventImagePrev" style="width: 200px;" src="<?php echo "../content/images/" . $object->objectId . "/" . $object->imageUrl; ?>" alt="" />
+            
+            <br>
+            <input type="submit" class="buttonGo" value="Update">
+        </form>
+    </div>
 
     <div class="pageContent">
         <h3><a href="editPages.php?objectId=<?php echo $object->objectId; ?>">Edit this object's pages</a></h3>
         <h3><a href="addPages.php?objectId=<?php echo $object->objectId; ?>">Add pages to this object</a></h3>
     </div>
+    </fieldset>
+
+
+
 <script>
     function readURL(input) {
             if (input.files && input.files[0]) {
