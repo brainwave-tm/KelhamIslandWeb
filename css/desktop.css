@@ -360,3 +360,27 @@ color:black;
     margin-top: 20px;
     display: flex;
 }
+.addPagesForm {
+    width: 80%;
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+.addPagesForm strong{
+    font-size: 2rem;
+}
+#addNewPageForm input {
+    font-size: 2rem;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#addNewPageForm textarea {
+    width: 80%;
+    margin-top: 2px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 200px;
+    font-size: 2rem;
+}
