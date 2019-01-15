@@ -6,6 +6,8 @@ include("../includes/functions.inc.php");
 $objectName = safeString($_POST['objectName']);
 $objectShortDescription = safeString($_POST['objectShortDescription']);
 
+var_dump($_POST);
+
 if(!file_exists("../content/images/" . $_POST['objectId'] . "/" . $_FILES['fileToUpload']["name"]))
 {
     $imagePath = uploadFile();
