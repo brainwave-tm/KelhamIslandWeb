@@ -3,14 +3,17 @@ include("../includes/conn.inc.php");
 include("../includes/sessions.inc.php");
 include("../includes/functions.inc.php");
 
-$objectName = safeString($_POST['objectName']);
+$objectId = safeString($_POST['objectId']);
 $objectShortDescription = safeString($_POST['objectShortDescription']);
-
-var_dump($_POST);
 
 if(!file_exists("../content/images/" . $_POST['objectId'] . "/" . $_FILES['fileToUpload']["name"]))
 {
     $imagePath = uploadFile();
+    echo $imagePath;
+}
+else
+{
+    $imagePath = replaceFile();
     echo $imagePath;
 }
 
