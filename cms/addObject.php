@@ -2,6 +2,7 @@
     // require("../logic/auth.php");
     include("../includes/conn.inc.php");
     include("../includes/functions.inc.php");
+    require("../logic/auth.php");
 
     if(isset($_POST['submit']))
     {
@@ -10,7 +11,6 @@
             $objectName = safeString($_POST['objectName']);
             $objectShortDescription = safeString($_POST['objectShortDescription']);
             $imagePath = uploadFile();
-            print_r($imagePath);
             $objectShelfPosition = safeString($_POST['objectShelfPosition']);
             
 

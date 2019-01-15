@@ -1,6 +1,7 @@
 <?php
 include("../includes/conn.inc.php");
 include("../includes/functions.inc.php");
+require("../logic/auth.php");
 
 $objectID = safeString($_GET['objectId']);
 $page = $pdo->query("SELECT * FROM pages
@@ -77,6 +78,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
 
                 echo "<form action='updateDatabase.php' method='post'>";
                 echo "<input type='text' name='pageId' value='$pageId' style='display: none;'>";
+                echo "<input type='text' name='objectId' value='$objectId' style='display: none;'>";
                 
                 echo "<input type='text' name='pageTitle' value='$objectPage->pageTitle'><br><br>";
                 echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
@@ -98,9 +100,10 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                 INNER JOIN images ON pages.pageImage = images.imageId
                 WHERE pages.objectId = $objectId")->fetchAll();
                 $pageId = $pages[0]["pageId"];
-                
+
                 echo "<form action='updateDatabase.php' method='post'>";
                 echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'>";
+                echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'>";
                 
                 echo "<input type='text' name='pageTitle' value='" . $pages[0]["pageTitle"] . "'><br><br>";
                 echo "<textarea name='pageText'>" . $pages[0]["pageText"] . "</textarea>";
