@@ -29,7 +29,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
         <h1><?php
         echo $objectData->objectName;
         ?></h1>
-        <h2><a href='objectSelect.php' class="backLink"><i class="fas fa-home">Back</i></a></h2>
+        <a href='objectSelect.php' class="backLink"><i class="fas fa-home">Back</i></a>
     </header>
     <div class="page">
         <div class="sideBar">
@@ -55,14 +55,14 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 ?>
             </ol>
         </div>
-        <div class="pagePreviewPanel">
+        <div class="pageContent">
             <?php
                 // Sets the default pagenumber to be 1 if no value is set \\
                 if (isset($_GET['pageID'])) 
                 {
                     $pageID = safeInt($_GET['pageID']);
                     $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
-                    echo "<h2>$objectPage->pageTitle</h2>";
+                    echo "<h2 class='title'>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
                     echo "<p>" . nl2br($objectPage->pageText). "</p>";
@@ -80,7 +80,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 else
                 { 
                     $objectPage = $pdo->query("SELECT * FROM objects WHERE objectId = ". $objectID)->fetchObject();
-                    echo "<h2>$objectPage->objectName</h2>";
+                    echo "<h2 class='title'>$objectPage->objectName</h2>";
 
                     echo "<div class='longDescription'>";
                     echo "<p>$objectPage->objectShortDescription</p>";
