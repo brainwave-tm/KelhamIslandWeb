@@ -30,8 +30,18 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
 <body>
     <header>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h2>Editing <?php
-        echo $page[$pageId]["pageTitle"];
+        <h2>Editing: <?php
+        if (isset($_GET['pageId'])) 
+        {
+                $pageId = safeInt($_GET['pageId']);
+                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchObject();
+                echo $objectPage->pageTitle;
+        } else
+        {
+                $objectId = safeString($_GET['objectId']);
+                $objectPage = $pdo->query("SELECT * FROM pages WHERE pages.objectId = $objectId")->fetchAll();
+                echo $objectPage[0]["pageTitle"];
+        }   
         ?></h2>
     </header>
     <div class="page2">
@@ -41,7 +51,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             $objectPages = $pdo->query("SELECT pageId, pageTitle, pageImage FROM pages WHERE objectID = $objectID")->fetchAll();
             if(isset($_GET['pageID']))
             {
-                echo "<li><a href='single-object.php?objectID=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
+                echo "<li><a href='editPages.php?objectId=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
             }
             ?>
             
@@ -49,7 +59,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             <?php
             for($i = 0; $i < sizeof($objectPages); $i++)
             {
-                echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                echo "<li><a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
                 
             }
             
@@ -58,11 +68,32 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
         </div>
         <div class="pagePreviewPanel">
             <?php
-            echo "<h2>" . $page[$pageId]["pageTitle"] . "</h2>";
-            echo "<p>" . $page[$pageId]["pageText"] . "</p>";
-            echo "<div class='pagePreviewImages'>";
-                echo "<img src='../content/images/" . $objectID . "/" . $page[$pageId]["imageUrl"] . "'>";
-            echo "</div>";
+            if (isset($_GET['pageId'])) 
+            {
+                $pageId = safeInt($_GET['pageId']);
+                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchObject();
+
+                echo "<h2>$objectPage->pageTitle</h2>";
+                echo "<p>$objectPage->pageText</p>";
+        
+                if(!is_null($objectPage->pageImage))
+                {
+                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    echo "<div class='objectImages'>";
+                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
+                        echo "<img src='../content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                    echo "</div>";
+                }                        
+            } else
+            {
+                $objectId = safeString($_GET['objectId']);
+                $pages = $pdo->query("SELECT * FROM pages
+                INNER JOIN images ON pages.pageImage = images.imageId
+                WHERE pages.objectId = $objectId")->fetchAll();
+
+                echo "<h2>" . $pages[0]["pageTitle"] . "</h2>";
+                echo "<p>". $pages[0]["pageText"] ."</p>";
+            }
             ?>
         </div>
     </div>

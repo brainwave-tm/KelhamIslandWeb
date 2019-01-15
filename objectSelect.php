@@ -25,12 +25,14 @@ include("includes/functions.inc.php");
 
     <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>
     <?php
-        $objects = $pdo->query("SELECT * FROM objects WHERE objectShelfPosition IS NOT NULL")->fetchAll();
+        $objects = $pdo->query("SELECT * FROM objects
+        INNER JOIN images ON objects.objectPreviewImage = images.imageId
+        WHERE objectShelfPosition IS NOT NULL")->fetchAll();
             echo "<div class='shelf'>";
             foreach($objects as $o)
             {
                 echo "<div class='shelfItem' style=''>";
-                echo "<a href='single-object?objectID=".$o['objectId']."'><img src='content/images/" . $o['objectId'] . "/" . $o['objectId'] . "' style='max-height: 200px; max-width: 80%;'/></a>";
+                echo "<a href='single-object?objectID=".$o['objectId']."'><img src='content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "' style='max-height: 200px; max-width: 80%;'/></a>";
                 echo "<div style='height: 150px; width: 100%'>";
                 echo "<p id='objectName'><a href='single-object?objectID=".$o['objectId']."'><strong>" . $o['objectName'] . "</strong></a></p>";
                 echo "</div>";
