@@ -89,7 +89,7 @@ header > h1 {
 }
 .invalidInput{
     color: #FF0000;
-    visibility: hidden;
+    display: block;
 }
 .backLink
 {
