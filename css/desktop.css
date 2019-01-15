@@ -398,6 +398,7 @@ color:black;
     margin-right: 10%;
     height: 200px;
     font-size: 2rem;
+    resize: none;
 }
 .pagePreviewPanel input[name="pageTitle"]
 {
