@@ -3,11 +3,6 @@ include("../includes/conn.inc.php");
 include("../includes/functions.inc.php");
 include('../includes/sessions.inc.php');
 require("../logic/auth.php");
- 
-?>
-    // require("../logic/auth.php");
-    include("../includes/conn.inc.php");
-    include("../includes/functions.inc.php");
 
     $objectID = safeInt($_GET['objectId']);
     $sql = $pdo->query("SELECT objectName FROM objects WHERE objectId = " . $objectID)->fetchObject();
