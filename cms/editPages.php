@@ -54,7 +54,8 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                 echo "<li><a href='editPages.php?objectId=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
             }
             ?>
-            
+
+            <li><a href="editObject.php?objectID=<?php echo $objectID; ?>">BACK</a></li>
             <li>PAGES</li>
             <?php
             for($i = 0; $i < sizeof($objectPages); $i++)
@@ -81,7 +82,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                     echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                     echo "<div class='objectImages'>";
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
-                        echo "<img src='../content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                        echo "<img src='../content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription'>";
                     echo "</div>";
                 }                        
             } else
@@ -93,6 +94,15 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
 
                 echo "<h2>" . $pages[0]["pageTitle"] . "</h2>";
                 echo "<p>". $pages[0]["pageText"] ."</p>";
+
+                if(!is_null($pages[0]["pageImage"]))
+                {
+                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    echo "<div class='objectImages'>";
+                        $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $pages[0]["pageImage"] )->fetchAll();
+                        echo "<img src='../content/images/" . $pages[0]['objectId'] . "/" . $objectImage[0]["imageUrl"] . "' title='" . $objectImage[0]["imageDescription"] . "'>";
+                    echo "</div>";
+                }
             }
             ?>
         </div>
