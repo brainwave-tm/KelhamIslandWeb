@@ -55,7 +55,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 ?>
             </ol>
         </div>
-        <div class="pageContent">
+        <div class="pagePreviewPanel">
             <?php
                 // Sets the default pagenumber to be 1 if no value is set \\
                 if (isset($_GET['pageID'])) {$pageID = safeInt($_GET['pageID']);}else{ $pageID = 1;}

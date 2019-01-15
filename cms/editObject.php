@@ -56,6 +56,10 @@ WHERE objectId = $objectID")->fetchObject();
         <br>
         <input type="submit" value="Update">
     </form>
+
+    <div class="pageContent">
+        <h3><a href="editPages.php?objectId=<?php echo $object->objectId; ?>">Edit this object's pages</a></h3>
+    </div>
 <script>
     function readURL(input) {
             if (input.files && input.files[0]) {
