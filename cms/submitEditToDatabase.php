@@ -4,23 +4,28 @@ include("../includes/sessions.inc.php");
 include("../includes/functions.inc.php");
 
 $objectId = safeString($_POST['objectId']);
+$objectName = safeString($_POST['objectName']);
 $objectShortDescription = safeString($_POST['objectShortDescription']);
+$objectShelfPosition = safeString($_POST['objectShelfPosition']);
 
-if(!file_exists("../content/images/" . $_POST['objectId'] . "/" . $_FILES['fileToUpload']["name"]))
+$imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT objectPreviewImage FROM objects WHERE objectId = '$objectId')")->fetchAll();
+$imageUrl = $imageData[0]['imageUrl'];
+$imageId = $imageData[0]['imageId'];
+
+$newImageId = null;
+if(!$_FILES['fileToUpload']["name"] == "")
 {
-    $imagePath = uploadFile();
-    echo $imagePath;
+    removeExistingImage($objectId, $imageUrl);
+    $newImageId = replaceFile($objectId);
 }
 else
 {
-    $imagePath = replaceFile();
-    echo $imagePath;
+    $newImageId = $imageId;  
 }
 
-$objectShelfPosition = safeString($_POST['objectShelfPosition']);
-
-$sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectPreviewImage, objectShelfPosition) VALUES ()";
+$sql2 = "UPDATE objects SET objectName = '" . $objectName . "', objectShortDescription = '" . $objectShortDescription . "', objectPreviewImage = '" . $newImageId . "', objectShelfPosition = '". $objectShelfPosition . "' WHERE objectId = " . $objectId;
 $stmt2= $pdo->prepare($sql2);
-// $stmt2->execute([$objectName, $objectShortDescription, $imagePath, $objectShelfPosition]);
+// $stmt2->execute();
+$stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
 header("cms.php");
 ?>
