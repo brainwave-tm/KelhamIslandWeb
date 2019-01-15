@@ -28,5 +28,5 @@ $sql2 = "UPDATE objects SET objectName = '" . $objectName . "', objectShortDescr
 $stmt2= $pdo->prepare($sql2);
 // $stmt2->execute();
 $stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
-header("cms.php");
+
 ?>
