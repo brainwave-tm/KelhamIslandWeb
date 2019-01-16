@@ -42,7 +42,8 @@ require("../logic/auth.php");
     </header>
     <div class="addPagesForm">
         <h1>Adding a page to object: <?php echo $objectName; ?></h1>
-        <h1>A page allows you to enter more information about an object for the users to browse through on the front end. Use pages to break up information.</h1>
+        <h2>A page allows you to enter more information about an object for the users to browse through on the front end. Use pages to break up information.</h2>
+        <h3>It is suggested that you atleast upload an image or some text, uploading both gives a good feel to the page</h3>
         <form id="addNewPageForm" autocomplete="off" class="" name="addNewPage" method="POST" action="" enctype="multipart/form-data">
             <strong>Page Title* (25 characters max)</strong>
             <input type="text" maxlength="25" name="newPageTitle" id="pageTitle"/>

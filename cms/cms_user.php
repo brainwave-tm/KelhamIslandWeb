@@ -29,9 +29,6 @@ if(isset($_POST['username']))
         header('Location: cms_user.php');
     }
 }
-
-
-
 if (isset($_POST['repassword']))
 {
     $repassword = $_POST['repassword'];
