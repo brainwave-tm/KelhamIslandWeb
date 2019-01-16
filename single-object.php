@@ -31,7 +31,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
         ?></h1>
         <a href='objectSelect.php' class="backLink"><i class="fas fa-home">Back</i></a>
     </header>
-    <div class="page">
+    <div class="page" id="top">
         <div class="sideBar">
             <ol type="1">
                 <?php
@@ -80,7 +80,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             
                     if(!is_null($objectPage->pageImage))
                     {
-                        echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                        echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
                         echo "<img src='content/images/$objectID/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
@@ -95,27 +95,37 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<div class='longDescription'>";
                     echo "<p>$objectPage->objectShortDescription</p>";
                     echo "</div>";
-                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                     echo "<div class='objectImages'>";
                     $objectImage = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = $objectPage->objectPreviewImage")->fetchObject();
                     echo "<img src='content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' id='$objectImage->imageId'>";
                     echo "</div>";
                 }
-                
-                
-            ?>
+                ?>
+            <h3><a href="#top">Back to top</a></h3>
         </div>
     </div>
 
     <script type="text/javascript">
     $( document ).ready(function() {
-        $("body").fadeIn(1000);
+        $("body").fadeIn(500);
         $("a").click(function(e) {
-            e.preventDefault();
             $link = $(this).attr("href");
-            $("body").fadeOut(500,function(){
-                window.location =  $link; 
-            });
+            if(!$link.startsWith("#"))
+            {
+                e.preventDefault();
+                $("body").fadeOut(250,function(){
+                    window.location =  $link; 
+                });
+            } else
+            {
+                var hash = this.hash;
+                $('html, body').animate(
+                    { scrollTop: $(hash).offset().top },
+                    800,
+                    function(){ window.location.hash = hash; }
+                );
+            }
         });
     });
     </script>
