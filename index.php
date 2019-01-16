@@ -17,9 +17,14 @@ include("includes/functions.inc.php");
     <title>Kelham Island Web</title>
 </head>
 <body style="display: none;">
-    <div style="height: 600px; width: 100%">
-    <img class="indexLogo" src="content/images/logo.png" alt="Kelham Island Logo">
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/m37TXq01N5o?autoplay=1&loop=1&playlist=m37TXq01N5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
 
+    <div style="height: 600px; width: 100%">
+        <img class="indexLogo" src="content/images/logo.png" alt="Kelham Island Logo">
     </div>
 
     <div class="indexContainer">
