@@ -3,9 +3,7 @@ include("includes/conn.inc.php");
 include("includes/functions.inc.php");
 
 $objectID = safeString($_GET['objectID']);
-
-$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();
-                           
+$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();              
 ?>
 
 <!DOCTYPE html>
@@ -51,17 +49,20 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 {
                     if ($objectPages[$i]['pageId'] == $pageID)
                     {
+
                         echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
-                        
+
+                        var_dump($objectPages[$i]);
+                        if($objectPages[$i]["pageImage"])
+                        {
+                            echo "true";
+                        }
+                        echo "<li><a style='margin-left: 30px;' href='#images'>- Go To Images</a></li>";
                     }
                     else{
                         echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
-                        
                     }
-                }
-                echo "<br>";
-                echo "<li><u><a href='#images'>Images</a></u></li>";
-                
+                } 
                 ?>
             </ol>
         </div>
