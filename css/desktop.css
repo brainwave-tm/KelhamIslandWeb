@@ -34,9 +34,14 @@ body
 .indexContainer > h1 
 {
     margin: 0;
-    line-height: 150px;
+    line-height: 110px;
     font-size: 8rem;  
     animation: textgrowth 1s infinite alternate;
+}
+.indexText{
+    color: ghostwhite;
+    text-align: center;
+    font-size: 3rem;
 }
 h1 a
 {
@@ -51,7 +56,7 @@ h1 a
     margin-right: auto;
     padding-top: 100px;
     padding-bottom: 100px;
-    height: 60%;
+    height: 35%;
 }
 fieldset
 {
