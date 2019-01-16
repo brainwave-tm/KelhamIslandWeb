@@ -74,29 +74,55 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             <?php
                 $objectId = safeString($_GET['objectId']);          
             ?>
-
                 <form action="updateDatabase.php" method="post" enctype="multipart/form-data">
-                <?php echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
-                echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>";                
-                echo "<input type='text' name='pageTitle' value='" . $objectPage->pageTitle . "'/><br><br>";
-                echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
-             
-
-                if(!is_null($objectPage->pageImage))
-                { ?>
-                    <!-- <div class="new_image_container"> -->
-                    <p>Choose New Image: </p>
-                    <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-                    <!-- </div> -->
                 <?php
-                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
-                    echo "<div class='objectImages'>";
-                        $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
-                        echo "<img id='eventImagePrev' src='../content/images/" . $objectPage->objectId . "/" . $objectImage->imageUrl . "'>";
-                    echo "</div>";
+                if(isset($_GET['pageId']))
+                {
+                    echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
+                    echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>";                
+                    echo "<input type='text' name='pageTitle' value='" . $objectPage->pageTitle . "'/><br><br>";
+                    echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
+
+                    if(!is_null($objectPage->pageImage))
+                    { ?>
+                        <!-- <div class="new_image_container"> -->
+                        <p>Choose New Image: </p>
+                        <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                        <!-- </div> -->
+                    <?php
+                        echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                        echo "<div class='objectImages'>";
+                            $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
+                            echo "<img id='eventImagePrev' src='../content/images/" . $objectPage->objectId . "/" . $objectImage->imageUrl . "'>";
+                        echo "</div>";
+                    }
+                        echo "<input type='submit' value='Update'>";
+                        echo "</form>";    
+                } else
+                {
+                    echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
+                    echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>";                
+                    echo "<input type='text' name='pageTitle' value='" . $objectPage[0]["pageTitle"] . "'/><br><br>";
+                    echo "<textarea name='pageText'>" . $objectPage[0]["pageText"] . "</textarea>";
+
+                     if(!is_null($objectPage[0]["pageImage"]))
+                    { ?>
+                        <!-- <div class="new_image_container"> -->
+                        <p>Choose New Image: </p>
+                        <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                        <!-- </div> -->
+                    <?php
+                        echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                        echo "<div class='objectImages'>";
+                            $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage[0]["pageImage"] )->fetchObject();
+                            echo "<img id='eventImagePrev' src='../content/images/" . $objectPage[0]["objectId"] . "/" . $objectImage->imageUrl . "'>";
+                        echo "</div>";
+                    }
+                        echo "<input type='submit' value='Update'>";
+                        echo "</form>";    
                 }
-                    echo "<input type='submit' value='Update'>";
-                    echo "</form>";            
+
+                        
                 ?>
         </div>
     </div>
