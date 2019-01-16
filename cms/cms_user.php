@@ -109,11 +109,11 @@ if (isset($_POST['password']))
         <?php } ?>
         <?php
             $getUserName = $pdo->query("SELECT userName FROM users")->fetchObject();            
-            echo "Current UserName : " . $getUserName->userName;            
-        ?>
+            echo "Current UserName : " ?> <small style="color:#008000;"><?php echo $getUserName->userName; ?></small>             
+        
         <p>                  
             <label for="username">Enter your new Username:</label>
-            <input type="text" name="username" placeholder="Username" /> 
+            <input type="text" name="username" placeholder="Username"/> 
         </p>
         <p>
             <input type="submit" value="Change Username" class="changeButton" />
