@@ -24,9 +24,9 @@ if(isset($_POST['username']))
     }
     else
     {         
+        $successUsername = 'Successfully changed Username!';
         $query = $pdo->prepare("UPDATE users SET userName = '" . safeString($username) . "' WHERE userId = 1");
         $query->execute();
-        header('Location: cms_user.php');
     }
 }
 if (isset($_POST['repassword']))
@@ -60,7 +60,7 @@ if (isset($_POST['password']))
             $newpassword = changePassword($password);
             $query = $pdo->prepare("UPDATE users SET userPassword = '". safeString($newpassword) . "' WHERE userId = 1");
             $query->execute();
-            header('Location: cms_user.php');
+            $successPassword='Successfully changed Password!';
         }
         else
         {
@@ -102,12 +102,18 @@ if (isset($_POST['password']))
                 <br /><br />
         <?php } ?>
         <?php
+            if(isset($successUsername))
+            { ?>
+            <small style="color:#008000;"><?php echo $successUsername; ?></small>
+                <br /><br />
+        <?php } ?>
+        <?php
             $getUserName = $pdo->query("SELECT userName FROM users")->fetchObject();            
-            echo "Current UserName : " . $getUserName->userName;            
-        ?>
+            echo "Current UserName : " ?> <small style="color:#008000;"><?php echo $getUserName->userName; ?></small>             
+        
         <p>                  
             <label for="username">Enter your new Username:</label>
-            <input type="text" name="username" placeholder="Username" /> 
+            <input type="text" name="username" placeholder="Username"/> 
         </p>
         <p>
             <input type="submit" value="Change Username" class="changeButton" />
@@ -124,6 +130,11 @@ if (isset($_POST['password']))
 
         <?php if(isset($errorRePassword)) { ?>
             <small style="color:#aa0000;"><?php echo $errorRePassword; ?></small>
+            <br />
+        <?php } ?>
+
+        <?php if(isset($successPassword)) { ?>
+            <small style="color:#008000;"><?php echo $successPassword; ?></small>
             <br />
         <?php } ?>
 
