@@ -14,9 +14,10 @@ $imageUrl = $imageData[0]['imageUrl'];
 $imageId = $imageData[0]['imageId'];
 
 $newImageId = null;
+$errorCode = null;
 if(!$_FILES['fileToUpload']["name"] == "")
 {
-    removeExistingImage($objectId, $imageUrl);
+    $errorCode = removeExistingImage($objectId, $imageUrl);
     $newImageId = replaceFile($objectId);
 }
 else
@@ -28,5 +29,14 @@ $sql2 = "UPDATE objects SET objectName = '" . $objectName . "', objectShortDescr
 $stmt2= $pdo->prepare($sql2);
 // $stmt2->execute();
 $stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
-header("cms.php");
+
+if($errorCode == 0)
+{
+    header("Location: cms.php");
+}
+else
+{
+    echo "There has been an error when uploading the image!";
+    echo "<a href=\"cms.php\">Returb to cms</a>";
+}
 ?>

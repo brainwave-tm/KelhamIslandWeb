@@ -75,14 +75,12 @@ function replaceFile($objectId)
 
 function removeExistingImage($objectId, $imageUrl)
 {
+	$errorCode = 0;
 	$filePath = "../content/images/" . $objectId . "/" . $imageUrl;
 	if (!unlink($filePath))
 	{
-		echo ("Error deleting $imageUrl");
+		$errorCode = 1;
 	}
-	else
-	{
-		echo ("Deleted $imageUrl");
-	}
+	return $errorCode;
 }
 ?>

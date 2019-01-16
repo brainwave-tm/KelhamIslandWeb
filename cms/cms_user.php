@@ -7,6 +7,7 @@ require("../logic/auth.php");
 
 if(isset($_POST['username']))
 {
+    $check =false;
     $username = $_POST['username'];
     $getUserName = $pdo->query("SELECT userName FROM users")->fetchObject();
     if (empty($username))
@@ -22,12 +23,15 @@ if(isset($_POST['username']))
         $errorUsername = 'Too large!Only up to 25 characters.';
     }
     else
-    {
+    {         
         $query = $pdo->prepare("UPDATE users SET userName = '" . safeString($username) . "' WHERE userId = 1");
         $query->execute();
         header('Location: cms_user.php');
     }
 }
+
+
+
 if (isset($_POST['repassword']))
 {
     $repassword = $_POST['repassword'];
@@ -93,7 +97,7 @@ if (isset($_POST['password']))
     </header>
 <form action="cms_user.php" method="post" >
     <div class="username_box">
-    <h1>Change UserName</h1>        
+    <h1>Change UserName</h1>
         <?php
             if(isset($errorUsername))
             { ?>
