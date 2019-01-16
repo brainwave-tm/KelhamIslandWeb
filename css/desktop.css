@@ -99,6 +99,7 @@ header a i{
     width: 25%; 
 }
 .invalidInput{
+    margin: 2px;
     color: #FF0000;
     display: block;
 }
@@ -376,31 +377,92 @@ color:black;
     margin-top: 20px;
     display: flex;
 }
-.addPagesForm {
-    width: 80%;
+
+.addPagesForm
+{
+    width: 30%;
     background-color: white;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 20px;
+    margin-right: 20px;
     text-align: center;
+    padding: 10px;
 }
-.addPagesForm strong{
-    font-size: 2rem;
+.addPagesForm h1
+{
+    font-size: 25px;
 }
-#addNewPageForm input {
-    font-size: 2rem;
+.addPagesForm h2
+{
+    font-size: 17px;
+    width: 85%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.addPagesForm h3
+{
+    font-size: 15px;
+    width: 75%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.addPagesForm form strong
+{
+    font-size: 17px;
+}
+#addNewPageForm input
+{
+    font-size: 20px;
+    text-align: center;
+    border: 1px dotted black;
+    padding: 5px;
     width: 80%;
+    margin-top: 5px;
     margin-left: 10%;
     margin-right: 10%;
 }
-#addNewPageForm textarea {
+#addNewPageForm textarea
+{
     width: 80%;
-    margin-top: 2px;
+    margin-top: 5px;
     margin-left: 10%;
     margin-right: 10%;
     height: 200px;
-    font-size: 2rem;
+    font-size: 15px;
     resize: none;
 }
+
+.pagesFlexBox
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.pagePreview
+{
+    float: right;
+    width: 75%;
+    margin-right: 20px;
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+}
+.pagePreview textarea
+{
+    width: 80%;
+    margin-top: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 200px;
+    font-size: 25px;
+    resize: none;
+}
+.pagePreview img
+{
+    max-width: 25%;
+}
+
 .pagePreviewPanel input[name="pageTitle"]
 {
     border: 1px solid black;
