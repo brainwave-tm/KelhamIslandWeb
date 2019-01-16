@@ -54,7 +54,7 @@ include("../includes/functions.inc.php");
                     echo "<td>" . $o['objectId'] . "</td>";
                     echo "<td>" . $o['objectName'] . "</td>";
                     echo "<td>" . $o['objectShortDescription'] ."</td>";
-                    echo "<td><a href='../content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "'>" . $o['imageDescription'] ."</a></td>";
+                    echo "<td><a href='../content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "'>View Image</a></td>";
                     echo "<td>" . $o['objectShelfPosition']. "</td>";
                 echo "</tr>";
             }
@@ -71,7 +71,7 @@ include("../includes/functions.inc.php");
             $(".editObjectLink").remove();
             $(".deleteObjectLink").remove();
             $( ".sideBarMenu" ).append( "<li class='editObjectLink'><i class='fas fa-pen'></i> <a href='editObject.php?objectID=" + clickedRadioButton["id"] + "'>Edit Object</a></li> " );
-            $( ".sideBarMenu" ).append( "<li class='deleteObjectLink'><i class='fas fa-trash-alt'></i></i> <a href='deleteObject.php?objectId=" + clickedRadioButton["id"] + "' onclick=\"return confirm('Are you sure you want to delete this object?');\" style='color: red'>Delete Object</a></li> " );       
+            $( ".sideBarMenu" ).append( "<li ><i class='fas fa-trash-alt'></i> <a class='deleteObjectLink' href='deleteObject.php?objectId=" + clickedRadioButton["id"] + "' onclick=\"return confirm('Are you sure you want to delete this object?');\">Delete Object</a></li> " );       
         });
     });
     </script>
