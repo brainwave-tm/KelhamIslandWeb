@@ -79,9 +79,9 @@ header > h2 {
     width: 75%;
     font-size: 3rem;
 }
-header a i{
-    margin-top: 15px;
-    margin-right: 5px;
+header a p{
+    /* margin-top: 15px;
+    margin-right: 5px; */
     font-family: 'Lato';
 }
 .headerLogo
@@ -106,19 +106,17 @@ header a i{
 }
 .backLink
 {
-    /* margin-left: 50px; */
-    font-size: 4rem;    
+    font-size: 3rem;    
     text-decoration: none;
     color: #005375;
     font-family: 'Lato';
     line-height: 100px;
+    padding-left: 5px;
 }
-
-header i
+.backLink strong
 {
-    font-size: 60px;
+    padding-left: 10px;;
 }
-
 .shortDescription
 {
     border-top: 3px solid black;
