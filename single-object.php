@@ -83,7 +83,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
-                        echo "<img src='content/images/$objectData->objectPreviewImage/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                        echo "<img src='content/images/$objectID/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
                         echo "</div>";
                     }
                 }
