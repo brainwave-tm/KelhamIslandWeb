@@ -16,6 +16,23 @@ for($id = 0; $id < sizeof($pages); $id++)
 // Then delete the pages //
 $pdo->query("DELETE FROM pages WHERE pages.objectId = " . $objectId);
 
+//Delete Directory
+$dir = '../content/images/' . $objectId . '/';
+$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+$files = new RecursiveIteratorIterator($it,
+             RecursiveIteratorIterator::CHILD_FIRST);
+foreach($files as $file) {
+    if ($file->isDir()){
+        rmdir($file->getRealPath());
+    } else {
+        unlink($file->getRealPath());
+    }
+}
+rmdir($dir);
+
+// Delete reference to images table
+$pdo->query("DELETE FROM images WHERE imageId = (SELECT objectPreviewImage FROM objects WHERE objectId = '" . $objectId . "')");
+
 // Finally delete the object //
 $pdo->query("DELETE FROM objects WHERE objectId = " . $objectId);
 

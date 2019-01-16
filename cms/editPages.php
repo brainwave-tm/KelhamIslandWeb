@@ -30,7 +30,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
 </head>
 <body>
     <header>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
         <h2>Editing: <?php
         if (isset($_GET['pageId'])) 
         {
@@ -44,6 +44,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                 echo $objectPage[0]["pageTitle"];
         }   
         ?></h2>
+        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     
 
@@ -57,13 +58,13 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                 echo "<li><a href='editPages.php?objectId=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
             }
             ?>
-
-            <li><a href="editObject.php?objectID=<?php echo $objectID; ?>">BACK</a></li>
             <li>PAGES</li>
             <?php
             for($i = 0; $i < sizeof($objectPages); $i++)
             {
-                echo "<li><a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                echo "<li><a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'> - " . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                
+                echo "<li><a href='deletePage?pageId=" . $objectPages[$i]['pageId'] . "'><i class=\"fas fa-trash-alt\"></i></a> <a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";                
             }
             
             ?>

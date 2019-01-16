@@ -27,13 +27,19 @@ WHERE objectId = $objectID")->fetchObject();
     <title>Kelham Island Web</title>
 </head>
 <body>
-    <header>
+  <header>
+        <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <h1>Editing: <?php echo $object->objectName; ?></h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h2>Editing: <?php echo $object->objectName; ?></h2>        
-        <a href='cms.php' class="backLink"><i class="fas fa-home"></i></a>
     </header>
     <fieldset class="objectForm">
     <div class="pageContent">
+        <?php
+        if(isset($_GET["message"]))
+        {
+            echo "<h2 class='message'>" . $_GET["message"] . "</h2>";
+        }
+        ?>
         <h3><a href="cms.php">BACK</a></h3><br>
         <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
             <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">

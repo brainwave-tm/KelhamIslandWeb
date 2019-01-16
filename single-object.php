@@ -25,11 +25,11 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
 </head>
 <body style="display: none;">
     <header>
-        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="objectSelect.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1><?php
         echo $objectData->objectName;
         ?></h1>
-        <a href='objectSelect.php' class="backLink"><i class="fas fa-home">Back</i></a>
+        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="page" id="top">
         <div class="sideBar">
@@ -51,11 +51,11 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 {
                     if ($objectPages[$i]['pageId'] == $pageID)
                     {
-                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
                         
                     }
                     else{
-                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
                         
                     }
                 }
@@ -67,7 +67,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
         </div>
         <div class="pageContent">
             <?php
-                // Sets the default pagenumber to be 1 if no value is set \\
+                // Sets the default page number to be 1 if no value is set //
                 if (isset($_GET['pageID'])) 
                 {
                     $pageID = safeInt($_GET['pageID']);
@@ -75,7 +75,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
-                    echo "<p>" . nl2br($objectPage->pageText). "</p>";
+                        echo "<p>" . nl2br($objectPage->pageText). "</p>";
                     echo "</div>";
             
                     if(!is_null($objectPage->pageImage))
@@ -93,8 +93,9 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->objectName</h2>";
 
                     echo "<div class='longDescription'>";
-                    echo "<p>$objectPage->objectShortDescription</p>";
+                        echo "<p>" . nl2br($objectPage->objectShortDescription) . "</p>";
                     echo "</div>";
+
                     echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                     echo "<div class='objectImages'>";
                     $objectImage = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = $objectPage->objectPreviewImage")->fetchObject();
