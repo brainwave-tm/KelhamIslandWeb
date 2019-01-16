@@ -34,6 +34,12 @@ WHERE objectId = $objectID")->fetchObject();
     </header>
     <fieldset class="objectForm">
     <div class="pageContent">
+        <?php
+        if(isset($_GET["message"]))
+        {
+            echo "<h2 class='message'>" . $_GET["message"] . "</h2>";
+        }
+        ?>
         <h3><a href="cms.php">BACK</a></h3><br>
         <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
             <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">

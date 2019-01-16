@@ -17,6 +17,8 @@ require("../logic/auth.php");
         $sql2 = "INSERT INTO pages (objectId, pageText, pageTitle, pageImage) VALUES (?,?,?,?)";
         $stmt2= $pdo->prepare($sql2);
         $stmt2->execute([$objectID, $pageText, $pageName, $imageId]);
+
+        header("Location: editObject.php?objectID=$objectID&message=Created%20Page%20Successfully%20");
     }
 ?>
 <!DOCTYPE html>
@@ -40,21 +42,29 @@ require("../logic/auth.php");
         <h1>Add an Page</h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
-    <div class="addPagesForm">
-        <h1>Adding a page to object: <?php echo $objectName; ?></h1>
-        <h2>A page allows you to enter more information about an object for the users to browse through on the front end. Use pages to break up information.</h2>
-        <h3>It is suggested that you atleast upload an image or some text, uploading both gives a good feel to the page</h3>
-        <form id="addNewPageForm" autocomplete="off" class="" name="addNewPage" method="POST" action="" enctype="multipart/form-data">
-            <strong>Page Title* (25 characters max)</strong>
-            <input type="text" maxlength="25" name="newPageTitle" id="pageTitle"/>
-            <strong>Page Text</strong>
-            <textarea name="pageText" name="pageText"></textarea>
-            <strong>Page Image</strong>
-            <input type="file" id="newImageUpload" name="fileToUpload"/>
-            <strong>Image Preview</strong><br>
-            <img id="pageImagePrev" style="width: 200px; height: auto;" src="" alt="" />
-            <input type="submit" name="submit" value="Submit" class="buttonGo">
-        </form>
+    <div class="pagesFlexBox">
+        <div class="addPagesForm">
+            <h1>Adding a page to object: <?php echo $objectName; ?></h1>
+            <h2>A page allows you to enter more information about an object for the users to browse through on the front end. Use pages to break up information.</h2>
+            <h3>It is suggested that you atleast upload an image or some text, uploading both gives a good feel to the page</h3>
+            <form id="addNewPageForm" autocomplete="off" class="" name="addNewPage" method="POST" action="" enctype="multipart/form-data">
+                <strong>Page Title* (25 characters max)</strong>
+                <input type="text" maxlength="25" name="newPageTitle" id="pageTitle"/>
+                <strong>Page Text</strong>
+                <textarea name="pageText" name="pageText" id="pageText"></textarea>
+                <strong>Page Image</strong>
+                <input type="file" id="newImageUpload" name="fileToUpload"/>
+                <strong>Image Preview</strong><br>
+                <img id="pageImagePrev" style="width: 200px; height: auto;" src="" alt="" />
+                <input type="submit" name="submit" value="Submit" class="buttonGo">
+            </form>
+        </div>
+        <div class="pagePreview">
+            <h1 id="pageTitlePreview" orig="Page Title">Page Title</h1>
+            <textarea id="pageTextPreview" orig="Page Text" readonly>Page Text</textarea>
+            <h2>Images</h2>
+            <img id="pageImagePreview">
+        </div>
     </div>
 </body>
 <script>
@@ -63,6 +73,7 @@ require("../logic/auth.php");
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#pageImagePrev').attr('src', e.target.result);
+                $('#pageImagePreview').attr('src', e.target.result);
         }            
         reader.readAsDataURL(input.files[0]);
     }
@@ -73,13 +84,23 @@ require("../logic/auth.php");
     $("#addNewPageForm").on('submit', function(e){
         if ($("#pageTitle").val() == "")
         {
-            $(".invalidInput").hide();
-            $("#pageTitle").after("<p class='invalidInput' style='color: red'>PLEASE ENTER A NAME</p>");
+            $(".invalidInput").remove();
+            $("#pageTitle").before("<p class='invalidInput' style='color: red'>PLEASE ENTER A TITLE</p>");
             e.preventDefault();
-        }
+        }      
     });
     $("#pageTitle").focus(function(){
         $(".invalidInput").hide("slow");
     })
+
+    $(".addPagesForm :input").on('input',function(e){
+        if(e.currentTarget.value != "")
+        {
+            $("#" + e.currentTarget.id + "Preview" ).html(e.currentTarget.value);
+        } else
+        {
+            $("#" + e.currentTarget.id + "Preview" ).html($("#" + e.currentTarget.id + "Preview" ).attr("orig"));
+        } 
+    });
 </script>
 </html>

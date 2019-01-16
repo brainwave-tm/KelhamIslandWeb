@@ -67,7 +67,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
         </div>
         <div class="pageContent">
             <?php
-                // Sets the default pagenumber to be 1 if no value is set \\
+                // Sets the default page number to be 1 if no value is set //
                 if (isset($_GET['pageID'])) 
                 {
                     $pageID = safeInt($_GET['pageID']);
@@ -75,7 +75,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
-                    echo "<p>" . nl2br($objectPage->pageText). "</p>";
+                        echo "<p>" . nl2br($objectPage->pageText). "</p>";
                     echo "</div>";
             
                     if(!is_null($objectPage->pageImage))
@@ -93,8 +93,9 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->objectName</h2>";
 
                     echo "<div class='longDescription'>";
-                    echo "<p>$objectPage->objectShortDescription</p>";
+                        echo "<p>" . nl2br($objectPage->objectShortDescription) . "</p>";
                     echo "</div>";
+
                     echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                     echo "<div class='objectImages'>";
                     $objectImage = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = $objectPage->objectPreviewImage")->fetchObject();
