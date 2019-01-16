@@ -92,7 +92,7 @@ if (isset($_POST['password']))
         <h1>Edit Your Account</h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
-<form action="cms_user.php" method="post" >
+<form action="cms_user.php" method="post">
     <div class="username_box">
     <h1>Change UserName</h1>
         <?php
