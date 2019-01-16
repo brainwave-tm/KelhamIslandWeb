@@ -51,11 +51,11 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 {
                     if ($objectPages[$i]['pageId'] == $pageID)
                     {
-                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
                         
                     }
                     else{
-                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
+                        echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
                         
                     }
                 }
