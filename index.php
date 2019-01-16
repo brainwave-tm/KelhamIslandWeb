@@ -1,6 +1,8 @@
 <?php
 include("includes/conn.inc.php");
 include("includes/functions.inc.php");
+
+setcookie("firstEntry", "true", time() + (86400 * 30));
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +30,7 @@ include("includes/functions.inc.php");
     </div>
 
     <div class="indexContainer">
-        <h1><a href="objectSelect.php">Click to Begin</a></h1>
+        <h1><a href="objectSelect.php">Interactive Open Store Directory</a></h1>
     </div>
     <div class = "loginLink">
         <a href="LoginForm.php"> Admin login</a>
