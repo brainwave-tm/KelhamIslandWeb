@@ -27,8 +27,8 @@ else
 
 $sql2 = "UPDATE objects SET objectName = '" . $objectName . "', objectShortDescription = '" . $objectShortDescription . "', objectPreviewImage = '" . $newImageId . "', objectShelfPosition = '". $objectShelfPosition . "' WHERE objectId = " . $objectId;
 $stmt2= $pdo->prepare($sql2);
-// $stmt2->execute();
-$stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
+$stmt2->execute();
+// $stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
 
 if($errorCode == 0)
 {

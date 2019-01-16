@@ -10,14 +10,22 @@
         if ($_POST['objectID'] == 0)
         {
             $objectName = safeString($_POST['objectName']);
-            $objectShortDescription = safeString($_POST['objectShortDescription']);
-            $imagePath = uploadFile();
+            $objectShortDescription = safeString($_POST['objectShortDescription']);            
             $objectShelfPosition = safeString($_POST['objectShelfPosition']);
             
 
-            $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectPreviewImage, objectShelfPosition) VALUES (?,?,?,?)";
+            $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectShelfPosition) VALUES (?,?,?)";
             $stmt2= $pdo->prepare($sql2);
-            $stmt2->execute([$objectName, $objectShortDescription, $imagePath, $objectShelfPosition]);
+            $stmt2->execute([$objectName, $objectShortDescription, $objectShelfPosition]);
+
+            $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
+
+            $imageID = uploadFile($newObjectId->MAX);
+
+            $sql2 = "UPDATE objects SET objectPreviewImage = '" . $imageID . "' WHERE objectId = " . $newObjectId->MAX;
+            $stmt2= $pdo->prepare($sql2);
+            $stmt2->execute();
+
             header("Location: cms.php");
         }
     }
