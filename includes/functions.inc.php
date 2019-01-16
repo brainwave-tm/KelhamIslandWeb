@@ -8,15 +8,8 @@ function safeString($str){
 function safeFloat($float) {
 	return filter_var($float, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 }
-function uploadFile(){
+function uploadFile($objectId){
 include("../includes/conn.inc.php");
-
-$sql = "SELECT MAX(objectId) AS Max FROM objects";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$row = $stmt->fetchObject();
-$objectId = $row->Max+1;
-echo $objectId;
 
 //Make Directory
 $currentDir = getcwd();
