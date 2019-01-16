@@ -12,9 +12,18 @@ require("../logic/auth.php");
     {
         $pageName = safeString($_POST['newPageTitle']);
         $pageText = safeString($_POST['pageText']);
-        $imageId = replaceFile($objectID);
+
+        if(!$_FILES['fileToUpload']["name"] == "")
+        {
+            $imageId = replaceFile($objectID);
+        } else
+        {
+            $imageId = null;
+        }
+        
 
         $sql2 = "INSERT INTO pages (objectId, pageText, pageTitle, pageImage) VALUES (?,?,?,?)";
+        
         $stmt2= $pdo->prepare($sql2);
         $stmt2->execute([$objectID, $pageText, $pageName, $imageId]);
 
