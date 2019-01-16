@@ -454,3 +454,8 @@ color:black;
     width: 50%;
     margin: 10px;
 }
+
+.deleteObjectLink
+{
+    color: #FC3D3D !important;
+}

@@ -15,9 +15,10 @@ include("includes/functions.inc.php");
     <!-- Favicon -->
     <link rel="icon" href="content/images/favicon.png">
     <meta http-equiv="refresh" content="240;url='index.php'" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>Kelham Island Web</title>
 </head>
-<body>
+<body style="display: none;">
     <header>
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
         <h1>Select an Object</h1>
@@ -45,5 +46,18 @@ include("includes/functions.inc.php");
             echo "</div>";
     ?>
     </div>
+
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        $("body").fadeIn(1000);
+        $("a").click(function(e) {
+            e.preventDefault();
+            $link = $(this).attr("href");
+            $("body").fadeOut(500,function(){
+                window.location =  $link; 
+            });
+        });
+    });
+    </script>
 </body>
 </html>
