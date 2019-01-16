@@ -16,7 +16,6 @@ include("../includes/functions.inc.php");
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="../content/images/favicon.png">
-    <meta http-equiv="refresh" content="240;url='../index.php'" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    <title>Kelham Island Web</title>
 </head>
