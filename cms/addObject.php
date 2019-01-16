@@ -11,7 +11,16 @@
         {
             $objectName = safeString($_POST['objectName']);
             $objectShortDescription = safeString($_POST['objectShortDescription']);            
-            $objectShelfPosition = safeString($_POST['objectShelfPosition']);
+            // $objectShelfPosition = safeString($_POST['objectShelfPosition']);
+            $objectRow = safeString($_POST['objectRow']);
+            $objectColumn = safeString($_POST['objectColumn']);
+            if($objectRow == "NULL" || $objectColumn == "NULL")
+            {
+                $objectShelfPosition == null;
+            }
+            else{
+                $objectShelfPosition = $objectRow . $objectColumn;
+            }
             
 
             $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectShelfPosition) VALUES (?,?,?)";
@@ -58,7 +67,25 @@
             <br>
             <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>
-            <strong>Shelf Position: </strong><input type="text" name="objectShelfPosition"/>
+            <!-- <strong>Shelf Position: </strong><input type="text" name="objectShelfPosition"/> -->
+            <strong>Shelf Position: </strong>
+            <select name="objectRow">
+                <option value="NULL">No row</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="F">Floor</option>
+            </select>
+            <select name="objectColumn">
+                <option value="NULL">No column</option>            
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
             <br>
             <strong>Object Main Image</strong><input type="file" id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
