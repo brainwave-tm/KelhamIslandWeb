@@ -202,10 +202,16 @@ header a p{
     font-weight: bold;
     font-family: 'Lato', sans-serif;
     color: ghostwhite;
-    font-size: 20px;
+    font-size: 30px;
     list-style-type: none;
     padding-top: 2px;
 }
+.sideBar li h2 
+{
+    text-decoration: underline;
+    height: 10px;
+}
+
 .sideBar ol
 {
     display: flex;
@@ -438,6 +444,7 @@ color:black;
 
 .pagesFlexBox
 {
+    margin-top: 15px;
     display: flex;
     flex-direction: row;
 }
