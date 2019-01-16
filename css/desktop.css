@@ -82,6 +82,7 @@ header > h2 {
 header a i{
     margin-top: 15px;
     margin-right: 5px;
+    font-family: 'Lato';
 }
 .headerLogo
 {
@@ -104,9 +105,12 @@ header a i{
 }
 .backLink
 {
-    margin-left: 50px;
+    /* margin-left: 50px; */
+    font-size: 4rem;    
     text-decoration: none;
     color: #005375;
+    font-family: 'Lato';
+    line-height: 100px;
 }
 
 header i

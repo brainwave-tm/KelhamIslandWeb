@@ -36,9 +36,9 @@ require("../logic/auth.php");
 </head>
 <body>
     <header>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
         <h1>Add an Page</h1>
-        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
+        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="addPagesForm">
         <h1>Adding a page to object: <?php echo $objectName; ?></h1>

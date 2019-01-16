@@ -16,20 +16,19 @@ include("../includes/functions.inc.php");
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="../content/images/favicon.png">
-    <meta http-equiv="refresh" content="240;url='index.php'" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    <title>Kelham Island Web</title>
 </head>
 <body>
     <header>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="logout.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>CMS</h1>
+        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="page">
         <div class="sideBar">
             <li>Menu</li>
-            <ol type="1" class="sideBarMenu">
-                <li><i class="fas fa-arrow-circle-left"></i> <a href='../index.php'>Back</a></li>                
+            <ol type="1" class="sideBarMenu">              
                 <li><i class="fas fa-user-circle"></i> <a href='cms_user.php'>Account</a></li>
                 <li><i class="fas fa-archive"></i> <a href='addObject.php'>Add Object</a></li>
                 <li><i class="fas fa-running"></i> <a href='logout.php'>Logout</a></li>
