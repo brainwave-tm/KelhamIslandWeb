@@ -68,8 +68,6 @@ WHERE objectId = $objectID")->fetchObject();
     </div>
     </fieldset>
 
-
-
 <script>
     function readURL(input) {
             if (input.files && input.files[0]) {

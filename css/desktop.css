@@ -521,3 +521,12 @@ color:black;
 {
     color: #FC3D3D !important;
 }
+
+.new_image_container
+{
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+    border: 2px dashed black;       
+}

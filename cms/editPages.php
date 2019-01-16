@@ -3,7 +3,6 @@ include("../includes/conn.inc.php");
 include("../includes/functions.inc.php");
 include('../includes/sessions.inc.php');
 require("../logic/auth.php");
-
 $objectID = safeString($_GET['objectId']);
 $page = $pdo->query("SELECT * FROM pages
 INNER JOIN images ON pages.pageImage = images.imageId
@@ -36,7 +35,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
         if (isset($_GET['pageId'])) 
         {
                 $pageId = safeInt($_GET['pageId']);
-                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchObject();
+                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = '" . $pageId . "'")->fetchObject();
                 echo $objectPage->pageTitle;
         } else
         {
@@ -46,6 +45,8 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
         }   
         ?></h2>
     </header>
+    
+
     <div class="page2">
         <div class="sideBar">
         <ol type="1">
@@ -63,7 +64,6 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             for($i = 0; $i < sizeof($objectPages); $i++)
             {
                 echo "<li><a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
-                
             }
             
             ?>
@@ -71,59 +71,48 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
         </div>
         <div class="pagePreviewPanel">
             <?php
-            $objectId = safeString($_GET['objectId']);
-            if (isset($_GET['pageId'])) 
-            {
-                $pageId = safeInt($_GET['pageId']);
-                $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchObject();
-
-                echo "<form action='updateDatabase.php' method='post'>";
-                echo "<input type='text' name='pageId' value='$pageId' style='display: none;'>";
-                echo "<input type='text' name='objectId' value='$objectId' style='display: none;'>";
-                
-                echo "<input type='text' name='pageTitle' value='$objectPage->pageTitle'><br><br>";
-                echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
-        
-                if(!is_null($objectPage->pageImage))
-                {
-                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
-                    echo "<div class='objectImages'>";
-                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
-                        echo "<img src='../content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription'>";
-                    echo "</div>";
-                }
-
-                echo "<input type='submit' value='Update'>";
-                echo "</form>";
-            } else
-            {
-                $pages = $pdo->query("SELECT * FROM pages
-                INNER JOIN images ON pages.pageImage = images.imageId
-                WHERE pages.objectId = $objectId")->fetchAll();
-                $pageId = $pages[0]["pageId"];
-
-                echo "<form action='updateDatabase.php' method='post'>";
-                echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'>";
-                echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'>";
-                
-                echo "<input type='text' name='pageTitle' value='" . $pages[0]["pageTitle"] . "'><br><br>";
-                echo "<textarea name='pageText'>" . $pages[0]["pageText"] . "</textarea>";
-
-                if(!is_null($pages[0]["pageImage"]))
-                {
-                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
-                    echo "<div class='objectImages'>";
-                        $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $pages[0]["pageImage"] )->fetchAll();
-                        echo "<img src='../content/images/" . $pages[0]['objectId'] . "/" . $objectImage[0]["imageUrl"] . "' title='" . $objectImage[0]["imageDescription"] . "'>";
-                    echo "</div>";
-                }
-
-                echo "<input type='submit' value='Update'>";
-                echo "</form>";
-            }
+                $objectId = safeString($_GET['objectId']);          
             ?>
+
+                <form action="updateDatabase.php" method="post" enctype="multipart/form-data">
+                <?php echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
+                echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>";                
+                echo "<input type='text' name='pageTitle' value='" . $objectPage->pageTitle . "'/><br><br>";
+                echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
+             
+
+                if(!is_null($objectPage->pageImage))
+                { ?>
+                    <!-- <div class="new_image_container"> -->
+                    <p>Choose New Image: </p>
+                    <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                    <!-- </div> -->
+                <?php
+                    echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    echo "<div class='objectImages'>";
+                        $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
+                        echo "<img id='eventImagePrev' src='../content/images/" . $objectPage->objectId . "/" . $objectImage->imageUrl . "'>";
+                    echo "</div>";
+                }
+                    echo "<input type='submit' value='Update'>";
+                    echo "</form>";            
+                ?>
         </div>
     </div>
-    
+<script>
+    function readURL(input) {
+    if (input.files && input.files[0]) 
+    {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#eventImagePrev').attr('src', e.target.result);
+        }            
+        reader.readAsDataURL(input.files[0]);
+    }
+    }
+    $("#newImageUpload").change(function(){
+        readURL(this);
+    })
+</script>
 </body>
 </html>
