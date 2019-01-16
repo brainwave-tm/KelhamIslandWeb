@@ -29,9 +29,6 @@ if(isset($_POST['username']))
         $query->execute();
     }
 }
-
-
-
 if (isset($_POST['repassword']))
 {
     $repassword = $_POST['repassword'];
