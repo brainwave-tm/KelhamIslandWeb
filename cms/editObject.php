@@ -27,10 +27,10 @@ WHERE objectId = $objectID")->fetchObject();
     <title>Kelham Island Web</title>
 </head>
 <body>
-    <header>
+  <header>
+        <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <h1>Editing: <?php echo $object->objectName; ?></h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h2>Editing: <?php echo $object->objectName; ?></h2>        
-        <a href='cms.php' class="backLink"><i class="fas fa-home"></i></a>
     </header>
     <fieldset class="objectForm">
     <div class="pageContent">
@@ -73,8 +73,6 @@ WHERE objectId = $objectID")->fetchObject();
         <h3><a href="addPages.php?objectId=<?php echo $object->objectId; ?>">Add pages to this object</a></h3>
     </div>
     </fieldset>
-
-
 
 <script>
     function readURL(input) {

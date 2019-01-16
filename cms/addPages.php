@@ -38,9 +38,9 @@ require("../logic/auth.php");
 </head>
 <body>
     <header>
+        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
+        <h1>Add an Page</h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h1>Add <a style="color: black" href="http://trinitycollegechoir.com/organ/organ-music-evensong/anne-page/">Anne Page</a></h1>
-        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
     <div class="pagesFlexBox">
         <div class="addPagesForm">
@@ -52,21 +52,31 @@ require("../logic/auth.php");
                 <input type="text" maxlength="25" name="newPageTitle" id="pageTitle"/>
                 <strong>Page Text</strong>
                 <textarea name="pageText" name="pageText" id="pageText"></textarea>
-                <strong>Page Image</strong>
+                <strong>Page Image (Optional)</strong>
                 <input type="file" id="newImageUpload" name="fileToUpload"/>
                 <strong>Image Preview</strong><br>
                 <img id="pageImagePrev" style="width: 200px; height: auto;" src="" alt="" />
+                <strong>Page Video (Optional)</strong>
+                <input type="text" id="pageVideo" name="pageVideo"/>
+                <!-- <button id="searchBtn">Search</button> -->
+
                 <input type="submit" name="submit" value="Submit" class="buttonGo">
             </form>
         </div>
         <div class="pagePreview">
             <h1 id="pageTitlePreview" orig="Page Title">Page Title</h1>
             <textarea id="pageTextPreview" orig="Page Text" readonly>Page Text</textarea>
+            
             <h2>Images</h2>
             <img id="pageImagePreview">
+
+            <h2>Videos</h2>
+            <div id="videoPreview">
+                <!-- Add videos here -->
+            </div>
         </div>
     </div>
-</body>
+
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -102,5 +112,46 @@ require("../logic/auth.php");
             $("#" + e.currentTarget.id + "Preview" ).html($("#" + e.currentTarget.id + "Preview" ).attr("orig"));
         } 
     });
+
+    $("#pageVideo").focusout(function() {
+        
+        $searchTerm = $("#pageVideo")[0].value;
+        $apikey = 'AIzaSyBejjDHXTLdYQ6arb5gCad_Uoe_Udk9Rs4'; 
+        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + $searchTerm + '&maxResults=4&key=' + $apikey;
+
+        $.ajax({
+            type: 'GET',
+            url: $googleApiUrl,
+            dataType: 'json',
+            success: function(response){
+                $("#videoPreview").empty();
+                response.items.forEach(function(element) {
+                    $("#videoPreview").append(
+                        "<iframe src=" +
+                        "https://www.youtube.com/embed/" + element.id.videoId + 
+                        " allowfullscreen>"
+                    );
+                });
+            }
+        });
+    });
+
+    function getCookie(cname) {
+        // https://www.w3schools.com/js/js_cookies.asp //
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 </script>
+</body>
 </html>
