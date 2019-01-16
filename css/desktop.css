@@ -142,6 +142,7 @@ header a p{
     background-color: whitesmoke;
     padding: 10px;
     margin: auto;
+    margin-top: 0px;
     text-align: center;
 }
 .pageContent .objectImages
