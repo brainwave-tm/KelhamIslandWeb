@@ -92,7 +92,7 @@ if (isset($_POST['password']))
         <h1>Edit your account</h1>
         <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
-<form action="cms_user.php" method="post" >
+<form action="cms_user.php" method="post">
     <div class="username_box">
     <h1>Change UserName</h1>
         <?php
