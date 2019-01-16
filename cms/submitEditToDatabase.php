@@ -32,11 +32,11 @@ $stmt2->execute();
 
 if($errorCode == 0)
 {
-    header("Location: cms.php");
+    header("Location: editObject.php?objectID=$objectId&message=Updated%20Object%20Successfully");
 }
 else
 {
     echo "There has been an error when uploading the image!";
-    echo "<a href=\"cms.php\">Returb to cms</a>";
+    echo "<a href=\"cms.php\">Return to cms</a>";
 }
 ?>

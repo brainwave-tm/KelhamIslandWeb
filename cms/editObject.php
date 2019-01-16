@@ -78,17 +78,20 @@ WHERE objectId = $objectID")->fetchObject();
 
 <script>
     function readURL(input) {
-            if (input.files && input.files[0]) {
+        if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#eventImagePrev').attr('src', e.target.result);
             }            
             reader.readAsDataURL(input.files[0]);
+        }
     }
-    }
+
     $("#newImageUpload").change(function(){
         readURL(this);
-    })
+    });
+
+    $("#")
 </script>
 </body>
 </html>
