@@ -56,9 +56,9 @@
 </head>
 <body>
     <header>
+        <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <h1>Add an object</h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h1>Add an Object</h1>
-        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
     <div class="addObjectForm">
         <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">

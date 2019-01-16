@@ -87,10 +87,10 @@ if (isset($_POST['password']))
     <title>Kelham Island Web - User Control</title>    
 </head>
 <body>
-    <header>
+   <header>
+        <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <h1>Edit Your Account</h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h1>Edit your account</h1>
-        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
 <form action="cms_user.php" method="post" >
     <div class="username_box">
