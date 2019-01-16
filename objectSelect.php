@@ -15,13 +15,15 @@ include("includes/functions.inc.php");
     <!-- Favicon -->
     <link rel="icon" href="content/images/favicon.png">
     <meta http-equiv="refresh" content="240;url='index.php'" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>Kelham Island Web</title>
 </head>
 <body style="display: none;">
     <header>
-        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="index.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Select an Object</h1>
+        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
 
     <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>

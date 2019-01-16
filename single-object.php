@@ -25,11 +25,11 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
 </head>
 <body style="display: none;">
     <header>
-        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="objectSelect.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1><?php
         echo $objectData->objectName;
         ?></h1>
-        <a href='objectSelect.php' class="backLink"><i class="fas fa-home">Back</i></a>
+        <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="page" id="top">
         <div class="sideBar">

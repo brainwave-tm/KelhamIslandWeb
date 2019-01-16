@@ -38,9 +38,9 @@ require("../logic/auth.php");
 </head>
 <body>
     <header>
+        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
+        <h1>Add an Page</h1>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
-        <h1>Add <a style="color: black" href="http://trinitycollegechoir.com/organ/organ-music-evensong/anne-page/">Anne Page</a></h1>
-        <h2><a href='cms.php' class="backLink"><i class="fas fa-home"></i></a></h2>
     </header>
     <div class="pagesFlexBox">
         <div class="addPagesForm">

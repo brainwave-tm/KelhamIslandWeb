@@ -22,14 +22,14 @@ include("../includes/functions.inc.php");
 </head>
 <body>
     <header>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="logout.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>CMS</h1>
+        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="page">
         <div class="sideBar">
             <li>Menu</li>
-            <ol type="1" class="sideBarMenu">
-                <li><i class="fas fa-arrow-circle-left"></i> <a href='../index.php'>Back</a></li>                
+            <ol type="1" class="sideBarMenu">              
                 <li><i class="fas fa-user-circle"></i> <a href='cms_user.php'>Account</a></li>
                 <li><i class="fas fa-archive"></i> <a href='addObject.php'>Add Object</a></li>
                 <li><i class="fas fa-running"></i> <a href='logout.php'>Logout</a></li>
