@@ -136,9 +136,10 @@ require("../logic/auth.php");
                 $("#videoPreview").empty();
                 response.items.forEach(function(element) {
                     $("#videoPreview").append(
-                        "<iframe src=" +
+                        "<div class='singleVideo'><iframe src=" +
                         "https://www.youtube.com/embed/" + element.id.videoId + 
-                        " allowfullscreen>"
+                        " allowfullscreen></iframe>" +
+                        "<h1><a class='selectVideoLink'>Select</a></h1></div>"
                     );
                 });
             }

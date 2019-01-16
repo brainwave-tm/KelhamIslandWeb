@@ -26,6 +26,19 @@ include("includes/functions.inc.php");
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
 
+    <?php
+    if($_COOKIE['firstEntry'] == "true")
+    {
+        // Display the popup //
+        setcookie("firstEntry", "false", time() + (86400 * 30));
+    ?>
+        <div class="popup">
+            <h1>Welcome to Kelham Island</h1>
+        </div>
+    <?php
+    }
+    ?>
+
     <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>
     <?php
         $objects = $pdo->query("SELECT * FROM objects
