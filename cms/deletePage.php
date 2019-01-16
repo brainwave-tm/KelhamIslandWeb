@@ -5,9 +5,5 @@ include("../includes/functions.inc.php");
 require("../logic/auth.php");
 
 // Delete the images first //
-$objectId = safeString($_GET['objectId']);
-// Then delete the pages //
-$pdo->query("DELETE FROM pages WHERE pages.objectId = " . $objectId);
-
-header("Location: cms.php");
+$pageId = safeString($_GET['pageId']);
 ?>
