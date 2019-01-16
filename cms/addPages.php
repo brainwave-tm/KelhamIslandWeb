@@ -17,6 +17,8 @@ require("../logic/auth.php");
         $sql2 = "INSERT INTO pages (objectId, pageText, pageTitle, pageImage) VALUES (?,?,?,?)";
         $stmt2= $pdo->prepare($sql2);
         $stmt2->execute([$objectID, $pageText, $pageName, $imageId]);
+
+        header("Location: editObject.php?objectID=$objectID&message=Created%20Page%20Successfully%20");
     }
 ?>
 <!DOCTYPE html>
@@ -82,10 +84,10 @@ require("../logic/auth.php");
     $("#addNewPageForm").on('submit', function(e){
         if ($("#pageTitle").val() == "")
         {
-            $(".invalidInput").hide();
+            $(".invalidInput").remove();
             $("#pageTitle").before("<p class='invalidInput' style='color: red'>PLEASE ENTER A TITLE</p>");
             e.preventDefault();
-        }
+        }      
     });
     $("#pageTitle").focus(function(){
         $(".invalidInput").hide("slow");

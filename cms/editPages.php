@@ -62,8 +62,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             <?php
             for($i = 0; $i < sizeof($objectPages); $i++)
             {
-                echo "<li><a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";  
-                
+                echo "<li><a href='deletePage?pageId=" . $objectPages[$i]['pageId'] . "'><i class=\"fas fa-trash-alt\"></i></a> <a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";                
             }
             
             ?>

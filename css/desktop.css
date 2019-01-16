@@ -521,3 +521,16 @@ color:black;
 {
     color: #FC3D3D !important;
 }
+
+.message
+{
+    width: 90%;
+    background-color: lightgreen;
+    color: #005375;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    margin: 10px;
+    margin: auto;
+    border-radius: 10px;
+}
