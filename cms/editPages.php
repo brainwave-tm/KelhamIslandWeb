@@ -55,7 +55,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             $objectPages = $pdo->query("SELECT pageId, pageTitle, pageImage FROM pages WHERE objectID = $objectID")->fetchAll();
             if(isset($_GET['pageID']))
             {
-                echo "<li><a href='editPages.php?objectId=$objectID'><i class=\"fas fa-chevron-circle-left\"></i></a></li>";
+                echo '<li><a href="editPages.php?objectId=' . $objectID . '"><i class=\"fas fa-chevron-circle-left\"></i></a></li>';
             }
             ?>
             <li>PAGES</li>
@@ -64,7 +64,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
             {
                 // echo "<li><a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'> - " . $objectPages[$i]['pageTitle'] ."</a></li>";  
                 
-                echo "<li><a href='deletePage?pageId=" . $objectPages[$i]['pageId'] . "'><i class=\"fas fa-trash-alt\"></i></a> <a href='editPages.php?objectId=$objectID&pageId=" . $objectPages[$i]['pageId'] . "'>" . $objectPages[$i]['pageTitle'] ."</a></li>";                
+                echo '<li><a href="deletePage?objectId=' . $objectID . '&pageId=' . $objectPages[$i]["pageId"] . '" onclick="return confirm(\'Are you sure?\')"><i class="fas fa-trash-alt"></i></a> <a href="editPages.php?objectId=' . $objectID . '&pageId=' . $objectPages[$i]['pageId'] . '">' . $objectPages[$i]['pageTitle'] .'</a></li>';                
             }
             
             ?>
