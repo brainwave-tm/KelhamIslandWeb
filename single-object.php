@@ -52,12 +52,10 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
 
                         echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "' style='color: grey'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  
 
-                        var_dump($objectPages[$i]);
-                        if($objectPages[$i]["pageImage"])
+                        if($objectPages[$i]["pageImage"] != null)
                         {
-                            echo "true";
+                            echo "<li><a style='margin-left: 30px;' href='#images'>- Go To Images</a></li>";
                         }
-                        echo "<li><a style='margin-left: 30px;' href='#images'>- Go To Images</a></li>";
                     }
                     else{
                         echo "<li><a href='single-object.php?objectID=$objectID&pageID=" . $objectPages[$i]['pageId'] . "'>-  " . $objectPages[$i]['pageTitle'] ."</a></li>";  

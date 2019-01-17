@@ -144,11 +144,11 @@ header a p{
     font-size: 26px;
     padding-left: 30px;
 }
-.pageContent{
+.pageContent
+{
     flex-basis: 80%;
     background-color: whitesmoke;
     padding: 10px;
-    margin: auto;
     text-align: center;
 }
 .pageContent .objectImages

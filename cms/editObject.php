@@ -68,8 +68,8 @@ WHERE objectId = $objectID")->fetchObject();
     </div>
 
     <div class="pageContent">
-        <h3><i class='fas fa-pen'></i><a href="editPages.php?objectId=<?php echo $object->objectId; ?>">Edit this object's pages</a></h3>
-        <h3><a href="addPages.php?objectId=<?php echo $object->objectId; ?>">Add pages to this object</a></h3>
+        <h3><a href="editPages.php?objectId=<?php echo $object->objectId; ?>"><i class='fas fa-pen'></i> Edit this object's pages</a></h3>
+        <h3><a href="addPages.php?objectId=<?php echo $object->objectId; ?>"><i class="fas fa-plus"></i> Add pages to this object</a></h3>
     </div>
     </fieldset>
 
