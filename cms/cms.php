@@ -22,9 +22,10 @@ include("../includes/functions.inc.php");
 </head>
 <body>
     <header>
-        <a href="logout.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <a href="objectSelect.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>CMS</h1>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
+        <a href="index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="page">
         <div class="sideBar">
@@ -74,6 +75,9 @@ include("../includes/functions.inc.php");
             $( ".sideBarMenu" ).append( "<li class='deleteObjectLink'><i class='fas fa-trash-alt'></i> <a class='deleteObjectLink' href='deleteObject.php?objectId=" + clickedRadioButton["id"] + "' onclick=\"return confirm('Are you sure you want to delete this object?');\">Delete Object</a></li> " );       
         });
     });
+    $(".helpButton").on("click", function(){
+    window.location.href = 'userManual.php';
+    })
     </script>
 </body>
 </html>
