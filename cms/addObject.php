@@ -67,7 +67,6 @@
             <br>
             <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>
-            <!-- <strong>Shelf Position: </strong><input type="text" name="objectShelfPosition"/> -->
             <strong>Shelf Position: </strong>
             <select name="objectRow">
                 <option value="NULL">No row</option>
@@ -86,8 +85,9 @@
                 <option value="6">6</option>
                 <option value="7">7</option>
             </select>
+            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the objec will not show on the main screen to visitors</p>
             <br>
-            <strong>Object Main Image</strong><input type="file" id="newImageUpload" name="fileToUpload"/>
+            <strong>Object Main Image</strong><input type="file" style="font-size: 1rem;"id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
             <img id="eventImagePrev" style="width: 200px;" src="" alt="" />
             <input type="submit" name="submit" value="Submit" class="buttonGo">
