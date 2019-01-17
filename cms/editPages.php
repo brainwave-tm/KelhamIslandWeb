@@ -10,6 +10,16 @@ WHERE pages.objectId = $objectID")->fetchAll();
 
 $pageId = 0;
 if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
+if($_GET['deleteImage'] ?? NULL == 1)
+{
+    $page = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchAll();
+    $imageUrl = $pdo->query("SELECT imageUrl, imageId FROM images WHERE IMAGEiD = (SELECT pageImage FROM pages WHERE pageId = $pageId)")->fetchAll();
+
+    $dir = '../content/images/' . $page[0]['objectId'] . '/' . $imageUrl[0]['imageUrl'];
+    unlink($dir);
+    $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
+    $pdo->query("UPDATE pages SET pageImage = NULL WHERE pageId = '".$pageId."'");
+}
 ?>
 
 <!DOCTYPE html>
@@ -84,13 +94,17 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                     echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
 
                     if(!is_null($objectPage->pageImage))
-                    { ?>
-                        <!-- <div class="new_image_container"> -->
-                        <p>Choose New Image: </p>
-                        <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-                        <!-- </div> -->
-                    <?php
+                    { 
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
+                    ?>
+                        <label for="newImageUpload">Choose New Image: </label>
+                        <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                    <?php
+                        $pageImage = $pdo->query("SELECT pageImage FROM pages WHERE pageId = $pageId")->fetchAll();
+                        if(!($pageImage[0]['pageImage'] == NULL))
+                        {
+                            echo '<a href=\'editpages.php?objectId='.$objectId.'&pageId='.$pageId.'&deleteImage=1\' class=\'textLink\' onclick="return confirm(\'Are you sure you want to delete the image?\')"><i class=\'fas fa-trash-alt\'></i>Delete image from page</a>';
+                        }
                         echo "<div class='objectImages'>";
                             $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
                             echo "<img id='eventImagePrev' src='../content/images/" . $objectPage->objectId . "/" . $objectImage->imageUrl . "'>";
@@ -107,10 +121,8 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
 
                      if(!is_null($objectPage[0]["pageImage"]))
                     { ?>
-                        <!-- <div class="new_image_container"> -->
-                        <p>Choose New Image: </p>
+                        <label for="newImageUpload">Choose New Image: </label>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-                        <!-- </div> -->
                     <?php
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";

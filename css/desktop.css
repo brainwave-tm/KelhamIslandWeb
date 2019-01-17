@@ -669,3 +669,9 @@ color:black;
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
 }
+.textLink
+{
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    color: black;
+}
