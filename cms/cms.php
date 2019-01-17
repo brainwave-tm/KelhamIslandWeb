@@ -28,7 +28,7 @@ include("../includes/functions.inc.php");
     </header>
     <div class="page">
         <div class="sideBar">
-            <li>Menu</li>
+            <li><h2>Menu</h2></li>
             <ol type="1" class="sideBarMenu">              
                 <li><i class="fas fa-user-circle"></i> <a href='cms_user.php'>Account</a></li>
                 <li><i class="fas fa-archive"></i> <a href='addObject.php'>Add Object</a></li>
