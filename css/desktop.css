@@ -709,8 +709,9 @@ input[type="file"]
 }
 .textLink
 {
-    font-weight: bold;
+    font-size: 20px;
     font-family: 'Lato', sans-serif;
+    text-decoration: none;
     color: black;
 }
 input[type=radio] {
@@ -720,6 +721,8 @@ input[type=radio] {
 
 .pageImageAndUpload
 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -729,6 +732,7 @@ input[type=radio] {
 {
     margin-left: 45px;
     width: 45%;
+    border-right: 2px solid black;
 }
 .pageImageUpload
 {
@@ -740,7 +744,12 @@ input[type=radio] {
 }
 .pageImageUpload p
 {
-    padding-top: 50px;
+    margin-bottom: 5px;
+}
+.newImageUpload
+{
+    padding-top: 20px;
+    margin: auto;
 }
 
 .helpButton {
