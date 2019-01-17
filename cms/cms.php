@@ -21,8 +21,13 @@ include("../includes/functions.inc.php");
     <title>Kelham Island Web</title>
 </head>
 <body>
+<<<<<<< HEAD
     <header id="cms">
         <a href="objectSelect.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+=======
+    <header>
+        <a href="../LoginForm.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+>>>>>>> 02f140b3ff28e1cb4fb16cbd349d7bc480dda829
         <h1>CMS</h1>
         <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
@@ -36,18 +41,24 @@ include("../includes/functions.inc.php");
                 <li><i class="fas fa-running"></i> <a href='logout.php'>Logout</a></li>
             </ol>
         </div>
+        <?php
+        if(!isset($_GET['direction'])) { $direction = "ASC"; } else { $direction = $_GET['direction']; }
+        if($direction == "ASC") { $direction = "DESC"; } else { $direction = "ASC"; }
+        ?>
         <div class='objectSelect'>
         <table style="width:100%">
             <tr>
                 <th><i class="fas fa-check-square"></i></th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
+                <th><a href="cms.php?orderBy=objectId&direction=<?php echo $direction; ?>">ID</a></th>
+                <th><a href="cms.php?orderBy=objectName&direction=<?php echo $direction; ?>">Name</a></th>
+                <th>Short Description</th>
                 <th>Image</th>
-                <th>Shelf Position</th>
+                <th><a href="cms.php?orderBy=objectShelfPosition&direction=<?php echo $direction; ?>">Shelf Position</a></th>
             </tr>
             <?php
-            $objects = $pdo->query("SELECT * FROM objects INNER JOIN images ON objects.objectPreviewImage = images.imageId ORDER BY objects.objectShelfPosition ASC")->fetchAll();
+            $orderOptions = "objectShelfPosition";
+            if(isset($_GET['orderBy'])) { $orderOptions = $_GET['orderBy']; }
+            $objects = $pdo->query("SELECT * FROM objects INNER JOIN images ON objects.objectPreviewImage = images.imageId ORDER BY " . $orderOptions . " " . $direction)->fetchAll();
             foreach($objects as $o)
             {
                 echo "<tr>";
