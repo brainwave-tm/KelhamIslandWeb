@@ -33,7 +33,32 @@ include("includes/functions.inc.php");
         setcookie("firstEntry", "false", time() + (86400 * 30));
     ?>
         <div class="popup">
-            <h1>Welcome to Kelham Island</h1>
+            <h1>Welcome to the Kelham Island <strong>Interactive Open Store Directory</strong>!</h1>
+            <p>Across the room from you is the <strong>Open Store</strong>. Objects are stored on the racking along the wall; divided into bays. Each bay is labelled with a <strong>letter</strong> and a <strong>number</strong> - for example <strong>A1</strong>. They are labelled as follows:</p>
+            <table>
+                <?php
+                $rows = array("A", "B", "C", "Floor ");
+                foreach($rows as $row)
+                {
+                    echo "<tr>";
+                    for($number = 1; $number < 8; $number++)
+                    {
+                        
+                            echo "<td>" . $row . $number . "</td>";
+                        
+                    }
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+            <ul>
+                <li>The <strong>letter</strong> refers to the column; the highest objects being at <strong>A</strong>, and the lowest objects being on the <strong>Floor</strong></li>
+                <li>The <strong>number</strong> refers to the row, numbered 1-7, left to right.</li>
+                <li>Click on an object on this page to view information about it; including images, videos and history about the object.</li>
+                <li>Bays contain more than one object.</li>
+            </ul>
+            <h1>Enjoy learning about the Open Store objects!</h1>
+            <button id="closeBtn">Close</button>
         </div>
     <?php
     }
@@ -65,6 +90,7 @@ include("includes/functions.inc.php");
     <script type="text/javascript">
     $( document ).ready(function() {
         $("body").fadeIn(1000);
+        $(".popup").fadeIn(1500);
         $("a").click(function(e) {
             e.preventDefault();
             $link = $(this).attr("href");
@@ -72,6 +98,10 @@ include("includes/functions.inc.php");
                 window.location =  $link; 
             });
         });
+    });
+
+    $("#closeBtn").on("click", function() {
+        $(".popup").fadeOut(500);
     });
     </script>
 </body>

@@ -25,12 +25,14 @@ setcookie("firstEntry", "true", time() + (86400 * 30));
         </div>
     </div>
 
-    <div style="height: 600px; width: 100%">
+    <div style="height: 350px; width: 100%">
         <img class="indexLogo" src="content/images/logo.png" alt="Kelham Island Logo">
     </div>
-
+    <div class = "indexText">
+    <h1>Interactive open store directory</h1>
+    </div>
     <div class="indexContainer">
-        <h1><a href="objectSelect.php">Interactive Open Store Directory</a></h1>
+        <h1><a href="objectSelect.php">Click To Begin</a></h1>
     </div>
     <div class = "loginLink">
         <a href="LoginForm.php"> Admin login</a>
