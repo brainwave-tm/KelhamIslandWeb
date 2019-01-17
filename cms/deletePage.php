@@ -18,6 +18,6 @@ unlink($dir);
 $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
 $pdo->query("DELETE FROM pages WHERE pageId = $pageId");
 
-header("Location: editPages.php?objectId=$objectId")
+header("Location: editPages.php?objectId=$objectId&message=Deleted%20Page%20Successfully")
 
 ?>

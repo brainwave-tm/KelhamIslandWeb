@@ -83,7 +83,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                         echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
                         $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
-                        echo "<img src='content/images/$objectID/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
+                        echo "<img onerror=\"this.src='content/images/errorImage.png';\" src='content/images/$objectID/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
                         echo "</div>";
                     }
                 }
@@ -99,7 +99,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                     echo "<div class='objectImages'>";
                     $objectImage = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = $objectPage->objectPreviewImage")->fetchObject();
-                    echo "<img src='content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' id='$objectImage->imageId'>";
+                    echo "<img onerror=\"this.src='content/images/errorImage.png';\" src='content/images/$objectPage->objectId/" . $objectImage->imageUrl . "' id='$objectImage->imageId'>";
                     echo "</div>";
                 }
                 ?>
