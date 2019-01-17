@@ -103,7 +103,15 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "</div>";
                 }
                 ?>
-            <h3><a href="#top">Back to top</a></h3>
+            <div class = 'textSize'>
+            <h3>Change text size</strong></h3>
+                <div class = 'sizeButtons'>
+                <button onclick="decrement()">-</button>
+                <button onclick="increment()">+</button>
+                </div>
+            </div>
+            <p><h3><a href="#top">Back to top</a></h3></p>
+
         </div>
     </div>
     <div class="popup" style="display: none">
@@ -118,6 +126,25 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             <button id="closeBtn">Close</button>
         </div>
 
+    <script>
+        function decrement(){
+            var $newSizemin = $('.longDescription').css("font-size");
+            $newSizemin = $newSizemin.substr(0, $newSizemin.length-2);
+            if($newSizemin > 20){
+                $newSizemin = $newSizemin - 1;
+                $('.longDescription').css("font-size", $newSizemin);
+            }
+        }
+        function increment(){
+            var $newSize = $('.longDescription').css("font-size");
+            $newSize = $newSize.substr(0, $newSize.length-2);
+            if($newSize < 40){
+                $newSize = $newSize*1 + 1;
+                $('.longDescription').css("font-size", $newSize);
+            } 
+
+        }
+    </script>
     <script type="text/javascript">
     $( document ).ready(function() {
         $("body").fadeIn(500);
