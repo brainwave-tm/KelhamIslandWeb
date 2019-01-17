@@ -122,7 +122,8 @@ header a p{
 }
 .backLink strong
 {
-    padding-left: 10px;;
+    padding-left: 10px;
+    font-family: 'Lato';
 }
 .shortDescription
 {
@@ -581,7 +582,6 @@ color:black;
 {
     border-radius: 20px;
     border: 4px solid black;
-    display: none;
     width: 80%;
     background-color: whitesmoke;
     position: absolute;

@@ -90,7 +90,6 @@ include("includes/functions.inc.php");
     <script type="text/javascript">
     $( document ).ready(function() {
         $("body").fadeIn(1000);
-        $(".popup").fadeIn(1500);
         $("a").click(function(e) {
             e.preventDefault();
             $link = $(this).attr("href");

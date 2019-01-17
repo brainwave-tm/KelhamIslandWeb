@@ -88,8 +88,6 @@ WHERE objectId = $objectID")->fetchObject();
     $("#newImageUpload").change(function(){
         readURL(this);
     });
-
-    $("#")
 </script>
 </body>
 </html>
