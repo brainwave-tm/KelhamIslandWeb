@@ -23,6 +23,7 @@ include("includes/functions.inc.php");
     <header>
         <a href="index.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Select an Object</h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
 
@@ -101,6 +102,9 @@ include("includes/functions.inc.php");
 
     $("#closeBtn").on("click", function() {
         $(".popup").fadeOut(500);
+    });
+    $("#helpButton").on("click", function(){
+        $(".popup").fadeIn();
     });
     </script>
 </body>

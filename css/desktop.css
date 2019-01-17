@@ -76,7 +76,7 @@ header > h1 {
     color: black;
     margin: 0;
     line-height: 100px;
-    width: 75%;
+    width: 70%;
     font-size: 3rem;
 }
 header > h2 {
@@ -669,8 +669,22 @@ color:whitesmoke;
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
 }
-
 input[type=radio] {
     width: 30px;
     height: 30px;
+}
+.helpButton {
+    font-size: 4rem;
+    line-height: 50px;
+    color: #005375;
+    cursor: pointer;
+}
+.helpButton i {
+    margin-top: 10px;
+    height: 67px;
+}
+.helpButton p {
+    line-height: 15px;
+    margin: 0;
+    font-size: 20px;
 }
