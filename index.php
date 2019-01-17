@@ -20,9 +20,11 @@ setcookie("firstEntry", "true", time() + (86400 * 30));
 </head>
 <body style="display: none;">
     <div class="video-background">
-        <div class="video-foreground">
-            <iframe src="https://www.youtube.com/embed/m37TXq01N5o?autoplay=1&loop=1&playlist=m37TXq01N5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+         <div class="video-foreground"> 
+            <video width="100%" height="100%" autoplay muted loop>
+                <source src="content/video/Kelham_Promo.mp4" type="video/mp4">
+            </video>
+         </div> 
     </div>
 
     <div style="height: 350px; width: 100%">

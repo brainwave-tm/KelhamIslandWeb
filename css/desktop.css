@@ -640,8 +640,8 @@ color:black;
   z-index: -99;
 }
 .video-foreground,
-.video-background iframe {
-    opacity: 0.3;
+.video-background video {
+    opacity: 0.5;
     position: absolute;
     top: 0;
     left: 0;
