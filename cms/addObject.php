@@ -10,32 +10,53 @@
         if ($_POST['objectID'] == 0)
         {
             $objectName = safeString($_POST['objectName']);
-            $objectShortDescription = safeString($_POST['objectShortDescription']);            
-            // $objectShelfPosition = safeString($_POST['objectShelfPosition']);
+            $objectShortDescription = safeString($_POST['objectShortDescription']); 
             $objectRow = safeString($_POST['objectRow']);
             $objectColumn = safeString($_POST['objectColumn']);
+            $objectShelfPosition = null;
+            $objectImagePreview = safeString($_FILES['fileToUpload']);
+
+            // <?php if(isset($errorImage)) { <small style="color:#aa0000;"><?php echo $errorImage; </small><br /><br /><?php } 
             if($objectRow == "NULL" || $objectColumn == "NULL")
             {
                 $objectShelfPosition == null;
             }
-            else{
+            else
+            {
                 $objectShelfPosition = $objectRow . $objectColumn;
+            }            
+
+            $errorCheck = false;
+
+            if($objectName == "")
+            {
+                $errorName = 'ERROR! Please include "Name" for the object.';
+                $errorCheck = true;
             }
-            
+            if($objectShortDescription == "")
+            {
+                $errorShortDescription = 'ERROR! Please include "Short Description" for the object.';
+                $errorCheck = true;
+            }            
+            if($objectImagePreview == "")
+            {
+                $errorImagePreview = 'ERROR! Please include "Image" for the object.';
+                $errorCheck = true;
+            }
 
-            $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectShelfPosition) VALUES (?,?,?)";
-            $stmt2= $pdo->prepare($sql2);
-            $stmt2->execute([$objectName, $objectShortDescription, $objectShelfPosition]);
 
-            $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
-
-            $imageID = uploadFile($newObjectId->MAX);
-
-            $sql2 = "UPDATE objects SET objectPreviewImage = '" . $imageID . "' WHERE objectId = " . $newObjectId->MAX;
-            $stmt2= $pdo->prepare($sql2);
-            $stmt2->execute();
-
-            header("Location: cms.php");
+            if($errorCheck == false)
+            {            
+                $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
+                $imageID = uploadFile($newObjectId->MAX);    
+                $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectShelfPosition) VALUES (?,?,?)";
+                $stmt2= $pdo->prepare($sql2);
+                $stmt2->execute([$objectName, $objectShortDescription, $objectShelfPosition]);
+                $sql2 = "UPDATE objects SET objectPreviewImage = '" . $imageID . "' WHERE objectId = " . $newObjectId->MAX;
+                $stmt2= $pdo->prepare($sql2);
+                $stmt2->execute();
+                header("Location: cms.php");
+            }            
         }
     }
 ?>
@@ -64,9 +85,13 @@
     <div class="addObjectForm">
         <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">
             <input type="hidden" name="objectID" value="0"/>
-            <strong>Object Name: (max 50 characters)</strong><input maxlength="50" type="text" id="objectName" name="objectName"></input>
+            <strong>Object Name: (max 50 characters)</strong>
+            <?php if(isset($errorName)) { ?><small style="color:#aa0000;"><?php echo $errorName; ?></small><?php } ?>        
+            <input maxlength="50" type="text" id="objectName" name="objectName"></input>
             <br>
-            <strong>Short Description: </strong><input maxlength="150" type="text" name="objectShortDescription"></input>
+            <strong>Short Description: </strong>
+            <?php if(isset($errorShortDescription)) { ?><small style="color:#aa0000;"><?php echo $errorShortDescription; ?></small><?php } ?>
+            <input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>
             <strong>Shelf Position: </strong>
             <select name="objectRow">
@@ -79,16 +104,18 @@
             <select name="objectColumn">
                 <option value="NULL">No column</option>            
                 <option value="1">1</option>
-                <option value="2">2</option>
+                <option value="2">2</option>-
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
             </select>
-            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the objec will not show on the main screen to visitors</p>
+            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the object will not show on the main screen to visitors</p>
             <br>
-            <strong>Object Main Image</strong><input type="file" style="font-size: 1rem;"id="newImageUpload" name="fileToUpload"/>
+            <strong>Object Main Image</strong>
+            <?php if(isset($errorImagePreview)) { ?><small style="color:#aa0000;"><?php echo $errorImagePreview; ?></small><?php } ?>            
+            <input type="file" style="font-size: 1rem;" id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
             <img id="eventImagePrev" style="width: 200px;" src="" alt="" />
             <input type="submit" name="submit" value="Submit" class="buttonGo">
