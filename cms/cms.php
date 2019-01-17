@@ -37,8 +37,8 @@ include("../includes/functions.inc.php");
             </ol>
         </div>
         <?php
-        if(!isset($_GET['direction'])) { $direction = "ASC"; } else { $direction = $_GET['direction']; }
-        if($direction == "ASC") { $direction = "DESC"; } else { $direction = "ASC"; }
+        if(!isset($_GET['direction'])) { $direction = "DESC"; } else { $direction = $_GET['direction']; }
+        if($direction == "DESC") { $direction = "ASC"; } else { $direction = "DESC"; }
         ?>
         <div class='objectSelect'>
         <table style="width:100%">
@@ -62,7 +62,7 @@ include("../includes/functions.inc.php");
                     echo "<td>" . $o['objectName'] . "</td>";
                     echo "<td>" . $o['objectShortDescription'] ."</td>";
                     echo "<td><a href='../content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "'>View Image</a></td>";
-                    echo "<td>" . $o['objectShelfPosition']. "</td>";
+                    if($o["objectShelfPosition"] != "") { echo "<td>" . $o['objectShelfPosition']. "</td>"; } else { echo "<td style='color: red'>No Shelf Position Set</td>"; }
                 echo "</tr>";
             }
             ?>
