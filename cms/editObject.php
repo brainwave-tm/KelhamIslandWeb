@@ -36,7 +36,7 @@ WHERE objectId = $objectID")->fetchObject();
     <?php
     if(isset($_GET["message"]))
     {
-        echo "<h2 class='message'>" . $_GET["message"] . "</h2>";
+        echo "<br><h2 class='message'>" . $_GET["message"] . "</h2>";
     }
     ?>
     <div class="editObjectForm">

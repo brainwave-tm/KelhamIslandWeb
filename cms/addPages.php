@@ -27,7 +27,8 @@ require("../logic/auth.php");
         $stmt2= $pdo->prepare($sql2);
         $stmt2->execute([$objectID, $pageText, $pageName, $imageId]);
 
-        header("Location: editObject.php?objectID=$objectID&message=Created%20Page%20Successfully%20");
+        $newPage = $pdo->query("SELECT MAX(pageId) as newPageId FROM pages")->fetchObject()->newPageId;
+        header("Location: editPages.php?objectId=$objectID&pageId=$newPage&message=Created%20Page%20Successfully");
     }
 ?>
 <!DOCTYPE html>

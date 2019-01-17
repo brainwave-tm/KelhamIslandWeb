@@ -76,7 +76,7 @@ include("includes/functions.inc.php");
             {
                 echo "<div class='shelfItem' style=''>";
                 echo "<div class='shelfImage'>";
-                echo "<a href='single-object?objectID=".$o['objectId']."'><img src='content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "' style='max-height: 200px; max-width: 80%;'/></a>";
+                echo "<a href='single-object?objectID=".$o['objectId']."'><img onerror=\"this.src='content/images/errorImage.png';\" src='content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "' style='max-height: 200px; max-width: 80%;'/></a>";
                 echo "</div>";
                 echo "<div style='height: 150px; width: 100%'>";
                 echo "<p id='objectName'><a href='single-object?objectID=".$o['objectId']."'><strong>" . $o['objectName'] . "</strong></a></p>";
