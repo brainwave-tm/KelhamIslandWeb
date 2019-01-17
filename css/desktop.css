@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googlepis.com/css?family=Lato');
 
 body 
 {
@@ -772,4 +772,16 @@ input[type=radio] {
 }
 #addObjectForm > select {
         font-size: 2rem;
+}
+.textSize{
+   /* float:right;*/
+}
+.sizeButtons > button{
+    background-color: #005375;
+    color: ghostwhite;
+    border:none;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px; 
+
 }
