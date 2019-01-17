@@ -261,6 +261,7 @@ header a p{
 {
     background-color: #94b8b8;
     transform: background-color 0.25s;
+    cursor:pointer;
 }
 .shelfItem > strong > p > a{
     text-decoration: none;
@@ -679,7 +680,12 @@ input[type="file"]
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
 }
-
+.textLink
+{
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    color: black;
+}
 input[type=radio] {
     width: 30px;
     height: 30px;

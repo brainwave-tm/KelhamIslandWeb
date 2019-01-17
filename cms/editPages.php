@@ -10,6 +10,16 @@ WHERE pages.objectId = $objectID")->fetchAll();
 
 $pageId = 0;
 if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
+if($_GET['deleteImage'] ?? NULL == 1)
+{
+    $page = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchAll();
+    $imageUrl = $pdo->query("SELECT imageUrl, imageId FROM images WHERE IMAGEiD = (SELECT pageImage FROM pages WHERE pageId = $pageId)")->fetchAll();
+
+    $dir = '../content/images/' . $page[0]['objectId'] . '/' . $imageUrl[0]['imageUrl'];
+    unlink($dir);
+    $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
+    $pdo->query("UPDATE pages SET pageImage = NULL WHERE pageId = '".$pageId."'");
+}
 ?>
 
 <!DOCTYPE html>
@@ -126,10 +136,8 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
 
                     if(!is_null($objectPage[0]["pageImage"]))
                     { ?>
-                        <!-- <div class="new_image_container"> -->
-                        <p>Choose New Image: </p>
+                        <label for="newImageUpload">Choose New Image: </label>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-                        <!-- </div> -->
                     <?php } else {
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
@@ -138,7 +146,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                         echo "</div>";
                     }
                         echo "<input type='submit' value='Update'>";
-                        echo "</form>";    
+                        echo "</form>";
                 }             
                 ?>
         </div>
