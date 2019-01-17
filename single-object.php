@@ -131,7 +131,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             var $newSizemin = $('.longDescription').css("font-size");
             $newSizemin = $newSizemin.substr(0, $newSizemin.length-2);
             if($newSizemin > 20){
-                $newSizemin = $newSizemin - 1;
+                $newSizemin = $newSizemin - 4;
                 $('.longDescription').css("font-size", $newSizemin);
             }
         }
@@ -139,7 +139,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             var $newSize = $('.longDescription').css("font-size");
             $newSize = $newSize.substr(0, $newSize.length-2);
             if($newSize < 40){
-                $newSize = $newSize*1 + 1;
+                $newSize = $newSize*1 + 4;
                 $('.longDescription').css("font-size", $newSize);
             } 
 
