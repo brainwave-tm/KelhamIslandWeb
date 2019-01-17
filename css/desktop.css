@@ -509,7 +509,7 @@ color:whitesmoke;
     text-align: center;
     padding: 10px;
     width: 95%;
-    height: 450px;
+    height: 400px;
     margin: auto;
     font-size: 20px;
 }
@@ -531,7 +531,7 @@ color:whitesmoke;
     margin: auto;
     text-align: center;
 }
-.objectForm input[type="file"]
+input[type="file"]
 {
     width: auto;
     text-align: center;
@@ -683,4 +683,29 @@ color:whitesmoke;
 input[type=radio] {
     width: 30px;
     height: 30px;
+}
+
+.pageImageAndUpload
+{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    max-height: 500px;
+}
+.pageImage
+{
+    margin-left: 45px;
+    width: 45%;
+}
+.pageImageUpload
+{
+    width: 45%;
+}
+.pageImageUpload img
+{
+    max-height: 500px;
+}
+.pageImageUpload p
+{
+    padding-top: 50px;
 }
