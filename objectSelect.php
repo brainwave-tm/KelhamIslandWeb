@@ -86,11 +86,16 @@ include("includes/functions.inc.php");
             echo "</div>";
     ?>
     </div>
+    <script>
+        $(".shelfItem").click(function(){
+            window.location = $(this).find("a").attr("href");
+            return false;
+        });
+    </script>
 
     <script type="text/javascript">
     $( document ).ready(function() {
         $("body").fadeIn(1000);
-        $(".popup").fadeIn(1500);
         $("a").click(function(e) {
             e.preventDefault();
             $link = $(this).attr("href");

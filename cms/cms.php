@@ -17,7 +17,8 @@ include("../includes/functions.inc.php");
     <!-- Favicon -->
     <link rel="icon" href="../content/images/favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    <title>Kelham Island Web</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <title>Kelham Island Web</title>
 </head>
 <body>
     <header>
@@ -27,7 +28,7 @@ include("../includes/functions.inc.php");
     </header>
     <div class="page">
         <div class="sideBar">
-            <li>Menu</li>
+            <li><h2>Menu</h2></li>
             <ol type="1" class="sideBarMenu">              
                 <li><i class="fas fa-user-circle"></i> <a href='cms_user.php'>Account</a></li>
                 <li><i class="fas fa-archive"></i> <a href='addObject.php'>Add Object</a></li>
