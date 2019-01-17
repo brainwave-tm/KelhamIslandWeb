@@ -14,7 +14,7 @@
             $objectRow = safeString($_POST['objectRow']);
             $objectColumn = safeString($_POST['objectColumn']);
             $objectShelfPosition = null;
-            $objectImagePreview = safeString($_FILES['fileToUpload']);
+            $objectImagePreview = $_FILES['fileToUpload'];
 
             // <?php if(isset($errorImage)) { <small style="color:#aa0000;"><?php echo $errorImage; </small><br /><br /><?php } 
             if($objectRow == "NULL" || $objectColumn == "NULL")
@@ -38,7 +38,7 @@
                 $errorShortDescription = 'ERROR! Please include "Short Description" for the object.';
                 $errorCheck = true;
             }            
-            if($objectImagePreview == "")
+            if($objectImagePreview["name"] == "")
             {
                 $errorImagePreview = 'ERROR! Please include "Image" for the object.';
                 $errorCheck = true;
@@ -47,15 +47,17 @@
 
             if($errorCheck == false)
             {            
-                $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
-                $imageID = uploadFile($newObjectId->MAX);    
                 $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectShelfPosition) VALUES (?,?,?)";
                 $stmt2= $pdo->prepare($sql2);
                 $stmt2->execute([$objectName, $objectShortDescription, $objectShelfPosition]);
+
+                $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
+                $imageID = uploadFile($newObjectId->MAX);
                 $sql2 = "UPDATE objects SET objectPreviewImage = '" . $imageID . "' WHERE objectId = " . $newObjectId->MAX;
                 $stmt2= $pdo->prepare($sql2);
+
                 $stmt2->execute();
-                header("Location: cms.php");
+                // header("Location: cms.php");
             }            
         }
     }
@@ -134,12 +136,6 @@
     };
     $("#newImageUpload").change(function(){
         readURL(this);
-    });
-    $('#addObjectForm').on('submit', function(e) {
-        // var objectName = $("#objectName").value;
-        // console.log($("#objectName").value);
-        // if (objectName == null || objectName == '') { alert("please enter a name"); }
-        // e.preventDefault();
     });
     $(".helpButton").on("click", function(){
     window.location.href = 'userManual.php';
