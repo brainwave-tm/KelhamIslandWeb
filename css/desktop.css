@@ -251,6 +251,7 @@ header a p{
 {
     background-color: #94b8b8;
     transform: background-color 0.25s;
+    cursor:pointer;
 }
 .shelfItem > strong > p > a{
     text-decoration: none;
