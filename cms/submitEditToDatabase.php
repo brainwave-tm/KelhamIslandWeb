@@ -9,7 +9,13 @@ $objectName = safeString($_POST['objectName']);
 $objectShortDescription = safeString($_POST['objectShortDescription']);
 $objectRow = safeString($_POST['objectRow']);
 $objectColumn = safeString($_POST['objectColumn']);
-$objectShelfPosition = $objectRow . $objectColumn;
+if(!($objectRow == 'NULL' || $objectColumn == 'NULL'))
+{
+    $objectShelfPosition = $objectRow . $objectColumn;
+}
+else{
+    $objectShelfPosition = NULL;
+}
 
 $imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT objectPreviewImage FROM objects WHERE objectId = '$objectId')")->fetchAll();
 $imageUrl = $imageData[0]['imageUrl'];
