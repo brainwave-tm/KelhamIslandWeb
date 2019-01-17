@@ -34,7 +34,7 @@ $stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelf
 
 if($errorCode == 0)
 {
-    header("Location: editObject.php?objectID=$objectId&message=Updated%20Object%20Successfully");
+    header("Location: editObjectTest.php?objectID=$objectId&message=Updated%20Object%20Successfully");
 }
 else
 {

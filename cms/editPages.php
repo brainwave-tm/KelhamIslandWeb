@@ -16,12 +16,10 @@ if(isset($_GET['deleteImage']))
     {
         $page = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchAll();
         $imageUrl = $pdo->query("SELECT imageUrl, imageId FROM images WHERE IMAGEiD = (SELECT pageImage FROM pages WHERE pageId = $pageId)")->fetchAll();
-
         $dir = '../content/images/' . $page[0]['objectId'] . '/' . $imageUrl[0]['imageUrl'];
         unlink($dir);
         $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
         $pdo->query("UPDATE pages SET pageImage = NULL WHERE pageId = '".$pageId."'");
-
         if(!isset($_GET['pageId'])) { header("Location: editPages.php?objectId=" . $objectID); } else { header("Location: editPages.php?objectId=" . $objectID . "&pageId=" . $pageId . "&message=Deleted%20Page%20Successfully"); }
     }
 }
