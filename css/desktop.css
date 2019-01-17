@@ -740,3 +740,9 @@ input[type=radio] {
     margin: 0;
     font-size: 20px;
 }
+#addObjectForm > select > option {
+    font-size: 2rem;
+}
+#addObjectForm > select {
+        font-size: 2rem;
+}

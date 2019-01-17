@@ -27,9 +27,10 @@ WHERE objectId = $objectID")->fetchObject();
     <title>Kelham Island Web</title>
 </head>
 <body>
-  <header>
+    <header>
         <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Editing: <?php echo $object->objectName; ?></h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <fieldset class="objectForm">
@@ -87,6 +88,9 @@ WHERE objectId = $objectID")->fetchObject();
     $("#newImageUpload").change(function(){
         readURL(this);
     });
+      $(".helpButton").on("click", function(){
+        window.location.href = 'userManual.php';
+    })
 </script>
 </body>
 </html>
