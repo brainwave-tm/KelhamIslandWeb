@@ -40,7 +40,6 @@ WHERE objectId = $objectID")->fetchObject();
             echo "<h2 class='message'>" . $_GET["message"] . "</h2>";
         }
         ?>
-        <h3><a href="cms.php">BACK</a></h3><br>
         <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
             <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">
 
@@ -69,7 +68,7 @@ WHERE objectId = $objectID")->fetchObject();
     </div>
 
     <div class="pageContent">
-        <h3><a href="editPages.php?objectId=<?php echo $object->objectId; ?>">Edit this object's pages</a></h3>
+        <h3><i class='fas fa-pen'></i><a href="editPages.php?objectId=<?php echo $object->objectId; ?>">Edit this object's pages</a></h3>
         <h3><a href="addPages.php?objectId=<?php echo $object->objectId; ?>">Add pages to this object</a></h3>
     </div>
     </fieldset>
