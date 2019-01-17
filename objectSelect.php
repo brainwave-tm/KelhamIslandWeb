@@ -34,7 +34,7 @@ include("includes/functions.inc.php");
     ?>
         <div class="popup">
             <h1>Welcome to the Kelham Island <strong>Interactive Open Store Directory</strong>!</h1>
-            <p>Across the room from you is the <strong>Open Store</strong>. Objects are stored on the racking along the wall; divided into bays. Each bay is labelled with a <strong>letter</strong> and a <strong>number</strong> - for example <strong>A1</strong>. They are labelled as follows:</p>
+            <p>Across the room from you is the <strong>Open Store</strong>. Objects are stored on the racking along the wall; divided into bays. Each bay is labelled with a <strong>letter</strong> and a <strong>number</strong>. They are labelled as follows:</p>
             <table>
                 <?php
                 $rows = array("A", "B", "C", "Floor ");
@@ -90,7 +90,6 @@ include("includes/functions.inc.php");
     <script type="text/javascript">
     $( document ).ready(function() {
         $("body").fadeIn(1000);
-        $(".popup").fadeIn(1500);
         $("a").click(function(e) {
             e.preventDefault();
             $link = $(this).attr("href");

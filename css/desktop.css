@@ -122,7 +122,8 @@ header a p{
 }
 .backLink strong
 {
-    padding-left: 10px;;
+    padding-left: 10px;
+    font-family: 'Lato';
 }
 .shortDescription
 {
@@ -144,12 +145,12 @@ header a p{
     font-size: 26px;
     padding-left: 30px;
 }
-.pageContent{
+.pageContent
+{
     flex-basis: 80%;
     background-color: whitesmoke;
     padding: 10px;
     margin: auto;
-    margin-top: 0px;
     text-align: center;
     margin-top: 10px;
     margin-right: 10px;
@@ -377,7 +378,7 @@ table, th, td
     bottom: 10px;
 }
 .loginLink a{
-color:black;
+color:whitesmoke;
 }
 
 /* Pages */
@@ -592,7 +593,6 @@ color:black;
 {
     border-radius: 20px;
     border: 4px solid black;
-    display: none;
     width: 80%;
     background-color: whitesmoke;
     position: absolute;
@@ -651,8 +651,8 @@ color:black;
   z-index: -99;
 }
 .video-foreground,
-.video-background iframe {
-    opacity: 0.3;
+.video-background video {
+    opacity: 0.5;
     position: absolute;
     top: 0;
     left: 0;
@@ -679,4 +679,9 @@ color:black;
 }
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
+}
+
+input[type=radio] {
+    width: 30px;
+    height: 30px;
 }
