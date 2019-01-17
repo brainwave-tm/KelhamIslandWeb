@@ -23,6 +23,7 @@ include("includes/functions.inc.php");
     <header>
         <a href="index.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Select an Object</h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
 
@@ -34,7 +35,7 @@ include("includes/functions.inc.php");
     ?>
         <div class="popup">
             <h1>Welcome to the Kelham Island <strong>Interactive Open Store Directory</strong>!</h1>
-            <p>Across the room from you is the <strong>Open Store</strong>. Objects are stored on the racking along the wall; divided into bays. Each bay is labelled with a <strong>letter</strong> and a <strong>number</strong>. They are labelled as follows:</p>
+            <p>Across the room from you is the <strong>Open Store</strong>. Objects are stored on the racking along the wall; divided into bays. Each bay is labelled with a <strong>letter</strong> and a <strong>number</strong> - for example <strong>A1</strong>. They are labelled as follows:</p>
             <table>
                 <?php
                 $rows = array("A", "B", "C", "Floor ");
@@ -86,6 +87,12 @@ include("includes/functions.inc.php");
             echo "</div>";
     ?>
     </div>
+    <script>
+        $(".shelfItem").click(function(){
+            window.location = $(this).find("a").attr("href");
+            return false;
+        });
+    </script>
 
     <script type="text/javascript">
     $( document ).ready(function() {
@@ -101,6 +108,9 @@ include("includes/functions.inc.php");
 
     $("#closeBtn").on("click", function() {
         $(".popup").fadeOut(500);
+    });
+    $("#helpButton").on("click", function(){
+        $(".popup").fadeIn();
     });
     </script>
 </body>

@@ -13,9 +13,18 @@
             $objectShortDescription = safeString($_POST['objectShortDescription']); 
             $objectRow = safeString($_POST['objectRow']);
             $objectColumn = safeString($_POST['objectColumn']);
-            
-            $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
-            $imageID = uploadFile($newObjectId->MAX);
+            $objectShelfPosition = null;
+            $objectImagePreview = safeString($_FILES['fileToUpload']);
+
+            // <?php if(isset($errorImage)) { <small style="color:#aa0000;"><?php echo $errorImage; </small><br /><br /><?php } 
+            if($objectRow == "NULL" || $objectColumn == "NULL")
+            {
+                $objectShelfPosition == null;
+            }
+            else
+            {
+                $objectShelfPosition = $objectRow . $objectColumn;
+            }            
 
             $errorCheck = false;
 
@@ -28,23 +37,18 @@
             {
                 $errorShortDescription = 'ERROR! Please include "Short Description" for the object.';
                 $errorCheck = true;
-            }
-            if(is_null($imageID))
+            }            
+            if($objectImagePreview == "")
             {
-                $errorImage = 'ERROR! Please include "Image" for the object.';
+                $errorImagePreview = 'ERROR! Please include "Image" for the object.';
                 $errorCheck = true;
             }
-            if($objectRow == "NULL" || $objectColumn == "NULL")
-            {
-                $objectShelfPosition == null;
-            }
-            else
-            {
-                $objectShelfPosition = $objectRow . $objectColumn;
-            }            
+
 
             if($errorCheck == false)
-            {
+            {            
+                $newObjectId = $pdo->query("SELECT MAX(objectId) as MAX FROM objects")->fetchObject();
+                $imageID = uploadFile($newObjectId->MAX);    
                 $sql2 = "INSERT INTO objects (objectName, objectShortDescription, objectShelfPosition) VALUES (?,?,?)";
                 $stmt2= $pdo->prepare($sql2);
                 $stmt2->execute([$objectName, $objectShortDescription, $objectShelfPosition]);
@@ -81,14 +85,13 @@
         <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">
             <input type="hidden" name="objectID" value="0"/>
             <strong>Object Name: (max 50 characters)</strong>
-            <?php if(isset($errorName)) { ?><small style="color:#aa0000;"><?php echo $errorName; ?></small><br /><br /><?php } ?>        
+            <?php if(isset($errorName)) { ?><small style="color:#aa0000;"><?php echo $errorName; ?></small><?php } ?>        
             <input maxlength="50" type="text" id="objectName" name="objectName"></input>
             <br>
             <strong>Short Description: </strong>
-            <?php if(isset($errorShortDescription)) { ?><small style="color:#aa0000;"><?php echo $errorShortDescription; ?></small><br /><br /><?php } ?>
+            <?php if(isset($errorShortDescription)) { ?><small style="color:#aa0000;"><?php echo $errorShortDescription; ?></small><?php } ?>
             <input maxlength="150" type="text" name="objectShortDescription"></input>
             <br>
-            <!-- <strong>Shelf Position: </strong><input type="text" name="objectShelfPosition"/> -->
             <strong>Shelf Position: </strong>
             <select name="objectRow">
                 <option value="NULL">No row</option>
@@ -107,10 +110,11 @@
                 <option value="6">6</option>
                 <option value="7">7</option>
             </select>
+            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the object will not show on the main screen to visitors</p>
             <br>
             <strong>Object Main Image</strong>
-            <?php if(isset($errorImage)) { ?><small style="color:#aa0000;"><?php echo $errorImage; ?></small><br /><br /><?php } ?>
-            <input type="file" id="newImageUpload" name="fileToUpload"/>
+            <?php if(isset($errorImagePreview)) { ?><small style="color:#aa0000;"><?php echo $errorImagePreview; ?></small><?php } ?>            
+            <input type="file" style="font-size: 1rem;" id="newImageUpload" name="fileToUpload"/>
             <strong>Image Preview</strong><br>
             <img id="eventImagePrev" style="width: 200px;" src="" alt="" />
             <input type="submit" name="submit" value="Submit" class="buttonGo">
