@@ -60,29 +60,31 @@ WHERE objectId = $objectID")->fetchObject();
 
                 $shelfPositions = array("A", "B", "C", "F");
                 echo "<select name='objectRow'>"; 
-                if($objectShelfRow == "") { echo "<option value='No Row' selected>No Row</option>"; }
+                if($objectShelfRow == "") { echo "<option value='NULL' selected>No Row</option>"; }
                 for($row = 0; $row < sizeof($shelfPositions); $row++)
                 {
                     $selected = "";
                     if($objectShelfRow == $shelfPositions[$row]){ $selected = "selected"; }
                     echo "<option value='" . $shelfPositions[$row] . "'" . $selected . ">" . $shelfPositions[$row] . "</option>";
                 }
-                if($objectShelfRow) { echo "<option value='No Row'>No Row</option>"; }
+                if($objectShelfRow) { echo "<option value='NULL'>No Row</option>"; }
                 echo "</select>";
 
                 echo "<select name='objectColumn'>";
                 $shelfColumnPos = array(1, 2, 3, 4, 5, 6, 7);
-                if($objectShelfColumn == "") { echo "<option value='No Column' selected>No Column</option>"; }
+                if($objectShelfColumn == "") { echo "<option value='NULL' selected>No Column</option>"; }
                 for($column = 0; $column < 7; $column++)
                 {
                     $selected = "";
                     if($objectShelfColumn == $column+1) { $selected = "selected"; }
                     echo "<option value='" . $shelfColumnPos[$column] . "'" . $selected . ">" . $shelfColumnPos[$column] . "</option>";
                 }
-                if($objectShelfColumn) { echo "<option value='No Column'>No Column</option>"; }
+                if($objectShelfColumn) { echo "<option value='NULL'>No Column</option>"; }
                 echo "</select>";
             ?>
 
+            <br>
+            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the object will not show on the main screen to visitors</p>
             <br>
             <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
             <br>
