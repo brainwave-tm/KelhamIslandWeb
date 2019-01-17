@@ -35,7 +35,7 @@ body
 {
     margin: 0;
     line-height: 110px;
-    font-size: 8rem;  
+    font-size: 5rem;  
     animation: textgrowth 1s infinite alternate;
 }
 .indexText{
