@@ -78,7 +78,7 @@ if($_GET['deleteImage'] ?? NULL == 1)
             }
             ?>
             <br>
-            <li><a href="addPages.php?objectId=<?php echo $objectID; ?>"><i class="fas fa-plus"></i> Add page to this object</a></li>
+            <li><a href="addPages.php?objectId=<?php echo $objectID; ?>"><i class="fas fa-plus"></i> Add another page</a></li>
         </ol>
         </div>
         <div class="pagePreviewPanel">
@@ -89,30 +89,43 @@ if($_GET['deleteImage'] ?? NULL == 1)
                 <?php
                 if(isset($_GET['pageId']))
                 {
-                    echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
-                    echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>";                
+                    // Page ID has been supplied, we can load the page directly into an object //
+                    echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>"; // Invisible Element for $_POST //
+                    echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>"; // Invisible Element for $_POST //
+
                     echo "<input type='text' name='pageTitle' value='" . $objectPage->pageTitle . "'/><br><br>";
                     echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
 
-                    if(!is_null($objectPage->pageImage))
-                    { 
-                        echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
-                    ?>
-                        <label for="newImageUpload">Choose New Image: </label>
+                    if($objectPage->pageImage == null)
+                    { ?>
+                        <!-- If objectPage does not have an image, allow user to upload one -->
+                        <p>Choose New Image: </p>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                        <div class='objectImages'>
+                            <img id='eventImagePrev'>
+                        </div>
+                        <br><br>
                     <?php
-                        $pageImage = $pdo->query("SELECT pageImage FROM pages WHERE pageId = $pageId")->fetchAll();
-                        if(!($pageImage[0]['pageImage'] == NULL))
-                        {
-                            echo '<a href=\'editpages.php?objectId='.$objectId.'&pageId='.$pageId.'&deleteImage=1\' class=\'textLink\' onclick="return confirm(\'Are you sure you want to delete the image?\')"><i class=\'fas fa-trash-alt\'></i>Delete image from page</a>';
-                        }
-                        echo "<div class='objectImages'>";
-                            $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
-                            echo "<img id='eventImagePrev' src='../content/images/" . $objectPage->objectId . "/" . $objectImage->imageUrl . "'>";
-                        echo "</div>";
+                    } else
+                    {
+                        // If objectPage does have images, display them and allow for a new one to be uploaded too //
+                        $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
+                        ?>
+                        <div class="pageImageAndUpload">
+                            <div class="pageImage">
+                                <!-- <label>Object Image: Currently <?php echo $objectImage->imageUrl; ?></label><br><br> -->
+                                <strong>Image Preview</strong><br><br>
+                                <img id="eventImagePrev" class="previewImg" style="width: 200px;" src="<?php echo "../content/images/" . $objectId . "/" . $objectImage->imageUrl; ?>" alt="" />
+                            </div>
+                            <div class="pageImageUpload">
+                                <p>Choose New Image: </p>
+                                <input type="file" id="newImageUpload" name="fileToUpload"/><br>
+                            </div>
+                        </div>
+                        <?php
                     }
-                        echo "<input type='submit' value='Update'>";
-                        echo "</form>";    
+                    echo "<input type='submit' value='Update'>";
+                    echo "</form>";
                 } else
                 {
                     echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";

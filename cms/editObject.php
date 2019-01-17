@@ -30,6 +30,7 @@ WHERE objectId = $objectID")->fetchObject();
     <header>
         <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Editing: <?php echo $object->objectName; ?></h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <?php
@@ -83,7 +84,7 @@ WHERE objectId = $objectID")->fetchObject();
             <br>
             <input type="submit" class="buttonGo" value="Update">
         </form>
-        <p><a style="color: black" href="editPages.php?objectId=<?php echo $object->objectId; ?>"><i class='fas fa-pen'></i><strong> Edit this object's pages</strong></a></p>
+        <p><a style="color: black" href="editPages.php?objectId=<?php echo $object->objectId; ?>"><i class='fas fa-pen'></i><strong> sEdit this object's pages</strong></a></p>
         <p><a style="color: black" href="addPages.php?objectId=<?php echo $object->objectId; ?>"><i class="fas fa-plus"></i><strong> Add pages to this object</strong></a></p>
     </div>
     <script>
@@ -97,9 +98,12 @@ WHERE objectId = $objectID")->fetchObject();
             }
         }
 
-        $("#newImageUpload").change(function(){
-            readURL(this);
-        });
-    </script>
+    $("#newImageUpload").change(function(){
+        readURL(this);
+    });
+      $(".helpButton").on("click", function(){
+        window.location.href = 'userManual.php';
+    })
+</script>
 </body>
 </html>
