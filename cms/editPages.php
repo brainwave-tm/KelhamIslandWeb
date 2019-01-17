@@ -90,7 +90,7 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                         <p>Choose New Image: </p>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
                         <!-- </div> -->
-                    <?php
+                    <?php } else {
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
                             $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage->pageImage )->fetchObject();
@@ -106,13 +106,14 @@ if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
                     echo "<input type='text' name='pageTitle' value='" . $objectPage[0]["pageTitle"] . "'/><br><br>";
                     echo "<textarea name='pageText'>" . $objectPage[0]["pageText"] . "</textarea>";
 
-                     if(!is_null($objectPage[0]["pageImage"]))
+
+                    if(!is_null($objectPage[0]["pageImage"]))
                     { ?>
                         <!-- <div class="new_image_container"> -->
                         <p>Choose New Image: </p>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
                         <!-- </div> -->
-                    <?php
+                    <?php } else {
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
                             $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage[0]["pageImage"] )->fetchObject();
