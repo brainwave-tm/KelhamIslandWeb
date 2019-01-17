@@ -7,7 +7,9 @@ require("../logic/auth.php");
 $objectId = safeString($_POST['objectId']);
 $objectName = safeString($_POST['objectName']);
 $objectShortDescription = safeString($_POST['objectShortDescription']);
-$objectShelfPosition = safeString($_POST['objectShelfPosition']);
+$objectRow = safeString($_POST['objectRow']);
+$objectColumn = safeString($_POST['objectColumn']);
+$objectShelfPosition = $objectRow . $objectColumn;
 
 $imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT objectPreviewImage FROM objects WHERE objectId = '$objectId')")->fetchAll();
 $imageUrl = $imageData[0]['imageUrl'];
@@ -28,7 +30,7 @@ else
 $sql2 = "UPDATE objects SET objectName = '" . $objectName . "', objectShortDescription = '" . $objectShortDescription . "', objectPreviewImage = '" . $newImageId . "', objectShelfPosition = '". $objectShelfPosition . "' WHERE objectId = " . $objectId;
 $stmt2= $pdo->prepare($sql2);
 $stmt2->execute();
-// $stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
+$stmt2->execute([$objectName, $objectShortDescription, $newImageId, $objectShelfPosition]);
 
 if($errorCode == 0)
 {
