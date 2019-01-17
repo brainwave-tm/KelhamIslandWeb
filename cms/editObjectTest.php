@@ -73,7 +73,12 @@ WHERE objectId = $objectID")->fetchObject();
             <?php
         }
         echo "<input type='submit' value='Update'>";
-        ?>
+        $pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
+        echo "<div class='pageEditLinksDiv'>";
+            if($pagesCheck > 0) { echo "<p><a style=\"color: black\" href=\"editPages.php?objectId=$objectID\"><i class='fas fa-pen'></i><strong> Edit this object's pages</strong></a></p>"; }
+            ?>
+            <p><a style="color: black" href="addPages.php?objectId=<?php echo $objectID; ?>"><i class="fas fa-plus"></i><strong> Add pages to this object</strong></a></p>
+        </div>
     </form>
     </div>
     
