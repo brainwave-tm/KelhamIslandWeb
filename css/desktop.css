@@ -368,7 +368,7 @@ table, th, td
     bottom: 10px;
 }
 .loginLink a{
-color:black;
+color:whitesmoke;
 }
 
 /* Pages */
@@ -668,4 +668,9 @@ color:black;
 }
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
+}
+
+input[type=radio] {
+    width: 30px;
+    height: 30px;
 }
