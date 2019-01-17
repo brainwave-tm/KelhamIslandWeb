@@ -76,7 +76,7 @@ header > h1 {
     color: black;
     margin: 0;
     line-height: 100px;
-    width: 75%;
+    width: 70%;
     font-size: 3rem;
 }
 header > h2 {
@@ -714,4 +714,20 @@ input[type=radio] {
 .pageImageUpload p
 {
     padding-top: 50px;
+}
+
+.helpButton {
+    font-size: 4rem;
+    line-height: 50px;
+    color: #005375;
+    cursor: pointer;
+}
+.helpButton i {
+    margin-top: 10px;
+    height: 67px;
+}
+.helpButton p {
+    line-height: 15px;
+    margin: 0;
+    font-size: 20px;
 }

@@ -27,6 +27,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
         <h1><?php
         echo $objectData->objectName;
         ?></h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="index.php"><img class="headerLogo" src="content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="page" id="top">
@@ -105,6 +106,17 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             <h3><a href="#top">Back to top</a></h3>
         </div>
     </div>
+    <div class="popup" style="display: none">
+            <h1>Welcome to the Kelham Island <strong>Interactive Open Store Directory</strong>!</h1>
+            <p>On this page you can find more information on individual objects including their history, what they were used for and many more amazing facts!</p>
+            <ul>
+                <li><strong>On the left hand side</strong> You will find some pages with extra information</li>
+                <li>At the bottom you will find images for the objects</li>
+                <li>You can head back to the object selection at any time by clicking 'Back' in the top left!</li>
+            </ul>
+            <h1>Enjoy learning about the Open Store objects!</h1>
+            <button id="closeBtn">Close</button>
+        </div>
 
     <script type="text/javascript">
     $( document ).ready(function() {
@@ -128,6 +140,12 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
             }
         });
     });
+    $("#closeBtn").on("click", function(){
+        $(".popup").fadeOut(500);
+    })
+    $("#helpButton").on("click", function(){
+        $(".popup").fadeIn(500);
+    })
     </script>
 </body>
 </html>
