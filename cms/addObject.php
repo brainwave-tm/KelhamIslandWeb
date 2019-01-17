@@ -57,9 +57,9 @@
                 $stmt2= $pdo->prepare($sql2);
 
                 $stmt2->execute();
-                $newQuery = $pdo->query("SELECT MAX(objectId) as MaxObject FROM objects")->fetchObject()->objectId;
-                header("Location : editObject.php?objectID=$newQuery&message='Object created Successfully!'");
-            }            
+                
+                header("Location: editObject.php?objectID=" . $newObjectId->MAX);
+            }
         }
     }
 ?>

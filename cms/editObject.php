@@ -54,24 +54,34 @@ WHERE objectId = $objectID")->fetchObject();
             <!-- <label for="objectShelfPosition">Object Shelf Position</label> -->
             <!-- <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition"> -->
             <strong>Shelf Position: </strong>
-            <select name="objectRow">
-                <option value="NULL">No row</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="F">Floor</option>
-            </select>
-            <select name="objectColumn">
-                <option value="NULL">No column</option>            
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-            </select>
-            <br>
+            <?php 
+                $objectShelfRow = substr($object->objectShelfPosition,0,1);
+                $objectShelfColumn = substr($object->objectShelfPosition,1,1);
+
+                $shelfPositions = array("A", "B", "C", "F");
+                echo "<select name='objectRow'>"; 
+                if($objectShelfRow == "") { echo "<option value='No Row' selected>No Row</option>"; }
+                for($row = 0; $row < sizeof($shelfPositions); $row++)
+                {
+                    $selected = "";
+                    if($objectShelfRow == $shelfPositions[$row]){ $selected = "selected"; }
+                    echo "<option value='" . $shelfPositions[$row] . "'" . $selected . ">" . $shelfPositions[$row] . "</option>";
+                }
+                if($objectShelfRow) { echo "<option value='No Row'>No Row</option>"; }
+                echo "</select>";
+
+                echo "<select name='objectColumn'>";
+                $shelfColumnPos = array(1, 2, 3, 4, 5, 6, 7);
+                if($objectShelfColumn == "") { echo "<option value='No Column' selected>No Column</option>"; }
+                for($column = 0; $column < 7; $column++)
+                {
+                    $selected = "";
+                    if($objectShelfColumn == $column+1) { $selected = "selected"; }
+                    echo "<option value='" . $shelfColumnPos[$column] . "'" . $selected . ">" . $shelfColumnPos[$column] . "</option>";
+                }
+                if($objectShelfColumn) { echo "<option value='No Column'>No Column</option>"; }
+                echo "</select>";
+            ?>
 
             <br>
             <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
