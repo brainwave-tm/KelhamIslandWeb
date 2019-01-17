@@ -122,8 +122,7 @@ header a p{
 }
 .backLink strong
 {
-    padding-left: 10px;
-    font-family: 'Lato';
+    padding-left: 10px;;
 }
 .shortDescription
 {
@@ -144,12 +143,15 @@ header a p{
     font-family: 'Lato', sans-serif;
     font-size: 26px;
 }
-.pageContent
-{
+.pageContent{
     flex-basis: 80%;
     background-color: whitesmoke;
     padding: 10px;
+    margin: auto;
+    margin-top: 0px;
     text-align: center;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 .pageContent .objectImages
 {
@@ -185,7 +187,7 @@ header a p{
 .page
 {
     display: flex;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 .pagesMenu
 {
@@ -208,10 +210,17 @@ header a p{
     font-weight: bold;
     font-family: 'Lato', sans-serif;
     color: ghostwhite;
-    font-size: 20px;
+    font-size: 30px;
     list-style-type: none;
     padding-top: 2px;
 }
+.sideBar li h2 
+{
+    margin-top: 0px;
+    text-decoration: underline;
+    height: 10px;
+}
+
 .sideBar ol
 {
     display: flex;
@@ -272,7 +281,7 @@ header a p{
     font-size: 2rem;
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 10px;
 }
 #addObjectForm > input {
@@ -452,6 +461,7 @@ color:black;
 
 .pagesFlexBox
 {
+    margin-top: 15px;
     display: flex;
     flex-direction: row;
 }
@@ -581,6 +591,7 @@ color:black;
 {
     border-radius: 20px;
     border: 4px solid black;
+    display: none;
     width: 80%;
     background-color: whitesmoke;
     position: absolute;
@@ -639,8 +650,8 @@ color:black;
   z-index: -99;
 }
 .video-foreground,
-.video-background video {
-    opacity: 0.5;
+.video-background iframe {
+    opacity: 0.3;
     position: absolute;
     top: 0;
     left: 0;
