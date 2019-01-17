@@ -25,6 +25,10 @@ if(isset($_GET['deleteImage']))
         if(!isset($_GET['pageId'])) { header("Location: editPages.php?objectId=" . $objectID); } else { header("Location: editPages.php?objectId=" . $objectID . "&pageId=" . $pageId); }
     }
 }
+
+// Check if the user has deleted the last page. If so, there's nothing left to display, so they should be redirected to the editObject.php page //
+$pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
+if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID); }
 ?>
 
 <!DOCTYPE html>
