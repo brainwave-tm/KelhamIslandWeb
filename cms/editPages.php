@@ -22,13 +22,13 @@ if(isset($_GET['deleteImage']))
         $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
         $pdo->query("UPDATE pages SET pageImage = NULL WHERE pageId = '".$pageId."'");
 
-        if(!isset($_GET['pageId'])) { header("Location: editPages.php?objectId=" . $objectID); } else { header("Location: editPages.php?objectId=" . $objectID . "&pageId=" . $pageId); }
+        if(!isset($_GET['pageId'])) { header("Location: editPages.php?objectId=" . $objectID); } else { header("Location: editPages.php?objectId=" . $objectID . "&pageId=" . $pageId . "&message=Deleted%20Page%20Successfully"); }
     }
 }
 
 // Check if the user has deleted the last page. If so, there's nothing left to display, so they should be redirected to the editObject.php page //
 $pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
-if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID); }
+if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID . "&message=Deleted%20Page%20Successfully"); }
 ?>
 
 <!DOCTYPE html>
@@ -89,9 +89,13 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID);
             <li><a href="addPages.php?objectId=<?php echo $objectID; ?>"><i class="fas fa-plus"></i> Add another page</a></li>
         </ol>
         </div>
+
         <div class="pagePreviewPanel">
             <?php
-                // $objectId = safeString($_GET['objectId']);          
+            if(isset($_GET["message"]))
+            {
+                echo "<h2 class='message'>" . $_GET["message"] . "</h2><br>";
+            }    
             ?>
                 <form action="updateDatabase.php" method="post" enctype="multipart/form-data">
                 <?php

@@ -57,8 +57,9 @@
                 $stmt2= $pdo->prepare($sql2);
 
                 $stmt2->execute();
-                // header("Location: cms.php");
-            }            
+                
+                header("Location: editObject.php?objectID=" . $newObjectId->MAX);
+            }
         }
     }
 ?>
@@ -86,7 +87,7 @@
     </header>
     <div class="addObjectForm">
         <form id="addObjectForm" method="POST" autocomplete="off" action="" enctype="multipart/form-data">
-            <input type="hidden" name="objectID" value="0"/>
+            <input type="hidden" name="objectID" value="0"/>            
             <strong>Object Name: (max 50 characters)</strong>
             <?php if(isset($errorName)) { ?><small style="color:#aa0000;"><?php echo $errorName; ?></small><?php } ?>        
             <input maxlength="50" type="text" id="objectName" name="objectName"></input>
