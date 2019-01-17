@@ -398,6 +398,8 @@ table, th, td
     float: right;
     margin-right: 300px;
     margin-top: 50px;
+    font-size: 50px;
+    color: ghostwhite;
 }
 .loginLink{
     position: fixed;
