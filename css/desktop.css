@@ -292,6 +292,33 @@ header a p{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.editObjectForm {
+    background: whitesmoke;
+    font-size: 1.7rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
+#editObjectForm > input
+{
+    font-size: 1.7rem;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#editObjectForm > input[type=file]
+{
+    width: 50%;
+}
+#editObjectForm > select
+{
+    font-size: 1.7rem;
+    width: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 @keyframes textgrowth {
     0% {
     font-size: 7rem;
