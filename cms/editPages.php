@@ -10,16 +10,25 @@ WHERE pages.objectId = $objectID")->fetchAll();
 
 $pageId = 0;
 if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
-if($_GET['deleteImage'] ?? NULL == 1)
+if(isset($_GET['deleteImage']))
 {
-    $page = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchAll();
-    $imageUrl = $pdo->query("SELECT imageUrl, imageId FROM images WHERE IMAGEiD = (SELECT pageImage FROM pages WHERE pageId = $pageId)")->fetchAll();
+    if($_GET['deleteImage'] ?? NULL == 1)
+    {
+        $page = $pdo->query("SELECT * FROM pages WHERE pageId = $pageId")->fetchAll();
+        $imageUrl = $pdo->query("SELECT imageUrl, imageId FROM images WHERE IMAGEiD = (SELECT pageImage FROM pages WHERE pageId = $pageId)")->fetchAll();
 
-    $dir = '../content/images/' . $page[0]['objectId'] . '/' . $imageUrl[0]['imageUrl'];
-    unlink($dir);
-    $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
-    $pdo->query("UPDATE pages SET pageImage = NULL WHERE pageId = '".$pageId."'");
+        $dir = '../content/images/' . $page[0]['objectId'] . '/' . $imageUrl[0]['imageUrl'];
+        unlink($dir);
+        $pdo->query("DELETE FROM images WHERE imageId = '" . $imageUrl[0]['imageId'] . "'");
+        $pdo->query("UPDATE pages SET pageImage = NULL WHERE pageId = '".$pageId."'");
+
+        if(!isset($_GET['pageId'])) { header("Location: editPages.php?objectId=" . $objectID); } else { header("Location: editPages.php?objectId=" . $objectID . "&pageId=" . $pageId); }
+    }
 }
+
+// Check if the user has deleted the last page. If so, there's nothing left to display, so they should be redirected to the editObject.php page //
+$pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
+if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID); }
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +58,7 @@ if($_GET['deleteImage'] ?? NULL == 1)
                 echo $objectPage->pageTitle;
         } else
         {
-                $objectId = safeString($_GET['objectId']);
-                $objectPage = $pdo->query("SELECT * FROM pages WHERE pages.objectId = $objectId")->fetchAll();
+                $objectPage = $pdo->query("SELECT * FROM pages WHERE pages.objectId = $objectID")->fetchAll();
                 echo $objectPage[0]["pageTitle"];
         }   
         ?></h2>
@@ -83,7 +91,7 @@ if($_GET['deleteImage'] ?? NULL == 1)
         </div>
         <div class="pagePreviewPanel">
             <?php
-                $objectId = safeString($_GET['objectId']);          
+                // $objectId = safeString($_GET['objectId']);          
             ?>
                 <form action="updateDatabase.php" method="post" enctype="multipart/form-data">
                 <?php
@@ -91,7 +99,7 @@ if($_GET['deleteImage'] ?? NULL == 1)
                 {
                     // Page ID has been supplied, we can load the page directly into an object //
                     echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>"; // Invisible Element for $_POST //
-                    echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>"; // Invisible Element for $_POST //
+                    echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>"; // Invisible Element for $_POST //
 
                     echo "<input type='text' name='pageTitle' value='" . $objectPage->pageTitle . "'/><br><br>";
                     echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
@@ -102,7 +110,7 @@ if($_GET['deleteImage'] ?? NULL == 1)
                         <p>Choose New Image: </p>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
                         <div class='objectImages'>
-                            <img id='eventImagePrev'>
+                            <img id='eventImagePrev' onerror="this.src='../content/images/errorImage.png';">
                         </div>
                         <br><br>
                     <?php
@@ -115,11 +123,12 @@ if($_GET['deleteImage'] ?? NULL == 1)
                             <div class="pageImage">
                                 <!-- <label>Object Image: Currently <?php echo $objectImage->imageUrl; ?></label><br><br> -->
                                 <strong>Image Preview</strong><br><br>
-                                <img id="eventImagePrev" class="previewImg" style="width: 200px;" src="<?php echo "../content/images/" . $objectId . "/" . $objectImage->imageUrl; ?>" alt="" />
+                                <img id="eventImagePrev" onerror="this.src='../content/images/errorImage.png';" class="previewImg" style="width: 200px;" src="<?php echo "../content/images/" . $objectID . "/" . $objectImage->imageUrl; ?>" alt="" />
                             </div>
                             <div class="pageImageUpload">
-                                <p>Choose New Image: </p>
-                                <input type="file" id="newImageUpload" name="fileToUpload"/><br>
+                                <p><i class="fas fa-plus"></i> Choose New Image: </p>
+                                <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                                <?php echo '<a href=\'editpages.php?objectId='.$objectID.'&pageId='.$pageId.'&deleteImage=1\' class=\'textLink\' onclick="return confirm(\'Are you sure you want to delete the image?\')"><i class=\'fas fa-trash-alt\'></i> Delete image from page</a>'; ?>
                             </div>
                         </div>
                         <?php
@@ -128,16 +137,20 @@ if($_GET['deleteImage'] ?? NULL == 1)
                     echo "</form>";
                 } else
                 {
+                    $pageId = $objectPage[0]["pageId"];
                     echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
-                    echo "<input type='text' name='objectId' value='" . $objectId . "' style='display: none;'/>";                
+                    echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>";                
                     echo "<input type='text' name='pageTitle' value='" . $objectPage[0]["pageTitle"] . "'/><br><br>";
                     echo "<textarea name='pageText'>" . $objectPage[0]["pageText"] . "</textarea>";
 
-
-                    if(!is_null($objectPage[0]["pageImage"]))
-                    { ?>
-                        <label for="newImageUpload">Choose New Image: </label>
-                        <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                    if($objectPage[0]["pageImage"] == null)
+                { ?>
+                        <div class="newImageUpload">
+                            <label for="newImageUpload"><strong>Choose New Image: </strong></label><br><br>
+                            <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                            <img id="eventImagePrev" onerror="this.src='../content/images/errorImage.png';" class="previewImg" style="width: 200px;" src="<?php echo "../content/images/" . $objectID . "/" . $objectImage[0]["imageUrl"]; ?>" alt="" />
+                            <br><br>
+                        </div>
                     <?php } else {
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
@@ -153,18 +166,25 @@ if($_GET['deleteImage'] ?? NULL == 1)
     </div>
 <script>
     function readURL(input) {
-    if (input.files && input.files[0]) 
-    {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#eventImagePrev').attr('src', e.target.result);
-        }            
-        reader.readAsDataURL(input.files[0]);
+        if (input.files && input.files[0]) 
+        {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#eventImagePrev').attr('src', e.target.result);
+            }            
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-    }
+
     $("#newImageUpload").change(function(){
         readURL(this);
     })
+
+    function displayErrorIma(image) {
+        image.onerror = "";
+        image.src = "../content/images/errorImage.png";
+        return true;
+    }
 </script>
 </body>
 </html>

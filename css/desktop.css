@@ -292,6 +292,33 @@ header a p{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.editObjectForm {
+    background: whitesmoke;
+    font-size: 1.7rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
+#editObjectForm > input
+{
+    font-size: 1.7rem;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#editObjectForm > input[type=file]
+{
+    width: 50%;
+}
+#editObjectForm > select
+{
+    font-size: 1.7rem;
+    width: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 @keyframes textgrowth {
     0% {
     font-size: 7rem;
@@ -682,8 +709,9 @@ input[type="file"]
 }
 .textLink
 {
-    font-weight: bold;
+    font-size: 20px;
     font-family: 'Lato', sans-serif;
+    text-decoration: none;
     color: black;
 }
 input[type=radio] {
@@ -693,6 +721,8 @@ input[type=radio] {
 
 .pageImageAndUpload
 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -702,6 +732,7 @@ input[type=radio] {
 {
     margin-left: 45px;
     width: 45%;
+    border-right: 2px solid black;
 }
 .pageImageUpload
 {
@@ -713,7 +744,12 @@ input[type=radio] {
 }
 .pageImageUpload p
 {
-    padding-top: 50px;
+    margin-bottom: 5px;
+}
+.newImageUpload
+{
+    padding-top: 20px;
+    margin: auto;
 }
 
 .helpButton {

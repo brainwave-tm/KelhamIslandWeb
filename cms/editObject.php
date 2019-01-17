@@ -27,20 +27,20 @@ WHERE objectId = $objectID")->fetchObject();
     <title>Kelham Island Web</title>
 </head>
 <body>
-  <header>
+    <header>
         <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Editing: <?php echo $object->objectName; ?></h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
-    <fieldset class="objectForm">
-    <div class="pageContent">
-        <?php
-        if(isset($_GET["message"]))
-        {
-            echo "<h2 class='message'>" . $_GET["message"] . "</h2>";
-        }
-        ?>
-        <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data">
+    <?php
+    if(isset($_GET["message"]))
+    {
+        echo "<h2 class='message'>" . $_GET["message"] . "</h2>";
+    }
+    ?>
+    <div class="editObjectForm">
+        <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data" id="editObjectForm">
             <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">
 
             <label for="objectName">Object Name: </label>
@@ -51,8 +51,27 @@ WHERE objectId = $objectID")->fetchObject();
             <input type="text" value="<?php echo $object->objectShortDescription ?>" name="objectShortDescription">
 
             <br>
-            <label for="objectShelfPosition">Object Shelf Position</label>
-            <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition">
+            <!-- <label for="objectShelfPosition">Object Shelf Position</label> -->
+            <!-- <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition"> -->
+            <strong>Shelf Position: </strong>
+            <select name="objectRow">
+                <option value="NULL">No row</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="F">Floor</option>
+            </select>
+            <select name="objectColumn">
+                <option value="NULL">No column</option>            
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+            <br>
 
             <br>
             <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
@@ -65,28 +84,34 @@ WHERE objectId = $objectID")->fetchObject();
             <br>
             <input type="submit" class="buttonGo" value="Update">
         </form>
-    </div>
-
-    <div class="pageContent">
-        <h3><a style="color: black" href="editPages.php?objectId=<?php echo $object->objectId; ?>"><i class='fas fa-pen'></i> Edit this object's pages</a></h3>
-        <h3><a style="color: black" href="addPages.php?objectId=<?php echo $object->objectId; ?>"><i class="fas fa-plus"></i> Add pages to this object</a></h3>
-    </div>
-    </fieldset>
-
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#eventImagePrev').attr('src', e.target.result);
-            }            
-            reader.readAsDataURL(input.files[0]);
+        
+        <?php
+        $pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
+        if($pagesCheck > 0)
+        {
+            echo "<p><a style=\"color: black\" href=\"editPages.php?objectId=$object->objectId\"><i class='fas fa-pen'></i><strong> Edit this object's pages</strong></a></p>";
         }
-    }
+        ?>
+        <p><a style="color: black" href="addPages.php?objectId=<?php echo $object->objectId; ?>"><i class="fas fa-plus"></i><strong> Add pages to this object</strong></a></p>
+    </div>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#eventImagePrev').attr('src', e.target.result);
+                }            
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
     $("#newImageUpload").change(function(){
         readURL(this);
     });
+
+    $(".helpButton").on("click", function(){
+        window.location.href = 'userManual.php';
+    })
 </script>
 </body>
 </html>
