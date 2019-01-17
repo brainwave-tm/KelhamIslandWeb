@@ -41,7 +41,6 @@
         </form>
         <div class = "loginToIndex">
         <a href="index.php"> To index </a>
-        
         </div>
     </section>
 
