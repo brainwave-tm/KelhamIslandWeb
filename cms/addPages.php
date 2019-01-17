@@ -47,8 +47,9 @@ require("../logic/auth.php");
 </head>
 <body>
     <header>
-        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
-        <h1>Add an Page</h1>
+        <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <h1>Add A New Page</h1>
+        <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div class="pagesFlexBox">
@@ -145,6 +146,9 @@ require("../logic/auth.php");
             }
         });
     });
+    $(".helpButton").on("click", function(){
+    window.location.href = 'userManual.php';
+    })
 
     function getCookie(cname) {
         // https://www.w3schools.com/js/js_cookies.asp //
