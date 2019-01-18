@@ -91,7 +91,15 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 { 
                     $objectPage = $pdo->query("SELECT * FROM objects WHERE objectId = ". $objectID)->fetchObject();
                     echo "<h2 class='title'>$objectPage->objectName</h2>";
-
+                    ?>
+                    <div class = 'textSize'>
+                        <h3>Text size</strong></h3>
+                        <div class = 'sizeButtons'>
+                            <button onclick="decrement()">-</button>
+                            <button onclick="increment()">+</button>
+                        </div>
+                    </div>
+                    <?php
                     echo "<div class='longDescription'>";
                         echo "<p>" . str_replace("[newline]", "\n", $objectPage->objectShortDescription) . "</p>";
                     echo "</div>";
@@ -103,13 +111,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "</div>";
                 }
                 ?>
-            <div class = 'textSize'>
-            <h3>Change text size</strong></h3>
-                <div class = 'sizeButtons'>
-                <button onclick="decrement()">-</button>
-                <button onclick="increment()">+</button>
-                </div>
-            </div>
+            
             <p><h3><a href="#top">Back to top</a></h3></p>
 
         </div>
