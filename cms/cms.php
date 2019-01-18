@@ -77,7 +77,7 @@ include("../includes/functions.inc.php");
             var clickedRadioButton = $('.radioButton:radio:checked')[0]; // Returns all checked checkboxes with the class 'checkbox' //
             $(".editObjectLink").remove();
             $(".deleteObjectLink").remove();
-            $( ".sideBarMenu" ).append( "<li class='editObjectLink'><i class='fas fa-pen'></i> <a href='editObject.php?objectID=" + clickedRadioButton["id"] + "'>Edit Object</a></li> " );
+            $( ".sideBarMenu" ).append( "<li class='editObjectLink'><i class='fas fa-pen'></i> <a href='editObjectTest.php?objectID=" + clickedRadioButton["id"] + "'>Edit Object</a></li> " );
             $( ".sideBarMenu" ).append( "<li class='deleteObjectLink'><i class='fas fa-trash-alt'></i> <a class='deleteObjectLink' href='deleteObject.php?objectId=" + clickedRadioButton["id"] + "' onclick=\"return confirm('Are you sure you want to delete this object?');\">Delete Object</a></li> " );       
         });
     });

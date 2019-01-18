@@ -48,7 +48,7 @@ require("../logic/auth.php");
 </head>
 <body>
     <header>
-        <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
+        <a href="editObjectTest.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Add A New Page</h1>
         <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
@@ -67,8 +67,6 @@ require("../logic/auth.php");
                 <input type="file" id="newImageUpload" name="fileToUpload"/>
                 <strong>Image Preview</strong><br>
                 <img id="pageImagePrev" style="width: 200px; height: auto;" src="" alt="" />
-                <strong>Page Video (Optional)</strong>
-                <input type="text" id="pageVideo" name="pageVideo"/>
                 <!-- <button id="searchBtn">Search</button> -->
 
                 <input type="submit" name="submit" value="Submit" class="buttonGo">
@@ -124,29 +122,6 @@ require("../logic/auth.php");
         } 
     });
 
-    $("#pageVideo").focusout(function() {
-        
-        $searchTerm = $("#pageVideo")[0].value;
-        $apikey = 'AIzaSyBejjDHXTLdYQ6arb5gCad_Uoe_Udk9Rs4'; 
-        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + $searchTerm + '&maxResults=4&key=' + $apikey;
-
-        $.ajax({
-            type: 'GET',
-            url: $googleApiUrl,
-            dataType: 'json',
-            success: function(response){
-                $("#videoPreview").empty();
-                response.items.forEach(function(element) {
-                    $("#videoPreview").append(
-                        "<div class='singleVideo'><iframe src=" +
-                        "https://www.youtube.com/embed/" + element.id.videoId + 
-                        " allowfullscreen></iframe>" +
-                        "<h1><a class='selectVideoLink'>Select</a></h1></div>"
-                    );
-                });
-            }
-        });
-    });
     $(".helpButton").on("click", function(){
     window.location.href = 'userManual.php';
     })
