@@ -79,10 +79,7 @@ require("../logic/auth.php");
             <h2>Images</h2>
             <img id="pageImagePreview">
 
-            <h2>Videos</h2>
-            <div id="videoPreview">
-                <!-- Add videos here -->
-            </div>
+           
         </div>
     </div>
 
