@@ -152,6 +152,9 @@ header a p{
     font-family: 'Lato', sans-serif;
     font-size: 26px;
 }
+.longDescription > p {
+    margin: 0;
+}
 .pageContent
 {
     flex-basis: 80%;
@@ -807,7 +810,9 @@ input[type=radio] {
         font-size: 2rem;
 }
 .textSize{
-   /* float:right;*/
+    display: block;
+    margin-left: 90%;
+    width: 100px;
 }
 .sizeButtons > button{
     background-color: #005375;
