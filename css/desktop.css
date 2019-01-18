@@ -837,3 +837,7 @@ input[type=radio] {
     border: 2px dashed black;
     margin: auto;
 }
+.viewImage {
+    height: 790px;
+    margin-left: 20%;
+}

@@ -61,7 +61,7 @@ include("../includes/functions.inc.php");
                     echo "<td>" . $o['objectId'] . "</td>";
                     echo "<td>" . $o['objectName'] . "</td>";
                     echo "<td>" . $o['objectShortDescription'] ."</td>";
-                    echo "<td><a href='../content/images/" . $o['objectId'] . "/" . $o['imageUrl'] . "'>View Image</a></td>";
+                    echo "<td><a href='imageView.php?url=" . $o['objectId'] . "/" . $o['imageUrl'] . "'>View Image</a></td>";
                     if($o["objectShelfPosition"] != "") { echo "<td>" . $o['objectShelfPosition']. "</td>"; } else { echo "<td style='color: red'>No Shelf Position Set</td>"; }
                 echo "</tr>";
             }
