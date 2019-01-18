@@ -6,7 +6,7 @@ require("../logic/auth.php");
 $objectID = safeString($_GET['objectId']);
 $page = $pdo->query("SELECT * FROM pages
 INNER JOIN images ON pages.pageImage = images.imageId
-WHERE pages.objectId = $objectID")->fetchAll();
+WHERE pages.objectId = $objectID")->fetchAll(); // Is this entire statement needed? //
 
 $pageId = 0;
 if(isset($_GET['pageId'])) { $pageId = safeInt($_GET['pageId']); }
@@ -47,7 +47,7 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
 </head>
 <body>
     <header>
-        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
+        <a href="editObjectTest.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
         <h2>Editing: <?php
         if (isset($_GET['pageId'])) 
         {
@@ -104,7 +104,7 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
                     echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>"; // Invisible Element for $_POST //
 
                     echo "<input type='text' name='pageTitle' value='" . $objectPage->pageTitle . "'/><br><br>";
-                    echo "<textarea name='pageText'>" . $objectPage->pageText . "</textarea>";
+                    echo "<textarea name='pageText'>" . str_replace("[newline]", "\n", $objectPage->pageText) . "</textarea>";
 
                     if($objectPage->pageImage == null)
                     { ?>
@@ -112,7 +112,7 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
                         <p>Choose New Image: </p>
                         <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
                         <div class='objectImages'>
-                            <img id='eventImagePrev' onerror="this.src='../content/images/errorImage.png';">
+                            <?php if($objectPage->pageImage != NULL) { echo "<img id='eventImagePrev' onerror=\"this.src='../content/images/errorImage.png';\">"; }; ?>
                         </div>
                         <br><br>
                     <?php
@@ -143,21 +143,24 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
                     echo "<input type='text' name='pageId' value='" . $pageId . "' style='display: none;'/>";
                     echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>";                
                     echo "<input type='text' name='pageTitle' value='" . $objectPage[0]["pageTitle"] . "'/><br><br>";
-                    echo "<textarea name='pageText'>" . $objectPage[0]["pageText"] . "</textarea>";
+                    echo "<textarea name='pageText'>" . str_replace("[newline]", "\n", $objectPage[0]["pageText"]) . "</textarea>";
 
-                    if($objectPage[0]["pageImage"] == null)
+                    if($objectPage[0]["pageImage"] == NULL)
                 { ?>
                         <div class="newImageUpload">
                             <label for="newImageUpload"><strong>Choose New Image: </strong></label><br><br>
                             <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-                            <img id="eventImagePrev" onerror="this.src='../content/images/errorImage.png';" class="previewImg" style="width: 200px;" src="<?php echo "../content/images/" . $objectID . "/" . $objectImage[0]["imageUrl"]; ?>" alt="" />
+                            <?php if($objectPage[0]["pageImage"] != NULL) {
+                                    echo "<img id=\"eventImagePrev\" onerror=\"this.src='../content/images/errorImage.png';\" class=\"previewImg\" style=\"width: 200px;\" src=../content/images/" . $objectID . "/" . $objectImage[0]["imageUrl"] . " alt=\"/>";
+                                }
+                            ?>
                             <br><br>
                         </div>
                     <?php } else {
                         echo "<h2 style='margin-top: 10px'><a name='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
                             $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $objectPage[0]["pageImage"] )->fetchObject();
-                            echo "<img id='eventImagePrev' src='../content/images/" . $objectPage[0]["objectId"] . "/" . $objectImage->imageUrl . "'>";
+                            if($objectImage != NULL) { echo "<img id='eventImagePrev' src='../content/images/" . $objectPage[0]["objectId"] . "/" . $objectImage->imageUrl . "'>"; }
                         echo "</div>";
                     }
                         echo "<input type='submit' value='Update'>";

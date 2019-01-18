@@ -58,7 +58,7 @@
 
                 $stmt2->execute();
                 
-                header("Location: editObject.php?objectID=" . $newObjectId->MAX);
+                header("Location: editObject.php?objectID=" . $newObjectId->MAX . "&message=Object created sucessfully");
             }
         }
     }
@@ -114,7 +114,7 @@
                 <option value="6">6</option>
                 <option value="7">7</option>
             </select>
-            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the object will not show on the main screen to visitors</p>
+            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If 'No Row' or 'No Column' is selected the object will have no shelf position and will not show on the main screen to visitors</p>
             <br>
             <strong>Object Main Image</strong>
             <?php if(isset($errorImagePreview)) { ?><small style="color:#aa0000;"><?php echo $errorImagePreview; ?></small><?php } ?>            

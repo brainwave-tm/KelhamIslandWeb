@@ -3,7 +3,7 @@ include("includes/conn.inc.php");
 include("includes/functions.inc.php");
 
 $objectID = safeString($_GET['objectID']);
-$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();              
+$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();           
 ?>
 
 <!DOCTYPE html>
@@ -75,14 +75,14 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
-                        echo "<p>" . nl2br($objectPage->pageText). "</p>";
+                        echo "<p>" . str_replace("[newline]", "<br>", $objectPage->pageText) . "</p>";
                     echo "</div>";
             
-                    if(!is_null($objectPage->pageImage))
+                    if($objectPage->pageImage != NULL)
                     {
                         echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
-                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
+                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = '$objectPage->pageImage'")->fetchObject();
                         echo "<img onerror=\"this.src='content/images/errorImage.png';\" src='content/images/$objectID/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
                         echo "</div>";
                     }
@@ -91,9 +91,17 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                 { 
                     $objectPage = $pdo->query("SELECT * FROM objects WHERE objectId = ". $objectID)->fetchObject();
                     echo "<h2 class='title'>$objectPage->objectName</h2>";
-
+                    ?>
+                    <div class = 'textSize'>
+                        <h3>Text size</strong></h3>
+                        <div class = 'sizeButtons'>
+                            <button onclick="decrement()">-</button>
+                            <button onclick="increment()">+</button>
+                        </div>
+                    </div>
+                    <?php
                     echo "<div class='longDescription'>";
-                        echo "<p>" . nl2br($objectPage->objectShortDescription) . "</p>";
+                        echo "<p>" . str_replace("[newline]", "<br>", $objectPage->objectShortDescription) . "</p>";
                     echo "</div>";
 
                     echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
@@ -103,13 +111,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "</div>";
                 }
                 ?>
-            <div class = 'textSize'>
-            <h3>Change text size</strong></h3>
-                <div class = 'sizeButtons'>
-                <button onclick="decrement()">-</button>
-                <button onclick="increment()">+</button>
-                </div>
-            </div>
+            
             <p><h3><a href="#top">Back to top</a></h3></p>
 
         </div>
