@@ -337,8 +337,9 @@ header a p{
 }
 #editObjectForm > select
 {
-    font-size: 1.7rem;
-    width: 30%;
+    font-size: 25px;
+    width: 15%;
+    margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -837,4 +838,8 @@ input[type=radio] {
     padding: 10px;
     border: 2px dashed black;
     margin: auto;
+}
+.viewImage {
+    height: 790px;
+    margin-left: 20%;
 }

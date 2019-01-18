@@ -47,7 +47,7 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
 </head>
 <body>
     <header>
-        <a href="editObject.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
+        <a href="editObjectTest.php?objectID=<?php echo $objectID; ?>" class="backLink"><span class="backLink"><i class="fas fa-caret-left"><strong>Back</strong></i></span></a>
         <h2>Editing: <?php
         if (isset($_GET['pageId'])) 
         {
