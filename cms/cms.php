@@ -38,17 +38,19 @@ include("../includes/functions.inc.php");
         </div>
         <?php
         if(!isset($_GET['direction'])) { $direction = "DESC"; } else { $direction = $_GET['direction']; }
-        if($direction == "DESC") { $direction = "ASC"; } else { $direction = "DESC"; }
+        if(!isset($_GET['orderBy'])) { $orderBy = "none"; }else {$orderBy = $_GET['orderBy']; }
+        if($direction == "DESC") { $direction = "ASC"; $icon = "<i class=\"fas fa-sort-up\"></i>"; } else { $direction = "DESC"; $icon = "<i class=\"fas fa-sort-down\"></i>";}
         ?>
         <div class='objectSelect'>
+        <p>To order the objects, click the header of the column to order by ascending or descending values.</p>
         <table style="width:100%">
             <tr>
                 <th><i class="fas fa-check-square"></i></th>
-                <th><a href="cms.php?orderBy=objectId&direction=<?php echo $direction; ?>">ID</a></th>
-                <th><a href="cms.php?orderBy=objectName&direction=<?php echo $direction; ?>">Name</a></th>
+                <th><a class="tableHeaderText" href="cms.php?orderBy=objectId&direction=<?php echo $direction; ?>">ID <?php if($orderBy == "objectId") { echo $icon; }?></a></th>
+                <th><a class="tableHeaderText" href="cms.php?orderBy=objectName&direction=<?php echo $direction; ?>">Name<?php if($orderBy == "objectName") { echo $icon; }?></a></th>
                 <th>Short Description</th>
                 <th>Image</th>
-                <th><a href="cms.php?orderBy=objectShelfPosition&direction=<?php echo $direction; ?>">Shelf Position</a></th>
+                <th><a class="tableHeaderText" href="cms.php?orderBy=objectShelfPosition&direction=<?php echo $direction; ?>">Shelf Position <?php if($orderBy == "objectShelfPosition") { echo $icon; }?></a></th>
             </tr>
             <?php
             $orderOptions = "objectShelfPosition";

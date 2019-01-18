@@ -857,3 +857,7 @@ input[type=radio] {
     height: 790px;
     margin-left: 20%;
 }
+.tableHeaderText {
+    text-decoration: none;
+    color: black;
+}
