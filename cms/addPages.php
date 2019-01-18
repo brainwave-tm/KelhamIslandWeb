@@ -79,7 +79,10 @@ require("../logic/auth.php");
             <h2>Images</h2>
             <img id="pageImagePreview">
 
+<<<<<<< HEAD
            
+=======
+>>>>>>> 0eb914badd8d5b1f221f15954f1f46362fe3e2ed
         </div>
     </div>
 
