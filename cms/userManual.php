@@ -25,7 +25,7 @@ require("../logic/auth.php");
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     <div syle="width: 100%; height: 100%">
-    <iframe src="../content/pdf/User_Manual.pdf" style="width:100%; height:750px;" frameborder="0"></iframe>
+    <iframe src="../content/pdf/User_Manual.pdf" style="width:100%; height:790px;" frameborder="0"></iframe>
     </div>
 </body>
 <script>
