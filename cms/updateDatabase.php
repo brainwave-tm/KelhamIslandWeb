@@ -10,21 +10,26 @@ $pageId = safeString($_POST['pageId']);
 $objectId = safeString($_POST['objectId']);
 
 $imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT pageImage FROM pages WHERE pageId = '$pageId')")->fetchAll();
-if($_FILES["fileToUpload"]["name"] != "")
-{
-    $imageUrl = $imageData[0]['imageUrl'];
-    $imageId = $imageData[0]['imageId'];
+var_dump($imageData);
 
-    $newImageId = null;
-    $errorCode = null;
-    if(!$_FILES['fileToUpload']["name"] == "")//If there is something to upload
+if($_FILES["fileToUpload"]["name"] != "") // User has pressed Update without submitting a new image, keep the old one //
+{
+    if(sizeof($imageData) == 0) // Page has no image //
     {
-        $errorCode = removeExistingImage($objectId, $imageUrl);
-        $newImageId = replaceFile($objectId);
-    }
-    else
-    {
-        $newImageId = $imageId;  
+        $imageUrl = $imageData[0]['imageUrl'];
+        $imageId = $imageData[0]['imageId'];
+
+        $newImageId = null;
+        $errorCode = null;
+        if(!$_FILES['fileToUpload']["name"] == "") // If there is something to upload //
+        {
+            $errorCode = removeExistingImage($objectId, $imageUrl);
+            $newImageId = replaceFile($objectId);
+        }
+        else
+        {
+            $newImageId = $imageId;  
+        }
     }
 } else
 {
@@ -33,5 +38,5 @@ if($_FILES["fileToUpload"]["name"] != "")
 
 $pdo->query("UPDATE pages SET pageText = '$pageText', pageTitle = '$pageTitle', pageImage= '$newImageId' WHERE pageId = '$pageId'");
 
-header("Location: editPages.php?objectId=$objectId&pageId=$pageId");
+header("Location: editPages.php?objectId=$objectId&pageId=$pageId&message=Page updated successfully");
 ?>
