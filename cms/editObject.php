@@ -33,79 +33,55 @@ WHERE objectId = $objectID")->fetchObject();
         <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
         <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
-    <?php
-    if(isset($_GET["message"]))
-    {
-        echo "<br><h2 class='message'>" . $_GET["message"] . "</h2>";
-    }
-    ?>
-    <div class="editObjectForm">
+
+    <div class="pagePreviewPanel">
+        <?php if(isset($_GET["message"])) { echo "<h2 class='message'>" . $_GET["message"] . "</h2><br>"; } ?>
         <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data" id="editObjectForm">
-            <input type="text" name="objectId" hidden value="<?php echo $object->objectId; ?>">
+        <?php
+        // Object ID has been supplied, we can load the page directly into an object //
+        echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>"; // Invisible Element for $_POST //
 
-            <label for="objectName">Object Name: </label>
-            <input type="text" value="<?php echo $object->objectName ?>" name="objectName">
+        echo "<input type='text' name='objectName' value='" . $object->objectName . "'/><br><br>";
+        echo "<textarea name='objectShortDescription'>" . $object->objectShortDescription . "</textarea>";
 
-            <br>
-            <label for="objectShortDescription">Object <strong>Short</strong> Description: </label>
-            <input type="text" value="<?php echo $object->objectShortDescription ?>" name="objectShortDescription">
-
-            <br>
-            <!-- <label for="objectShelfPosition">Object Shelf Position</label> -->
-            <!-- <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition"> -->
-            <strong>Shelf Position: </strong>
-            <?php 
-                $objectShelfRow = substr($object->objectShelfPosition,0,1);
-                $objectShelfColumn = substr($object->objectShelfPosition,1,1);
-
-                $shelfPositions = array("A", "B", "C", "F");
-                echo "<select name='objectRow'>"; 
-                if($objectShelfRow == "") { echo "<option value='NULL' selected>No Row</option>"; }
-                for($row = 0; $row < sizeof($shelfPositions); $row++)
-                {
-                    $selected = "";
-                    if($objectShelfRow == $shelfPositions[$row]){ $selected = "selected"; }
-                    echo "<option value='" . $shelfPositions[$row] . "'" . $selected . ">" . $shelfPositions[$row] . "</option>";
-                }
-                if($objectShelfRow) { echo "<option value='NULL'>No Row</option>"; }
-                echo "</select>";
-
-                echo "<select name='objectColumn'>";
-                $shelfColumnPos = array(1, 2, 3, 4, 5, 6, 7);
-                if($objectShelfColumn == "") { echo "<option value='NULL' selected>No Column</option>"; }
-                for($column = 0; $column < 7; $column++)
-                {
-                    $selected = "";
-                    if($objectShelfColumn == $column+1) { $selected = "selected"; }
-                    echo "<option value='" . $shelfColumnPos[$column] . "'" . $selected . ">" . $shelfColumnPos[$column] . "</option>";
-                }
-                if($objectShelfColumn) { echo "<option value='NULL'>No Column</option>"; }
-                echo "</select>";
-            ?>
-
-            <br>
-            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the object will not show on the main screen to visitors</p>
-            <br>
-            <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
-            <br>
+        if($object->objectPreviewImage == null)
+        { ?>
+            <!-- If object does not have an image, allow user to upload one -->
             <p>Choose New Image: </p>
             <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
-            <strong>Image Preview</strong><br>
-            <img id="eventImagePrev" style="width: 200px;" src="<?php echo "../content/images/" . $object->objectId . "/" . $object->imageUrl; ?>" alt="" />
-            
-            <br>
-            <input type="submit" class="buttonGo" value="Update">
-        </form>
-        
+            <div class='objectImages'>
+                <img id='eventImagePrev' onerror="this.src='../content/images/errorImage.png';">
+            </div>
+            <br><br>
         <?php
-        $pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
-        if($pagesCheck > 0)
+        } else
         {
-            echo "<p><a style=\"color: black\" href=\"editPages.php?objectId=$object->objectId\"><i class='fas fa-pen'></i><strong> Edit this object's pages</strong></a></p>";
+            // If object does have images, display them and allow for a new one to be uploaded too //
+            $objectImage = $pdo->query("SELECT * FROM images WHERE imageId = " . $object->objectPreviewImage )->fetchObject();
+            ?>
+            <div class="pageImageAndUpload">
+                <div class="pageImage">
+                    <!-- <label>Object Image: Currently <?php echo $objectImage->imageUrl; ?></label><br><br> -->
+                    <strong>Image Preview</strong><br><br>
+                    <img id="eventImagePrev" onerror="this.src='../content/images/errorImage.png';" class="previewImg" style="width: 200px;" src="<?php echo "../content/images/" . $objectID . "/" . $objectImage->imageUrl; ?>" alt="" />
+                </div>
+                <div class="pageImageUpload">
+                    <p><i class="fas fa-plus"></i> Choose New Image: </p>
+                    <input type="file" id="newImageUpload" name="fileToUpload"/><br><br>
+                </div>
+            </div>
+            <?php
         }
-        ?>
-        <p><a style="color: black" href="addPages.php?objectId=<?php echo $object->objectId; ?>"><i class="fas fa-plus"></i><strong> Add pages to this object</strong></a></p>
+        echo "<input type='submit' value='Update'>";
+        $pagesCheck = intval($pdo->query("SELECT COUNT(pageId) AS pageCount FROM pages WHERE objectId = " . $objectID . ";")->fetchAll()[0]["pageCount"]);
+        echo "<div class='pageEditLinksDiv'>";
+            if($pagesCheck > 0) { echo "<p><a style=\"color: black\" href=\"editPages.php?objectId=$objectID\"><i class='fas fa-pen'></i><strong> Edit this object's pages</strong></a></p>"; }
+            ?>
+            <p><a style="color: black" href="addPages.php?objectId=<?php echo $objectID; ?>"><i class="fas fa-plus"></i><strong> Add pages to this object</strong></a></p>
+        </div>
+    </form>
     </div>
+    
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
