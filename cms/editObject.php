@@ -51,8 +51,6 @@ WHERE objectId = $objectID")->fetchObject();
             <input type="text" value="<?php echo $object->objectShortDescription ?>" name="objectShortDescription">
 
             <br>
-            <!-- <label for="objectShelfPosition">Object Shelf Position</label> -->
-            <!-- <input type="text" value="<?php echo $object->objectShelfPosition ?>" name="objectShelfPosition"> -->
             <strong>Shelf Position: </strong>
             <?php 
                 $objectShelfRow = substr($object->objectShelfPosition,0,1);
@@ -84,7 +82,7 @@ WHERE objectId = $objectID")->fetchObject();
             ?>
 
             <br>
-            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If no shelf position is selected the object will not show on the main screen to visitors</p>
+            <p style="font-size: 20px; margin: 0;"><span style="color: red">Please Note: </span>If 'No Row' or 'No Column' is selected the object will have no shelf position and will not show on the main screen to visitors</p>
             <br>
             <label for="fileToUpload">Object Image: Currently <?php echo $object->imageUrl; ?></label>   
             <br>
