@@ -17,9 +17,6 @@ if(isset($_GET['update']))
     // User has clicked update, now we need to validate //
     $validationCanary = true;
 
-    var_dump($_POST);
-    var_dump($_FILES);
-
     if($_POST['objectName'] == "" || $_POST['objectShortDescription'] == "") $validationCanary = false;
 
     if(!$validationCanary)
