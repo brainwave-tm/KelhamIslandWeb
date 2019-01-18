@@ -10,7 +10,10 @@ $pages = $pdo->query("SELECT pageImage FROM pages WHERE objectId = $objectId")->
 
 for($id = 0; $id < sizeof($pages); $id++)
 {
-    $pdo->query("DELETE FROM images WHERE imageId = " . $pages[$id]["pageImage"]);
+    if (isset($pages[$id]["pageImage"]))
+    {
+        $pdo->query("DELETE FROM images WHERE imageId = '" . $pages[$id]["pageImage"] . "'");
+    }
 }
 
 // Then delete the pages //
