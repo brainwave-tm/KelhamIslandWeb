@@ -3,7 +3,7 @@ include("includes/conn.inc.php");
 include("includes/functions.inc.php");
 
 $objectID = safeString($_GET['objectID']);
-$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();              
+$objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->fetchObject();           
 ?>
 
 <!DOCTYPE html>
@@ -75,14 +75,14 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
-                        echo "<p>" . nl2br($objectPage->pageText). "</p>";
+                        echo "<p>" . str_replace("[newline]", "\n", $objectPage->pageText) . "</p>";
                     echo "</div>";
             
-                    if(!is_null($objectPage->pageImage))
+                    if($objectPage->pageImage != NULL)
                     {
                         echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
                         echo "<div class='objectImages'>";
-                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = $objectPage->pageImage")->fetchObject();
+                        $objectImage = $pdo->query("SELECT imageUrl, imageDescription FROM images WHERE imageId = '$objectPage->pageImage'")->fetchObject();
                         echo "<img onerror=\"this.src='content/images/errorImage.png';\" src='content/images/$objectID/" . $objectImage->imageUrl . "' title='$objectImage->imageDescription' id='$objectImage->imageDescription'>";
                         echo "</div>";
                     }
@@ -101,7 +101,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     </div>
                     <?php
                     echo "<div class='longDescription'>";
-                        echo "<p>" . nl2br($objectPage->objectShortDescription) . "</p>";
+                        echo "<p>" . str_replace("[newline]", "\n", $objectPage->objectShortDescription) . "</p>";
                     echo "</div>";
 
                     echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
