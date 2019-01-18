@@ -27,5 +27,5 @@ else
 
 $pdo->query("UPDATE pages SET pageText = '$pageText', pageTitle = '$pageTitle', pageImage= '$newImageId' WHERE pageId = '$pageId'");
 
-header("Location: editPages.php?objectId=$objectId&pageId=$pageId");
+header("Location: editPages.php?objectId=$objectId&pageId=$pageId&message=Page updated successfully");
 ?>
