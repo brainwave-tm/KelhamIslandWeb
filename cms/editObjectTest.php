@@ -42,7 +42,7 @@ WHERE objectId = $objectID")->fetchObject();
             echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>"; // Invisible Element for $_POST //
 
             echo "<input type='text' name='objectName' value='" . $object->objectName . "'/><br><br>";
-            echo "<textarea name='objectShortDescription'>" . $object->objectShortDescription . "</textarea>";
+            echo "<textarea name='objectShortDescription'>" . str_replace("[newline]", "\n", $object->objectShortDescription) . "</textarea>";
 
             ?>
 

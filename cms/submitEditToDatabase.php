@@ -6,14 +6,15 @@ require("../logic/auth.php");
 
 $objectId = safeString($_POST['objectId']);
 $objectName = safeString($_POST['objectName']);
-$objectShortDescription = safeString($_POST['objectShortDescription']);
+$objectShortDescription = safeString(str_replace("\n", "[newline]", $_POST['objectShortDescription']));
 $objectRow = safeString($_POST['objectRow']);
 $objectColumn = safeString($_POST['objectColumn']);
 if(!($objectRow == 'NULL' || $objectColumn == 'NULL'))
 {
     $objectShelfPosition = $objectRow . $objectColumn;
 }
-else{
+else
+{
     $objectShelfPosition = NULL;
 }
 
