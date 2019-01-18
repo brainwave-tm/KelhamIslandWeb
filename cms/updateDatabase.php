@@ -10,7 +10,6 @@ $pageId = safeString($_POST['pageId']);
 $objectId = safeString($_POST['objectId']);
 
 $imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT pageImage FROM pages WHERE pageId = '$pageId')")->fetchAll();
-var_dump($imageData);
 
 if($_FILES["fileToUpload"]["name"] != "") // If user IS uploading an image
 {
