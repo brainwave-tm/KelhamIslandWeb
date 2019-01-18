@@ -1,6 +1,8 @@
 <?php
 include("includes/conn.inc.php");
 include("includes/functions.inc.php");
+include("includes/sessions.inc.php");
+
 $userDetails = $pdo->query("SELECT userSecurityQuestion, userSecurityAnswer FROM users")->fetchAll()[0];
 
 $securityQuestionError = false;
@@ -35,8 +37,14 @@ if(isset($_GET['validate']))
             if($_POST['securityAnswer'] == "") $securityQuestionAnswerError = true;
         } else
         {
-            // Submit to database //
-            $passwordCheck = $pdo->query("SELECT userSecurityQuestion, userSecurityAnswer = ");
+            // Query database //
+            $answerCheck = $pdo->query("SELECT userSecurityQuestion, userSecurityAnswer FROM users")->fetchAll()[0];
+            if($answerCheck["userSecurityAnswer"] == safeString($_POST['securityAnswer']))
+            {
+                // Correct Answer //
+                $_SESSION['login'] = 1;
+                header("Location: cms/cms_user.php");
+            }
         }
     }
     
@@ -67,7 +75,7 @@ if(isset($_GET['validate']))
             // No security question has been set, allow user to enter one //
         ?>
             <p>No security question has been set - please set one:</p>
-            <form action="forgotPassword.php?validate=1" method="POST">
+            <form action="forgotPassword.php?validate=1" method="POST" autocomplete="off">
                 <strong>Security Question: </strong><br>
                 <?php if($securityQuestionError) echo "<h2 class='messageBad'>Please enter a valid question.</h2>"; ?>
                 <input maxlength="100" type="text" name="securityQuestion">
@@ -84,7 +92,7 @@ if(isset($_GET['validate']))
         } else
         {
         ?>
-            <form action="forgotPassword.php?validate=2" method="POST">
+            <form action="forgotPassword.php?validate=2" method="POST" autocomplete="off">
                 <br><strong>Security Question: </strong><br>
                 <p><?php echo $userDetails["userSecurityQuestion"]; ?></p>
 
