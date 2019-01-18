@@ -636,6 +636,20 @@ input[type="file"]
     margin: auto;
     border-radius: 10px;
 }
+.messageBad
+{
+    width: 90%;
+    background-color: lightcoral;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    margin: 10px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
 
 #videoPreview
 {

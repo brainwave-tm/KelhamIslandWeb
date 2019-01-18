@@ -184,12 +184,6 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
     $("#newImageUpload").change(function(){
         readURL(this);
     })
-
-    function displayErrorIma(image) {
-        image.onerror = "";
-        image.src = "../content/images/errorImage.png";
-        return true;
-    }
 </script>
 </body>
 </html>
