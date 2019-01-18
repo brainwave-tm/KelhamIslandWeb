@@ -73,7 +73,7 @@ include("includes/functions.inc.php");
     <?php
         $objects = $pdo->query("SELECT * FROM objects
         LEFT JOIN images ON objects.objectPreviewImage = images.imageId
-        WHERE objectShelfPosition IS NOT NULL
+        WHERE objectShelfPosition != 'NU'
         ORDER BY objectShelfPosition ASC")->fetchAll();
             echo "<div class='shelf'>";
             foreach($objects as $o)

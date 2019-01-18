@@ -8,13 +8,13 @@ $objectName = safeString($_POST['objectName']);
 $objectShortDescription = safeString(str_replace("\n", "[newline]", $_POST['objectShortDescription']));
 $objectRow = safeString($_POST['objectRow']);
 $objectColumn = safeString($_POST['objectColumn']);
-if(!($objectRow == 'NULL' || $objectColumn == 'NULL'))
+if(!($objectRow == "N" || $objectColumn == "U"))
 {
     $objectShelfPosition = $objectRow . $objectColumn;
 }
 else
 {
-    $objectShelfPosition = NULL;
+    $objectShelfPosition = "NU";
 }
 
 $imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT objectPreviewImage FROM objects WHERE objectId = '$objectId')")->fetchAll();
