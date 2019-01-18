@@ -60,7 +60,7 @@ if($pagesCheck == 0) { header("Location: editObject.php?objectID=" . $objectID .
                 echo $objectPage[0]["pageTitle"];
         }   
         ?></h2>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="logout.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
     
 

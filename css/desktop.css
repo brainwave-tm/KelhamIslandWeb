@@ -572,6 +572,7 @@ color:whitesmoke;
     height: 400px;
     margin: auto;
     font-size: 20px;
+    resize: vertical;
 }
 .pagePreviewPanel textarea[name="objectShortDescription"]
 {
