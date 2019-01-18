@@ -75,7 +75,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     echo "<h2 class='title'>$objectPage->pageTitle</h2>";
 
                     echo "<div class='longDescription'>";
-                        echo "<p>" . str_replace("[newline]", "\n", $objectPage->pageText) . "</p>";
+                        echo "<p>" . str_replace("[newline]", "<br>", $objectPage->pageText) . "</p>";
                     echo "</div>";
             
                     if($objectPage->pageImage != NULL)
@@ -101,7 +101,7 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     </div>
                     <?php
                     echo "<div class='longDescription'>";
-                        echo "<p>" . str_replace("[newline]", "\n", $objectPage->objectShortDescription) . "</p>";
+                        echo "<p>" . str_replace("[newline]", "<br>", $objectPage->objectShortDescription) . "</p>";
                     echo "</div>";
 
                     echo "<h2 style='margin-top: 10px'><a id='images'>Images</a></h2>";
