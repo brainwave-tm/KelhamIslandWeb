@@ -4,8 +4,7 @@ include("../includes/sessions.inc.php");
 include("../includes/functions.inc.php");
 require("../logic/auth.php");
 
-
-$pageText = safeString($_POST['pageText']);
+$pageText = safeString($_POST['pageText']); // Newlines are removed :( //
 $pageTitle = safeString($_POST['pageTitle']);
 $pageId = safeString($_POST['pageId']);
 $objectId = safeString($_POST['objectId']);
