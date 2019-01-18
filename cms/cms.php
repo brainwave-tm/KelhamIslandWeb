@@ -46,11 +46,11 @@ include("../includes/functions.inc.php");
         <table style="width:100%">
             <tr>
                 <th><i class="fas fa-check-square"></i></th>
-                <th><a href="cms.php?orderBy=objectId&direction=<?php echo $direction; ?>">ID <?php if($orderBy == "objectId") { echo $icon; }?></a></th>
-                <th><a href="cms.php?orderBy=objectName&direction=<?php echo $direction; ?>">Name<?php if($orderBy == "objectName") { echo $icon; }?></a></th>
+                <th><a class="tableHeaderText" href="cms.php?orderBy=objectId&direction=<?php echo $direction; ?>">ID <?php if($orderBy == "objectId") { echo $icon; }?></a></th>
+                <th><a class="tableHeaderText" href="cms.php?orderBy=objectName&direction=<?php echo $direction; ?>">Name<?php if($orderBy == "objectName") { echo $icon; }?></a></th>
                 <th>Short Description</th>
                 <th>Image</th>
-                <th><a href="cms.php?orderBy=objectShelfPosition&direction=<?php echo $direction; ?>">Shelf Position <?php if($orderBy == "objectShelfPosition") { echo $icon; }?></a></th>
+                <th><a class="tableHeaderText" href="cms.php?orderBy=objectShelfPosition&direction=<?php echo $direction; ?>">Shelf Position <?php if($orderBy == "objectShelfPosition") { echo $icon; }?></a></th>
             </tr>
             <?php
             $orderOptions = "objectShelfPosition";
