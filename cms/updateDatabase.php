@@ -10,28 +10,25 @@ $pageId = safeString($_POST['pageId']);
 $objectId = safeString($_POST['objectId']);
 
 $imageData = $pdo->query("SELECT imageUrl, imageId FROM images WHERE imageId = (SELECT pageImage FROM pages WHERE pageId = '$pageId')")->fetchAll();
-if($_FILES["fileToUpload"]["name"] != "")
-{
-    $imageUrl = $imageData[0]['imageUrl'];
-    $imageId = $imageData[0]['imageId'];
 
-    $newImageId = null;
-    $errorCode = null;
-    if(!$_FILES['fileToUpload']["name"] == "")//If there is something to upload
+if($_FILES["fileToUpload"]["name"] != "") // If user IS uploading an image
+{
+    if(sizeof($imageData) != 0) // Page has an image //
     {
-        $errorCode = removeExistingImage($objectId, $imageUrl);
-        $newImageId = replaceFile($objectId);
+        $errorCode = removeExistingImage($objectId, $imageData[0]['imageUrl']);
     }
-    else
-    {
-        $newImageId = $imageId;  
-    }
+    $newImageId = uploadFile($objectId);        
+    $sql = "UPDATE pages SET pageImage = '" . $newImageId . "' WHERE pageId = " . $pageId;
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute();
+
+    $sqlText = ", pageImage= '$newImageId'";
 } else
 {
-    $newImageId = NULL;
+    $sqlText = "";
 }
 
-$pdo->query("UPDATE pages SET pageText = '$pageText', pageTitle = '$pageTitle', pageImage= '$newImageId' WHERE pageId = '$pageId'");
+$pdo->query("UPDATE pages SET pageText = '$pageText', pageTitle = '$pageTitle' $sqlText WHERE pageId = '$pageId'");
 
 header("Location: editPages.php?objectId=$objectId&pageId=$pageId&message=Page updated successfully");
 ?>

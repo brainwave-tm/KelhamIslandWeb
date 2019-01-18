@@ -8,6 +8,31 @@ $objectID = safeString($_GET['objectID']);
 $object = $pdo->query("SELECT * FROM objects
 INNER JOIN images ON objects.objectPreviewImage = images.imageId
 WHERE objectId = $objectID")->fetchObject();
+
+$objectNameError = false;
+$objectShortDescriptionError = false;
+
+if(isset($_GET['update']))
+{
+    // User has clicked update, now we need to validate //
+    $validationCanary = true;
+
+    var_dump($_POST);
+    var_dump($_FILES);
+
+    if($_POST['objectName'] == "" || $_POST['objectShortDescription'] == "") $validationCanary = false;
+
+    if(!$validationCanary)
+    {
+        // User entered some blank text, set some flags //
+        if($_POST['objectName'] == "") $objectNameError = true;
+        if($_POST['objectShortDescription'] == "") $objectShortDescriptionError = true;
+    } else
+    {
+        // Submit to database //
+        include("submitEditToDatabase.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +56,22 @@ WHERE objectId = $objectID")->fetchObject();
         <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>Editing: <?php echo $object->objectName; ?></h1>
         <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="logout.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
     </header>
 
     <div class="pagePreviewPanel">
         <?php if(isset($_GET["message"])) { echo "<h2 class='message'>" . $_GET["message"] . "</h2><br>"; } ?>
-        <form action='submitEditToDatabase.php' method='post' enctype="multipart/form-data" id="editObjectForm">
+        <form action='editObjectTest.php?objectID=<?php echo $objectID; ?>&update=1' method='post' enctype="multipart/form-data" id="editObjectForm">
             <?php
             // Object ID has been supplied, we can load the page directly into an object //
             echo "<input type='text' name='objectId' value='" . $objectID . "' style='display: none;'/>"; // Invisible Element for $_POST //
-
+            echo "<strong>Object Name</strong>";
+            if($objectNameError) echo "<h2 class='messageBad'>Invalid Object Name entered.</h2>";
             echo "<input type='text' name='objectName' value='" . $object->objectName . "'/><br><br>";
+            echo "<strong>Object Short Description</strong><br><br>";
+            if($objectShortDescriptionError) echo "<h2 class='messageBad'>Invalid Object Short Description entered.</h2>";
             echo "<textarea name='objectShortDescription'>" . str_replace("[newline]", "\n", $object->objectShortDescription) . "</textarea>";
-
-            ?>
+            ?> 
 
             <br><br>
             <strong>Shelf Position: </strong><br>

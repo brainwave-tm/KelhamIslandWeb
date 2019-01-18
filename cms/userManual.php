@@ -22,7 +22,7 @@ require("../logic/auth.php");
         <a href="cms.php" class="backLink"><span class="backLink"><i class="fas fa-caret-left"></i><strong>Back</strong></span></a>
         <h1>User Manual</h1>
         <span class="helpButton" ><i id="helpButton"class="far fa-question-circle"></i><p><strong>Help</strong></p></span>
-        <a href="../index.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo"></a>
+        <a href="logout.php"><img class="headerLogo" src="../content/images/logo.png" alt="Kelham Island Logo" ></a>
     </header>
     <div syle="width: 100%; height: 100%">
     <iframe src="../content/pdf/User_Manual.pdf" style="width:100%; height:790px;" frameborder="0"></iframe>
