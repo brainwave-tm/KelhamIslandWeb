@@ -18,7 +18,7 @@ for($id = 0; $id < sizeof($pages); $id++)
 
 // Then delete the pages //
 $pdo->query("DELETE FROM pages WHERE pages.objectId = " . $objectId);
-
+ 
 //Delete Directory
 $dir = '../content/images/' . $objectId . '/';
 $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
