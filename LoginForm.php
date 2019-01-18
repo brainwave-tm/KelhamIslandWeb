@@ -25,6 +25,9 @@
                 <p>
                     <label for="pass">Password:</label>
                     <input type="password" name="password" id="pass" required>
+                </p>
+                <p>
+                    <a href="forgotPassword.php">Forgot Password?</a>
                 </p>  
                 <p class="right">
                     <input type="submit" name="login" value="Login" class="sendButton" />
