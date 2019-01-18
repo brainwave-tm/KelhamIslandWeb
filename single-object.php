@@ -73,7 +73,13 @@ $objectData = $pdo->query("SELECT * FROM objects WHERE objectID = $objectID")->f
                     $pageID = safeInt($_GET['pageID']);
                     $objectPage = $pdo->query("SELECT * FROM pages WHERE pageId = $pageID")->fetchObject();
                     echo "<h2 class='title'>$objectPage->pageTitle</h2>";
-
+                    echo "<div class = 'textSize'>";
+                    echo "   <h3>Text size</strong></h3>";
+                    echo "   <div class = 'sizeButtons'>";
+                    echo "      <button onclick='decrement()'>-</button>";
+                    echo "      <button onclick='increment()'>+</button>";
+                    echo "   </div>";
+                    echo "</div>";
                     echo "<div class='longDescription'>";
                         echo "<p>" . str_replace("[newline]", "<br>", $objectPage->pageText) . "</p>";
                     echo "</div>";

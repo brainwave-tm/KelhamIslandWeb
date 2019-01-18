@@ -34,6 +34,13 @@ include("includes/functions.inc.php");
         setcookie("firstEntry", "false", time() + (86400 * 30));
     ?>
         <div class="popup">
+    <?php
+    } else {
+        ?>
+        <div class="popup" style="display: none">
+        <?php
+    }
+    ?>
             <h1>Welcome to the Kelham Island <strong>Interactive Open Store Directory</strong>!</h1>
             <p>Across the room from you is the <strong>Open Store</strong>. Objects are stored on the racking along the wall; divided into bays. Each bay is labelled with a <strong>letter</strong> and a <strong>number</strong> - for example <strong>A1</strong>. They are labelled as follows:</p>
             <table>
@@ -61,9 +68,6 @@ include("includes/functions.inc.php");
             <h1>Enjoy learning about the Open Store objects!</h1>
             <button id="closeBtn">Close</button>
         </div>
-    <?php
-    }
-    ?>
 
     <div style='background-color: ghostwhite; padding: 2px; margin-top: 10px;'>
     <?php
